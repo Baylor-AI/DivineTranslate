@@ -1,47 +1,64 @@
 import React, {useState, useEffect} from 'react'
-import logo from './logo.svg';
-import './App.css';
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function App() {
-const [data, setData] = useState([{}])
-useEffect(() =>{
-    fetch("/members").then(
-        res => res.json()
-    ).then(
-        data => {
-            setData(data)
-            console.log(data)
-        }
-    )
-})
-  return (
-    <div className="App">
-        {(typeof data.members ==='undefined') ? (
-            <p> Loading... </p>
-            ) : (
-                data.members.map(
-                    (member,i) => (
-                    <p key = {i}> {member}</p>
-                ))
-        )}
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    return (
+        <div className="App">
 
-    </div>
-  );
+            <h1 className="text-success">  SIC'EM NLP</h1>
+            <div class="container">
+                <div className="row">
+                    <div className="col s12 m6">
+                        <div className="dropdown">
+                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Language
+                            </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a className="dropdown-item" href="#">English</a>
+                                <a className="dropdown-item" href="#">Chinese</a>
+                                <a className="dropdown-item" href="#">Hebrew</a>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                        </div>
+                        <a
+                            className="btn btn-primary"
+                            data-bs-toggle="collapse"
+                            href="#collapseExample"
+                            role="button"
+                            aria-expanded="false"
+                            aria-controls="collapseExample"
+                        >
+                            Translate
+                        </a>
+                    </div>
+                    <div className="col s12 m6">
+                       <div className="dropdown">
+                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Language
+                            </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a className="dropdown-item" href="#">English</a>
+                                <a className="dropdown-item" href="#">Chinese</a>
+                                <a className="dropdown-item" href="#">Hebrew</a>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
+
+
+
