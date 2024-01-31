@@ -4,41 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/RivasBible.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/public/logo192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/public/logo512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/public/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/src/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/src/App.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/src/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/src/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/src/reportWebVitals.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bible-frontend/src/setupTests.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="Started Flask Backend and React Frontend">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bible-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -54,14 +43,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Jason"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jjw73\PycharmProjects\RivasBible" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="RivasBible" />
@@ -102,10 +96,21 @@
       <option name="presentableId" value="Default" />
       <updated>1706688231147</updated>
     </task>
+    <task id="LOCAL-00001" summary="Started Flask Backend and React Frontend">
+      <option name="closed" value="true" />
+      <created>1706722598182</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706722598182</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Started Flask Backend and React Frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started Flask Backend and React Frontend" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
