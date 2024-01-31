@@ -22,13 +22,19 @@ function App() {
             <div class="container">
                 <div className="row">
                     <div className="col s12 m6">
-
-
                         <div className="form-group">
                             <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" value={inputText}
         onChange={(e) => setInputText(e.target.value)}></textarea>
                         </div>
-                        <a
+                        <div className="input-group">
+
+                        <select className="form-select" aria-label="Default select example" value={targetLanguage} onChange={(e) => setTargetLanguage(e.target.value)}>
+                            <option selected>Select translation language</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="en">English</option>
+                        </select>
+                            <a
                             className="btn btn-primary"
                             data-bs-toggle="collapse"
                             href="#collapseExample"
@@ -39,11 +45,7 @@ function App() {
                         >
                             Translate
                         </a>
-                        <select className="form-select" aria-label="Default select example" value={targetLanguage} onChange={(e) => setTargetLanguage(e.target.value)}>
-                            <option selected>Select translation language</option>
-                            <option value="es">Spanish</option>
-                            <option value="fr">French</option>
-                        </select>
+                            </div>
                     </div>
                     <div className="col s12 m6">
 

@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="Designed front end to mirror wireframe">
-      <change afterPath="$PROJECT_DIR$/bible-frontend/src/GoogleTranslate.js" afterDir="false" />
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="Integrated google translate for demo purposes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bible-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bible-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bible-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1706688231147</updated>
       <workItem from="1706735693678" duration="347000" />
-      <workItem from="1706736155210" duration="5805000" />
+      <workItem from="1706736155210" duration="6318000" />
     </task>
     <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
       <created>1706738701065</created>
@@ -103,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706738760173</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Integrated google translate for demo purposes">
+      <created>1706742308799</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706742308799</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,7 +127,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Designed front end to mirror wireframe" />
-    <option name="LAST_COMMIT_MESSAGE" value="Designed front end to mirror wireframe" />
+    <MESSAGE value="Integrated google translate for demo purposes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Integrated google translate for demo purposes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
