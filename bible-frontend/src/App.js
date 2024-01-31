@@ -17,6 +17,12 @@ useEffect(() =>{
 })
   return (
     <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <textarea>
         {(typeof data.members ==='undefined') ? (
             <p> Loading... </p>
             ) : (
@@ -25,11 +31,6 @@ useEffect(() =>{
                     <p key = {i}> {member}</p>
                 ))
         )}
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
         <a
           className="App-link"
           href="https://reactjs.org"
