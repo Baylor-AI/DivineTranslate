@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/bible-frontend/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="Designed front end to mirror wireframe">
+      <change afterPath="$PROJECT_DIR$/bible-frontend/src/GoogleTranslate.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bible-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bible-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bible-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/App.js" afterDir="false" />
     </list>
@@ -87,8 +87,23 @@
       <option name="presentableId" value="Default" />
       <updated>1706688231147</updated>
       <workItem from="1706735693678" duration="347000" />
-      <workItem from="1706736155210" duration="2499000" />
+      <workItem from="1706736155210" duration="5805000" />
     </task>
+    <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
+      <created>1706738701065</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706738701065</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Designed front end to mirror wireframe">
+      <created>1706738760173</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706738760173</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,6 +122,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Designed front end to mirror wireframe" />
+    <option name="LAST_COMMIT_MESSAGE" value="Designed front end to mirror wireframe" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

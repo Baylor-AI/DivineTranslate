@@ -1,29 +1,32 @@
-import React, {useState, useEffect} from 'react'
-
+import React, { useState } from 'react';
+import translateText from './GoogleTranslate';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function App() {
-    return (
+  const [inputText, setInputText] = useState('');
+  const [targetLanguage, setTargetLanguage] = useState('es'); // Default: Spanish
+     const [translatedText, setTranslatedText] = useState('');
+
+  const handleTranslate = async () => {
+    if (inputText) {
+      const text = await translateText(inputText, targetLanguage);
+        setTranslatedText(text);
+        console.log(text);
+    }
+  };
+   return (
         <div className="App">
 
-            <h1 className="text-success">  SIC'EM NLP</h1>
+            <h1 className="text-success">  SIC'EM NLP </h1>
             <div class="container">
                 <div className="row">
                     <div className="col s12 m6">
-                        <div className="dropdown">
-                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Language
-                            </button>
-                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="#">English</a>
-                                <a className="dropdown-item" href="#">Chinese</a>
-                                <a className="dropdown-item" href="#">Hebrew</a>
-                            </div>
-                        </div>
+
+
                         <div className="form-group">
-                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" value={inputText}
+        onChange={(e) => setInputText(e.target.value)}></textarea>
                         </div>
                         <a
                             className="btn btn-primary"
@@ -32,24 +35,20 @@ function App() {
                             role="button"
                             aria-expanded="false"
                             aria-controls="collapseExample"
+                            onClick={handleTranslate}
                         >
                             Translate
                         </a>
+                        <select className="form-select" aria-label="Default select example" value={targetLanguage} onChange={(e) => setTargetLanguage(e.target.value)}>
+                            <option selected>Select translation language</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                        </select>
                     </div>
                     <div className="col s12 m6">
-                       <div className="dropdown">
-                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Language
-                            </button>
-                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="#">English</a>
-                                <a className="dropdown-item" href="#">Chinese</a>
-                                <a className="dropdown-item" href="#">Hebrew</a>
-                            </div>
-                        </div>
+
                         <div className="form-group">
-                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" value={translatedText}></textarea>
                         </div>
                     </div>
                 </div>
@@ -59,6 +58,8 @@ function App() {
 }
 
 export default App;
+
+
 
 
 
