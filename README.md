@@ -3,14 +3,18 @@
 
 ## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+To make it easy for you to get started with this project, here is some starting documentation!
 
-1. **Environment Setup**
+1. **Clone the Repository**
+  1. **Download Pycharm (if not already on machine)**
+    ![Alt text]
+
+2. **Environment Setup**
     - Activate venv
       - Linux:`source flask-backend/Scripts/activate`
       - Windows: `.\flask-server\Scripts\activate`
     - Install dependencies: `pip install -r requirements.txt` 
-2. **bible-frontend: Frontend Setup**
+3. **bible-frontend: Frontend Setup**
     - Install Node.js: https://nodejs.org/en/download/
 	- In the terminal, navigate to the bible-frontend directory and run the following commands:
 		- `npm start`
