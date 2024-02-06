@@ -7,9 +7,9 @@ To make it easy for you to get started with this project, here is some starting 
 
 1. **Clone the Repository**
     -  **Download Necessities** *(if not already on machine)*
-        - Install Git : [Download Site](https://github.com/git-guides/install-git) 
-        - Install Python : [Download Site](https://www.python.org/downloads/) 
-        - Install Pycharm (Community Edition) : [Download Site](https://www.jetbrains.com/pycharm/download/)  
+        - [Git](https://github.com/git-guides/install-git) 
+        - [Python](https://www.python.org/downloads/) 
+        - [Pycharm](https://www.jetbrains.com/pycharm/download/)  
         
     -  **Cloning using Pycharm**
         - Open Pycharm and click "Get from VCS"
