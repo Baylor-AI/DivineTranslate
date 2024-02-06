@@ -44,7 +44,7 @@ python -m venv <environment name >
 ```bash
 source <venv name >/bin/activate
 ```
-    - Install dependencies: `pip install -r requirements.txt` 
+  - Install dependencies: `pip install -r requirements.txt` 
 3. **bible-frontend: Frontend Setup**
     - Install Node.js: https://nodejs.org/en/download/
 	- In the terminal, navigate to the bible-frontend directory and run the following commands:
