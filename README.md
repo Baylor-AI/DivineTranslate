@@ -38,11 +38,11 @@ python3 -m venv <environment name>
 
 ### Windows
 ```bash
-python -m venv <environment name>
+python -m venv <environment name >
 ```
 ### Linux
-```Bash
-source <venv name>/bin/activate
+```bash
+source <venv name >/bin/activate
 ```
     - Install dependencies: `pip install -r requirements.txt` 
 3. **bible-frontend: Frontend Setup**
