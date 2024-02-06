@@ -13,19 +13,14 @@ To make it easy for you to get started with this project, here is some starting 
     - Install Pycharm (Community or Pro Edition) : https://www.jetbrains.com/pycharm/download/?section=windows  
     
   b.  **Cloning using Pycharm**
+
     - Open Pycharm and click "Get from VCS"
-      
       ![Screenshot](../DocumentationImages/GetFromVCS.png)
-
     - Open your browser and navigate to the project repository. Copy the repository's cloning link 
-
       ![Screenshot](../DocumentationImages/CloneLink.png)
-
     - Paste the url into the "Get From Version Control popup and click "Clone". 
       - **__Note:__** The Directory doesn't matter
-
       ![Screenshot](../DocumentationImages/PycharmCloneRepo.png)
-
     - Wait for the project to finish cloning and clieck "Trust Project" when the popup appears.
     - 
 
