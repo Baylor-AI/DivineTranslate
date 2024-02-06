@@ -34,7 +34,9 @@ python -m venv <environment name>
 ```bash
 python3 -m venv <environment name>
 ```
-    - Activate venv
+
+
+  - Activate venv
 
 ### Windows
 ```bash
