@@ -1,7 +1,7 @@
 # Rivas Bible
 
 ## Dev Docs
-## Getting started
+- ## Getting started
 
 To make it easy for you to get started with this project, here is some starting documentation!
 
@@ -64,4 +64,4 @@ npm start
 
 
 ## User Docs
-## Usage
+- ## Usage
