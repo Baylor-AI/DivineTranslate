@@ -6,12 +6,12 @@
 To make it easy for you to get started with this project, here is some starting documentation!
 
 1. **Clone the Repository**
-  a.  *Download Necessities (if not already on machine)*
+  -  *Download Necessities (if not already on machine)*
     - Install Git : https://github.com/git-guides/install-git 
     - Install Python : https://www.python.org/downloads/ 
     - Install Pycharm (Community or Pro Edition) : https://www.jetbrains.com/pycharm/download/?section=windows  
     
-  b.  *Cloning using Pycharm*
+  -  *Cloning using Pycharm*
     - Open Pycharm and click "Get from VCS"
       ![Screenshot](../DocumentationImages/GetFromVCS.png)
     - Open your browser and navigate to the project repository. Copy the repository's cloning link 
