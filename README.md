@@ -16,17 +16,13 @@ To make it easy for you to get started with this project, here is some starting 
 
           ![Screenshot](../DocumentationImages/GetFromVCS.png)
 
-
-
         - Open your browser and navigate to the project repository. Copy the repository's cloning link 
+
           ![Screenshot](../DocumentationImages/CloneLink.png)
 
-
-
         - Paste the url into the "Get From Version Control popup and click "Clone". 
+
           ![Screenshot](../DocumentationImages/PycharmCloneRepo.png)
-
-
 
         - Wait for the project to finish cloning and clieck "Trust Project" when the popup appears.
   
