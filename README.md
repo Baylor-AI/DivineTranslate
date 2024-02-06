@@ -8,6 +8,7 @@ To make it easy for you to get started with this project, here is some starting 
 1. **Clone the Repository**
   
   a.  **Download Necessities if not already on machine)**
+  
     - Install Git : https://github.com/git-guides/install-git 
     - Install Python : https://www.python.org/downloads/ 
     - Install Pycharm (Community or Pro Edition) : https://www.jetbrains.com/pycharm/download/?section=windows  
