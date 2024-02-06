@@ -18,7 +18,11 @@ To make it easy for you to get started with this project, here is some starting 
 
         - Open your browser and navigate to the project repository. Copy the repository's cloning link.  
 
+
+
         - ![Screenshot](../DocumentationImages/CloneLink.png)
+
+
 
         - Paste the url into the "Get From Version Control popup and click "Clone". 
 
