@@ -13,7 +13,7 @@ To make it easy for you to get started with this project, here is some starting 
     
   b.  **Cloning using Pycharm**
     - Open Pycharm and click "Get from VCS"
-      (https://gitlab.com/rivas-bible/rivas-bible/-/blob/main/DocumentationImages/GetFromVCS.png)
+      ![Screenshot](../DocumentationImages/GetFromVCS.png)
 
 2. **Environment Setup**
     - Activate venv
