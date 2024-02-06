@@ -7,12 +7,13 @@ To make it easy for you to get started with this project, here is some starting 
 
 1. **Clone the Repository**
     -  **Download Necessities** *(if not already on machine)*
-        - Install Git : https://github.com/git-guides/install-git 
-        - Install Python : https://www.python.org/downloads/ 
-        - Install Pycharm (Community or Pro Edition) : https://www.jetbrains.com/pycharm/download/?section=windows  
+        - Install Git : [Download](https://github.com/git-guides/install-git) 
+        - Install Python : [Download](https://www.python.org/downloads/) 
+        - Install Pycharm (Community or Pro Edition) : [Download](https://www.jetbrains.com/pycharm/download/?section=windows)  
         
     -  **Cloning using Pycharm**
         - Open Pycharm and click "Get from VCS"
+        
           ![Screenshot](../DocumentationImages/GetFromVCS.png)
 
         - Open your browser and navigate to the project repository. Copy the repository's cloning link 
@@ -54,9 +55,12 @@ pip install -r requirements.txt
 ``` 
 3. **bible-frontend: Frontend Setup**
     - Install Node.js: https://nodejs.org/en/download/
-	- In the terminal, navigate to the bible-frontend directory and run the following commands:
-		- `npm start`
-	- Navigate to http://localhost:3000 - you should see the translation application
+	- In Pycharm's terminal, navigate to the bible-frontend directory and run the following commands:
+```bash
+npm start
+```
+	
+  - Navigate to http://localhost:3000 - you should see the translation application
 
 
 Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
