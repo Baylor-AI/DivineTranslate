@@ -68,7 +68,7 @@ pip install -r requirements.txt
 ``` 
 
 
-3. **bible-frontend: Frontend Setup**
+3. **Frontend Setup**
     - Install Node.js: https://nodejs.org/en/download/
 	- In Pycharm's terminal, navigate to the bible-frontend directory and run the following commands:
 
@@ -85,3 +85,14 @@ npm start
 
 ## User Docs
 - ## Usage
+1. **Input Text** into the textbox on the left side of the screen
+
+       ![Screenshot](../DocumentationImages/FrontendTextInput.png)
+
+2. **Select Your Preferred Language** and click the "Translate" button
+
+      ![Screenshot](../DocumentationImages/FrontendInputChooseTranslation.png)
+
+3. **Check the Received Translation**
+
+      ![Screenshot](../DocumentationImages/FrontendTranslaionOutput.png)
