@@ -1,48 +1,67 @@
-import React, {useState, useEffect} from 'react'
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from 'react';
+import translateText from './GoogleTranslate';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function App() {
-const [data, setData] = useState([{}])
-useEffect(() =>{
-    fetch("/members").then(
-        res => res.json()
-    ).then(
-        data => {
-            setData(data)
-            console.log(data)
-        }
-    )
-})
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <textarea>
-        {(typeof data.members ==='undefined') ? (
-            <p> Loading... </p>
-            ) : (
-                data.members.map(
-                    (member,i) => (
-                    <p key = {i}> {member}</p>
-                ))
-        )}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  const [inputText, setInputText] = useState('');
+  const [targetLanguage, setTargetLanguage] = useState('es'); // Default: Spanish
+     const [translatedText, setTranslatedText] = useState('');
 
-    </div>
-  );
+  const handleTranslate = async () => {
+    if (inputText) {
+      const text = await translateText(inputText, targetLanguage);
+        setTranslatedText(text);
+        console.log(text);
+    }
+  };
+   return (
+        <div className="App">
+
+            <h1 className="text-success">  SIC'EM NLP </h1>
+            <div class="container">
+                <div className="row">
+                    <div className="col s12 m6">
+                        <div className="form-group">
+                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" value={inputText}
+        onChange={(e) => setInputText(e.target.value)}></textarea>
+                        </div>
+                        <div className="input-group">
+
+                        <select className="form-select" aria-label="Default select example" value={targetLanguage} onChange={(e) => setTargetLanguage(e.target.value)}>
+                            <option selected>Select translation language</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="en">English</option>
+                        </select>
+                            <a
+                            className="btn btn-primary"
+                            data-bs-toggle="collapse"
+                            href="#collapseExample"
+                            role="button"
+                            aria-expanded="false"
+                            aria-controls="collapseExample"
+                            onClick={handleTranslate}
+                        >
+                            Translate
+                        </a>
+                            </div>
+                    </div>
+                    <div className="col s12 m6">
+
+                        <div className="form-group">
+                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" value={translatedText}></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
+
+
+
+
+
