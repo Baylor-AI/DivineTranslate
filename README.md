@@ -13,7 +13,7 @@ To make it easy for you to get started with this project, here is some starting 
         
     -  **Cloning using Pycharm**
         - Open Pycharm and click "Get from VCS"
-        
+
           ![Screenshot](../DocumentationImages/GetFromVCS.png)
 
         - Open your browser and navigate to the project repository. Copy the repository's cloning link 
@@ -25,24 +25,24 @@ To make it easy for you to get started with this project, here is some starting 
         - Wait for the project to finish cloning and clieck "Trust Project" when the popup appears.
   
 2. **Environment Setup**
-    - **Once you have the project opened, create a virtual environment using Pycharm's terminal**
-### Windows
+    - Once you have the project opened, create a virtual environment using Pycharm's terminal
+#### Windows
 ```bash
 python -m venv <environment name>
 ```
 
-### Linux
+#### Linux
 ```bash
 python3 -m venv <environment name>
 ```
 
 
-  - __Now we can activate our virtual environment by running these commands in Pycharm's terminal:__
-### Windows
+  - Now we can activate our virtual environment by running these commands in Pycharm's terminal:
+#### Windows
 ```bash
-python -m venv <environment name >
+.\<venv name>\Scripts\activate
 ```
-### Linux
+#### Linux
 ```bash
 source <venv name >/bin/activate
 ```
