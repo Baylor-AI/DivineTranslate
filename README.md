@@ -12,7 +12,7 @@ To make it easy for you to get started with this project, here is some starting 
         - [Pycharm](https://www.jetbrains.com/pycharm/download/)  
         
     -  **Cloning using Pycharm**
-        - Open Pycharm and click "Get from VCS"
+        - Open Pycharm and click "Get from VCS"  
 
           ![Screenshot](../DocumentationImages/GetFromVCS.png)
 
