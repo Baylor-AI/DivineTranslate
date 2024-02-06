@@ -5,7 +5,7 @@
 
 To make it easy for you to get started with this project, here is some starting documentation!
 
-### 1. **Clone the Repository**
+1. **Clone the Repository**
   
   a.  **Download Necessities if not already on machine)**
     - Install Git : https://github.com/git-guides/install-git 
