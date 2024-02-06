@@ -16,7 +16,8 @@ To make it easy for you to get started with this project, here is some starting 
 
           ![Screenshot](../DocumentationImages/GetFromVCS.png)
 
-        - Open your browser and navigate to the project repository. Copy the repository's cloning link<br>  
+        - Open your browser and navigate to the project repository. Copy the repository's cloning link     
+          
 
           ![Screenshot](../DocumentationImages/CloneLink.png)
 
