@@ -6,8 +6,14 @@
 To make it easy for you to get started with this project, here is some starting documentation!
 
 1. **Clone the Repository**
-  1. **Download Pycharm (if not already on machine)**
-    ![Alt text]
+  a.  **Download Necessities if not already on machine)**
+    - Install Git : https://github.com/git-guides/install-git 
+    - Install Python : https://www.python.org/downloads/ 
+    - Install Pycharm (Community or Pro Edition) : https://www.jetbrains.com/pycharm/download/?section=windows  
+    
+  b.  **Cloning using Pycharm**
+    - Open Pycharm and click "Get from VCS"
+      ![Alt text](https://gitlab.com/rivas-bible/rivas-bible/-/blob/main/DocumentationImages/GetFromVCS.png)
 
 2. **Environment Setup**
     - Activate venv
