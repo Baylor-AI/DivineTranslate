@@ -89,7 +89,7 @@ npm start
 
   ![Screenshot](/DocumentationImages/FrontendInputChooseTranslation.png)
 
-3. **Check the Translation**
+3. **Check the Translation**.
 
   ![Screenshot](/DocumentationImages/FrontendTranslaionOutput.png)
 
