@@ -94,5 +94,4 @@ npm start
 3. **Check the Translation**
 
 
-  ![Screenshot](/DocumentationImages/FrontendTranslaionOutput.png)
-  
+  [![Screenshot](/DocumentationImages/FrontendTranslaionOutput.png)
