@@ -95,3 +95,4 @@ npm start
 
 
   ![Screenshot](/DocumentationImages/FrontendTranslaionOutput.png)
+  
