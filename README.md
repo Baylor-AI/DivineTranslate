@@ -81,17 +81,17 @@ npm start
 
 ## User Docs
 - ## Usage
-1. **Input Text** into the textbox on the left side of the screen  
+1. **Input Text** into the textbox on the left side of the screen.  
 
 
-       ![Screenshot](/DocumentationImages/FrontendTextInput.png)
+  ![Screenshot](/DocumentationImages/FrontendTextInput.png)
 
-2. **Select Your Preferred Language** and click the "Translate" button  
+2. **Select Your Preferred Language** and click the "Translate" button.  
 
 
-      ![Screenshot](/DocumentationImages/FrontendInputChooseTranslation.png)
+  ![Screenshot](/DocumentationImages/FrontendInputChooseTranslation.png)
 
 3. **Check the Translation**
 
 
-      ![Screenshot](/DocumentationImages/FrontendTranslaionOutput.png)
+  ![Screenshot](/DocumentationImages/FrontendTranslaionOutput.png)
