@@ -83,19 +83,16 @@ npm start
 - ## Usage
 1. **Input Text** into the textbox on the left side of the screen.  
 
-
   ![Screenshot](/DocumentationImages/FrontendTextInput.png)
 
 2. **Select Your Preferred Language** and click the "Translate" button.  
-
 
   ![Screenshot](/DocumentationImages/FrontendInputChooseTranslation.png)
 
 3. **Check the Translation**
 
-
   ![Screenshot](/DocumentationImages/FrontendTranslaionOutput.png)
 
-# License
-
 # Contributions
+
+# License
