@@ -14,15 +14,15 @@ To make it easy for you to get started with this project, here is some starting 
     -  **Cloning using Pycharm**
         - Open Pycharm and click "Get from VCS"  
 
-          ![Screenshot](../DocumentationImages/GetFromVCS.png)
+          ![Screenshot](/DocumentationImages/GetFromVCS.png)
 
         - Open your browser and navigate to the project repository. Copy the repository's cloning link.  
             
-            ![Screenshot](../DocumentationImages/CloneLink.png)
+            ![Screenshot](/DocumentationImages/CloneLink.png)
 
         - Paste the url into the "Get From Version Control popup and click "Clone". 
 
-          ![Screenshot](../DocumentationImages/PycharmCloneRepo.png)
+          ![Screenshot](/DocumentationImages/PycharmCloneRepo.png)
 
         - Wait for the project to finish cloning and clieck "Trust Project" when the popup appears.
   
@@ -76,7 +76,7 @@ npm start
   - Open your browser and navigate to http://localhost:3000 - the translation application should appear
 
 
-    ![Screenshot](../DocumentationImages/FrontendOpen.png)
+    ![Screenshot](/DocumentationImages/FrontendOpen.png)
 
 
 ## User Docs
@@ -84,14 +84,14 @@ npm start
 1. **Input Text** into the textbox on the left side of the screen  
 
 
-       ![Screenshot](../DocumentationImages/FrontendTextInput.png)
+       ![Screenshot](/DocumentationImages/FrontendTextInput.png)
 
 2. **Select Your Preferred Language** and click the "Translate" button  
 
 
-      ![Screenshot](../DocumentationImages/FrontendInputChooseTranslation.png)
+      ![Screenshot](/DocumentationImages/FrontendInputChooseTranslation.png)
 
 3. **Check the Translation**
 
 
-      ![Screenshot](../DocumentationImages/FrontendTranslaionOutput.png)
+      ![Screenshot](/DocumentationImages/FrontendTranslaionOutput.png)
