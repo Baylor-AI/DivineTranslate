@@ -91,8 +91,9 @@ npm start
 
 3. **Check the Translation**  
 
-  [Screenshot](/DocumentationImages/FrontendTranslaionOutput.png)  
-  ![Screenshot](/DocumentationImages/FrontendTranslaionOutput.png)  
+  (/DocumentationImages/FrontendTranslaionOutput.png)  
+  [![Screenshot](/DocumentationImages/FrontendTranslaionOutput.png)]  
+  <img title="FrontendTranslationOutput" src="/DocumentationImages/FrontendTranslaionOutput.png">
 
 # Contributions
 
