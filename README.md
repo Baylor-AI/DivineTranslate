@@ -93,6 +93,25 @@ npm start
 
   ![Screenshot](/DocumentationImages/FrontendTranslationOutput.png)
 
+- ## Main Elements
+  - **Translation Page**
+    - This is the primary page for interacting with our translation mechanism.
+
+  - **Input Textbox**
+    - This textbox is situated on the left half of the screen, right below the name of our Language Model. Users can interact with it by  
+      clicking on it, and typing words into it.
+
+  - **Language Dropdown**
+    - This dropdown is situated right underneath the input textbox. Users can interact with it by clicking on it once to reveal the possible language options. They can select the language to translate the input text into by clicking on the desired language. 
+
+  - **Translate Button**
+    - This button can be seen below the Input textbox and to the right of the Language Dropdown Menu. Once clicked, it will detect the text input in the Input Textbox, and send it to a backend system that will return the translated verson of the input text, to be displayed in the Output Textbox.
+
+  - **Output Textbox**
+    - This textbox is located to the right of the Input Textbox, and is not user interactible. Once the translation is complete, the results will be displayed in this textbox.  
+
+
+
 # Contributions
 
 # License
