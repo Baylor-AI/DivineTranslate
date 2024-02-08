@@ -1,1 +1,8 @@
-flask
+flask # for frontend
+
+# for model training and database stuff
+datasets
+accelerate -U
+torch
+transformers[torch]
+sacrebleu
