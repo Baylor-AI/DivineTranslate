@@ -5,6 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/flask-backend" />
       <excludeFolder url="file://$MODULE_DIR$/virtualenviron/Include" />
       <excludeFolder url="file://$MODULE_DIR$/virtualenviron" />
+      <excludeFolder url="file://$MODULE_DIR$/DBTextFiles" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
