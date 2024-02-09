@@ -19,10 +19,10 @@ def get_all_tokened():
     num_tokens = len(tokens)
     list_len = len(tokens[0]) - 1
     for i in range(num_tokens):
-        mapping = []
         for k in range(num_tokens):
+            mapping = []
             if i != k:
-                with io.open(os.path.join(os.path.join(os.getcwd()),token_directory,f'{tokens[i][list_len]}_to_{tokens[k][list_len]}.txt'),
+                with io.open(os.path.join(os.path.join(os.getcwd()), token_directory, f'{tokens[i][list_len]}_to_{tokens[k][list_len]}.txt'),
                              mode='w', encoding='utf-8') as output:
                     # mapping.append({'langTolang':f'{tokens[i][list_len]}_to_{tokens[k][list_len]}'})
                     for j in range(list_len):
