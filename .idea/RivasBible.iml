@@ -6,6 +6,8 @@
       <excludeFolder url="file://$MODULE_DIR$/virtualenviron/Include" />
       <excludeFolder url="file://$MODULE_DIR$/virtualenviron" />
       <excludeFolder url="file://$MODULE_DIR$/DBTextFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/DocumentationImages" />
+      <excludeFolder url="file://$MODULE_DIR$/TokenizedDB" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
