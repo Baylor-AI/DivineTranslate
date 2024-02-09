@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="Tokenizer running in main. &#10;TODO: send tokenizer from main into its own function/file">
-      <change afterPath="$PROJECT_DIR$/TokenizedDB/cmn_CHNNCT.cloud_to_eng_ENGESV.api.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TokenizedDB/cmn_CHNNCT.cloud_to_grc_GRSCBL.cloud.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TokenizedDB/cmn_CHNNCT.cloud_to_nse_1308.biblecom.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TokenizedDB/eng_ENGESV.api_to_cmn_CHNNCT.cloud.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TokenizedDB/eng_ENGESV.api_to_grc_GRSCBL.cloud.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TokenizedDB/eng_ENGESV.api_to_nse_1308.biblecom.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TokenizedDB/grc_GRSCBL.cloud_to_cmn_CHNNCT.cloud.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TokenizedDB/grc_GRSCBL.cloud_to_eng_ENGESV.api.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TokenizedDB/grc_GRSCBL.cloud_to_nse_1308.biblecom.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TokenizedDB/nse_1308.biblecom_to_cmn_CHNNCT.cloud.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TokenizedDB/nse_1308.biblecom_to_eng_ENGESV.api.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TokenizedDB/nse_1308.biblecom_to_grc_GRSCBL.cloud.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="Updated tokenizer so that each tokenized file has one language" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +24,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="xiaokan" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -206,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707441361861</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Updated tokenizer so that each tokenized file has one language">
+      <created>1707521743751</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1707521743751</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,9 +221,10 @@
     <MESSAGE value="Began work on Tokenizer" />
     <MESSAGE value="Tokenizer running in main. &#10;TODO: send tokenizer from main into its own function" />
     <MESSAGE value="Tokenizer running in main. &#10;TODO: send tokenizer from main into its own function/file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tokenizer running in main. &#10;TODO: send tokenizer from main into its own function/file" />
+    <MESSAGE value="Updated tokenizer so that each tokenized file has one language" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated tokenizer so that each tokenized file has one language" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/rivas_bible$main.coverage" NAME="main Coverage Results" MODIFIED="1707511553294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/rivas_bible$main.coverage" NAME="main Coverage Results" MODIFIED="1707521554043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

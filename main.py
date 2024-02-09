@@ -1,51 +1,68 @@
+import io
+from LanguageTokenizer.TxtToToken import text_tokenize
 import os, glob
+from pathlib import Path
 
 # This is the directory where all the txt files should go for tokenization.
-txt_directory = 'DBTextFiles'
+lang_directory = 'DBTextFiles'
 token_directory = 'TokenizedDB'
-txt_directory_size = len(txt_directory) + 1
+txt_directory_size = len(lang_directory) + 1
+
+# global values TODO: remove and redesign
 extension_len = 4
 lang_len = 3
 
 
-def get_all_tokened():
+def get_all_tokened(txt_directory):
     tokens = []
+
+    if not os.path.exists(os.path.join(os.getcwd(), txt_directory)):
+        os.makedirs(txt_directory)
+
     for filename in glob.glob(os.path.join(txt_directory, '*.txt')):
         with io.open(os.path.join(os.getcwd(), filename), mode='r', encoding='utf-8') as file:
             print(filename[txt_directory_size:txt_directory_size + lang_len])
             content = text_tokenize(file, filename[txt_directory_size:txt_directory_size + lang_len])
-            content.append(filename[txt_directory_size:-extension_len])
+            # content.append(filename[txt_directory_size:-extension_len])
             tokens.append(content)
 
+    if not tokens:
+        print(f'Empty Directory: {txt_directory}')
+        return
+
     num_tokens = len(tokens)
-    list_len = len(tokens[0]) - 1
-    for i in range(num_tokens):
-        # checks if the translation is blank
-        blank_check = False
-        for k in range(num_tokens):
-            mapping = []
-            if i != k:
-                with io.open(os.path.join(os.path.join(os.getcwd()), token_directory,
-                                          f'{tokens[i][list_len]}_to_{tokens[k][list_len]}.txt'),
-                                            mode='w', encoding='utf-8') as output:
-                    for j in range(list_len):
+    if num_tokens < 2:
+        print(f'Not enough files in directory: must have at least 2 different translations!')
+        return
 
-                        if tokens[i][j].get('tl')[:-2] is None or tokens[k][j].get('tl')[:-2] is None:
-                            blank_check = True
-                            break
+    for language_from in tokens:
+        mapping = []
+        language_file = os.path.join(token_directory, f'{language_from[0].get("lang")}_mapping.txt')
+
+        for language_to in tokens:
+            if language_to is not language_from:
+                print(f'{language_from[0].get("lang")} -> {language_to[0].get("lang")}')
+                for i in range(len(language_from)):
+
+                        line1 = language_from[i]
+                        line2 = language_to[i]
+                        if not line1.get('tl') or not line2.get('tl'):
+                            continue
+
                         mapping.append(
-                            {tokens[i][j].get('lang'): tokens[i][j].get('tl'),
-                             tokens[k][j].get('lang'): tokens[k][j].get('tl')}
+                            {line1.get('lang'): line1.get('tl'),
+                             line2.get('lang'): line2.get('tl')
+                             }
                         )
-                    for mapped in mapping:
-                        # print(mapped.__str__())
-                        output.write(f'{mapped.__str__()}\n')
-            if blank_check:
-                break
-
-
-import io
-from LanguageTokenizer.TxtToToken import text_tokenize
+                        mapping.append(
+                            {line2.get('lang'): line2.get('tl'),
+                             line1.get('lang'): line1.get('tl')
+                             }
+                        )
+        with io.open(language_file, mode='w', encoding='utf-8') as output:
+            for mapped in mapping:
+                # print(mapped.__str__())
+                output.write(f'{mapped.__str__()}\n')
 
 
 # Press Shift+F10 to execute it or replace it with your code.
@@ -59,7 +76,7 @@ def print_hi(name):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    get_all_tokened()
+    get_all_tokened(lang_directory)
     print_hi('PyCharm')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
