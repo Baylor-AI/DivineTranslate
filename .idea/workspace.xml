@@ -17,7 +17,9 @@
       <change afterPath="$PROJECT_DIR$/TokenizedDB/nse_1308.biblecom_to_cmn_CHNNCT.cloud.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/TokenizedDB/nse_1308.biblecom_to_eng_ENGESV.api.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/TokenizedDB/nse_1308.biblecom_to_grc_GRSCBL.cloud.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +62,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -123,6 +126,8 @@
       <workItem from="1706735693678" duration="347000" />
       <workItem from="1706736155210" duration="6318000" />
       <workItem from="1707427622025" duration="12852000" />
+      <workItem from="1707441219002" duration="867000" />
+      <workItem from="1707510040688" duration="1727000" />
     </task>
     <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
       <created>1706738701065</created>
@@ -194,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707439755991</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Tokenizer running in main. &#10;TODO: send tokenizer from main into its own function/file">
+      <created>1707441361861</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1707441361861</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,18 +232,7 @@
     <MESSAGE value="Tokenizer running in main. &#10;TODO: send tokenizer from main into its own function/file" />
     <option name="LAST_COMMIT_MESSAGE" value="Tokenizer running in main. &#10;TODO: send tokenizer from main into its own function/file" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>45</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/rivas_bible$main.coverage" NAME="main Coverage Results" MODIFIED="1707439732814" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/rivas_bible$main.coverage" NAME="main Coverage Results" MODIFIED="1707511553294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
