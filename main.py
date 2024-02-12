@@ -1,14 +1,9 @@
 from LanguageTokenizer.TxtToToken import text_tokenize
 import os, glob, json
-from pathlib import Path
 
 # This is the directory where all the txt files should go for tokenization.
 lang_dir = 'DBTextFiles'
 tokenized_dir = 'TokenizedDB'
-txt_directory_size = len(lang_dir) + 1
-
-# global values TODO: remove and redesign
-extension_len = 4
 
 """
 gets all translation files from the specified txt_directory and puts them into their tokenized format in the 
@@ -18,7 +13,7 @@ token_directory
 
 def get_all_tokened(txt_directory, token_directory):
     tokens = []
-
+    txt_directory_size = len(lang_dir) + 1
     # creates the directory if it doesn't exist
     if not os.path.exists(os.path.join(os.getcwd(), txt_directory)):
         os.makedirs(txt_directory)
@@ -59,24 +54,19 @@ def get_all_tokened(txt_directory, token_directory):
                     line2 = language_to[i]
                     if not line1.get(tl_key) or not line2.get(tl_key):
                         continue
-
                     mapping.append(
                         {line1.get(lang_key): line1.get(tl_key),
                          line2.get(lang_key): line2.get(tl_key)
                          }
                     )
-                    mapping.append(
-                        {line2.get(lang_key): line2.get(tl_key),
-                         line1.get(lang_key): line1.get(tl_key)
-                         }
-                    )
-
         if not os.path.exists(txt_directory):
             os.makedirs(txt_directory)
         # TODO: discriminate between different versions of the bible as well
         language_file = os.path.join(token_directory, f'{language_from[0].get(lang_key)}_mapping.json')
         with open(language_file, mode='w', encoding='utf-8') as output:
+            # dump the json dictionary
             json.dump(mapping, output)
+            # outputting text version of the dictionary
             # for mapped in mapping:
             #     # print(mapped.__str__())
             #     output.write(f'{mapped.__str__()}\n')
