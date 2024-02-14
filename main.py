@@ -9,8 +9,7 @@ tokenized_dir = 'TokenizedDB'
 gets all translation files from the specified txt_directory and puts them into their tokenized format in the 
 token_directory
 """
-
-
+## TODO: make db version of this
 def get_all_tokened(txt_directory, token_directory):
     tokens = []
     txt_directory_size = len(lang_dir) + 1
@@ -71,15 +70,17 @@ def get_all_tokened(txt_directory, token_directory):
             #     # print(mapped.__str__())
             #     output.write(f'{mapped.__str__()}\n')
 
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
+from Wordnet.wordnet_test import synset_program, synset_choose, synset_compare
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    get_all_tokened(lang_dir, tokenized_dir)
-    print_hi('PyCharm')
+    #tokenizer function
+    # get_all_tokened(lang_dir, tokenized_dir)
+    # synset_program()
+    choice = str(input("What Word would you like the synonyms and antonyms for?"))
+    synset_choose(choice)
+    while True:
+        compare=input("What word would you like to commpare your word with?")
+        if compare == "stop":
+            break
+        synset_compare(choice, compare)

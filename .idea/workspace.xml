@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="Integrated google translate for demo purposes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bible-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LanguageTokenizer/TxtToToken.py" beforeDir="false" afterPath="$PROJECT_DIR$/LanguageTokenizer/TxtToToken.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wordnet/wordnet_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wordnet/wordnet_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +70,7 @@
       <recent name="C:\Users\jason_wu3\Desktop\rivas-bible\DBTextFiles" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jason_wu3\Desktop\rivas-bible" />
       <recent name="C:\Users\jason_wu3\Desktop\rivas-bible\DBTextFiles" />
     </key>
   </component>
@@ -237,5 +240,8 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/rivas_bible$main.coverage" NAME="main Coverage Results" MODIFIED="1707948861971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
