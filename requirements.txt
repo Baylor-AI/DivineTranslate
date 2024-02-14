@@ -1,5 +1,8 @@
 flask # for frontend
 
+#wordnet
+nltk
+
 # for model training and database stuff
 datasets
 accelerate -U
