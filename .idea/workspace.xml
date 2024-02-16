@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="Integrated google translate for demo purposes">
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="Wordnet sample can compare synsets, print synonyms and antonymns. TODO: do the same thing but for sentences and phrases">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LanguageTokenizer/TxtToToken.py" beforeDir="false" afterPath="$PROJECT_DIR$/LanguageTokenizer/TxtToToken.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Wordnet/wordnet_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wordnet/wordnet_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,6 +116,7 @@
       <workItem from="1707427622025" duration="12852000" />
       <workItem from="1707441219002" duration="867000" />
       <workItem from="1707510040688" duration="1727000" />
+      <workItem from="1708114815003" duration="3506000" />
     </task>
     <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
       <created>1706738701065</created>
@@ -203,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1707521743751</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Wordnet sample can compare synsets, print synonyms and antonymns. TODO: do the same thing but for sentences and phrases">
+      <created>1707949091768</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1707949091768</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,7 +234,8 @@
     <MESSAGE value="Tokenizer running in main. &#10;TODO: send tokenizer from main into its own function" />
     <MESSAGE value="Tokenizer running in main. &#10;TODO: send tokenizer from main into its own function/file" />
     <MESSAGE value="Updated tokenizer so that each tokenized file has one language" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated tokenizer so that each tokenized file has one language" />
+    <MESSAGE value="Wordnet sample can compare synsets, print synonyms and antonymns. TODO: do the same thing but for sentences and phrases" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wordnet sample can compare synsets, print synonyms and antonymns. TODO: do the same thing but for sentences and phrases" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -242,6 +249,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/rivas_bible$main.coverage" NAME="main Coverage Results" MODIFIED="1707948861971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/rivas_bible$main.coverage" NAME="main Coverage Results" MODIFIED="1708116694288" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
