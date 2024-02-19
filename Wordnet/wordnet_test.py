@@ -33,11 +33,19 @@ def synset_compare(choice, compare_with, pos=None):
     # compare_with = lem.lemmatize(compare_with)
     choice = wn.morphy(choice)
     compare_with = wn.morphy(compare_with)
-    print(f"after lemma: {choice} v {compare_with}")
-    print(f'{set(wn.synsets(choice))}\n v \n{set(wn.synsets(compare_with))}')
-    if wn.synsets(choice) and wn.synsets(compare_with):
-        print(wn.synsets(choice)[0].wup_similarity(wn.synsets(compare_with)[0]))
-
+    if choice and compare_with:
+        print(f"after lemma: {choice} v {compare_with}")
+        choice_set = set(wn.synsets(choice))
+        compare_set = set(wn.synsets(compare_with))
+        print(f'{choice_set}\n v \n{compare_set}')
+        found = True
+        for word in choice_set:
+            if choice in word.name():
+                for comp in compare_set:
+                    if compare_with in comp.name() and word.pos() == comp.pos():
+                        print(f'{word} v {comp} == {word.wup_similarity(comp)}')
+    else:
+        print(f'No comparison available for {choice} v {compare_with }')
 def synset_speech_match(choice, compare_with):
     lem = wnl()
 
