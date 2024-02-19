@@ -33,21 +33,35 @@ def synset_compare(choice, compare_with, pos=None):
     # compare_with = lem.lemmatize(compare_with)
     choice = wn.morphy(choice)
     compare_with = wn.morphy(compare_with)
+    similarity=None
     if choice and compare_with:
         print(f"after lemma: {choice} v {compare_with}")
-        choice_set = set(wn.synsets(choice))
-        compare_set = set(wn.synsets(compare_with))
+        choice_set = set(synset_get_exact(choice))
+        compare_set = set(synset_get_exact(compare_with))
         print(f'{choice_set}\n v \n{compare_set}')
-        found = True
         for word in choice_set:
-            if choice in word.name():
-                for comp in compare_set:
-                    if compare_with in comp.name() and word.pos() == comp.pos():
-                        print(f'{word} v {comp} == {word.wup_similarity(comp)}')
+            for comp in compare_set:
+                if word.pos() == comp.pos():
+                    found = True
+                    print(f'{word} v {comp} == {word.wup_similarity(comp)}')
+                    similarity=word.wup_similarity(comp)
+                    break;
+            if found:
+                break;
     else:
         print(f'No comparison available for {choice} v {compare_with }')
-def synset_speech_match(choice, compare_with):
-    lem = wnl()
+    return similarity
+
+def synset_speech_match(sentence1, sentence2):
+    prob_set=[]
+
+    # We are comparing the similarity of two sentences, and assuming they are the same length
+    for i in range(len(sentence1)):
+        if sentence2[i] and sentence1[i]:
+            temp = synset_compare(sentence1[i], sentence2[i])
+
+
+
 
 # gets only synsets that contain the exact word
 def synset_get_exact(to_synset):
