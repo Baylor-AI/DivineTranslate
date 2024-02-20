@@ -71,7 +71,8 @@ def get_all_tokened(txt_directory, token_directory):
             # outputting text version of the dictionary
             for mapped in mapping:
                 # print(mapped.__str__())
-                output.write(f"{mapped.__str__()}\n")
+                temp = (mapped.__str__()).replace("\u3000", " ").replace("\xa0", " ")
+                output.write(f"{temp}\n")
 
 from Wordnet.wordnet_test import synset_program, synset_choose, synset_compare
 

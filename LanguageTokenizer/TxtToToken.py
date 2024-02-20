@@ -21,7 +21,7 @@ def text_tokenize(file, language1, book='', chapter='', verse=''):
     ## TODO: grab the verse from the database/file as a token and output it in the form {"lang":"language1", "tl":"string"}
     translations = []
     for line in file.readlines():
-        translations.append(line.strip().replace("\u3000", " ").replace("\xa0", " "))
+        translations.append(line.strip())
 
     tokens = [{'lang':language1, 'tl': t} for t in translations]
     # for line in tokens:
