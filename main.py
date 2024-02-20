@@ -74,7 +74,7 @@ def get_all_tokened(txt_directory, token_directory):
                 temp = (mapped.__str__()).replace("\u3000", " ").replace("\xa0", " ")
                 output.write(f"{temp}\n")
 
-from Wordnet.wordnet_test import synset_program, synset_choose, synset_compare
+from Wordnet.wordnet_test import synset_program, synset_choose, synset_compare, synset_sentence_match,possible_languages
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
@@ -82,11 +82,26 @@ if __name__ == '__main__':
     # get_all_tokened(lang_dir, tokenized_dir)
 
     ### SynSetter Stuff
+    print(f"wordnet possible languages: {possible_languages()}")
     synset_program()
-    choice = str(input("What Word would you like the synonyms and antonyms for?"))
-    synset_choose(choice)
-    while True:
-        compare=input("What word would you like to commpare your word with?")
-        if compare == "stop":
-            break
-        synset_compare(choice, compare)
+    print(f"wordnet possible languages: {possible_languages()}")
+    type = 1;
+    while type == 1 or type == 2:
+        while True:
+            type = int(input("what would you like to compare?\n\t1.words\n\t2.sentences\n\t0.exit"))
+            if type in [0,1,2]:
+                break;
+        if type == 1:
+            choice = str(input("What Word would you like the synonyms and antonyms for?"))
+            synset_choose(choice)
+            compare=input("What word would you like to commpare your word/sentence with?")
+            if compare == "stop":
+                break
+            synset_compare(choice, compare)
+        elif type == 2:
+            choice = str(input("What is the first sentence you would like to compare?"))
+            lang1 = str(input("What is that sentence's language?"))
+            compare=str(input("What is the second sentence you would like to compare?"))
+            lang2 = str(input("What is that sentence's language?"))
+            synset_sentence_match(choice, compare, lang1, lang2)
+
