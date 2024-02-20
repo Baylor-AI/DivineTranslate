@@ -12,10 +12,12 @@ def synset_program():
     for syn in syns:
         print(f'=============\nWord: {syn.name()}')
         print(f'Lemmas: {set(syn.lemmas())}')
+        print(f'in Chinese: {set(syn.lemmas("cmn"))}')
         print(f'\nDefinition: {syn.definition()}')
         i=0
         print(f'Sentence Examples:')
         for ex in syn.examples():
+            i+= 1
             print(f'\t{++i}. {ex}')
         print("=============")
 
@@ -23,7 +25,7 @@ def synset_choose(choice):
     synonyms=[]
     antonyms=[]
     synonyms = wn.synonyms(choice)
-    antonyms = [a.antonyms()[0].name() for a in wn.lemmas(choice) if a.antonyms()]
+    antonyms = [a.antonyms() for a in wn.lemmas(choice) if a.antonyms()]
     # for syn in wn.synsets(str(choice)):
     #     for l in syn.lemmas():
     #         synonyms.append(l.name())
@@ -32,8 +34,7 @@ def synset_choose(choice):
     if synonyms: print(f'Synonyms: {synonyms}')
     if antonyms: print(f'Antonyms: {antonyms}')
 
-def synset_compare(choice, compare_with, lang1='eng', lang2='eng'):
-    print(wn.langs())
+def synset_compare(choice, compare_with, lang1='eng', lang2='cmn'):
     choice = wn.morphy(choice)
     compare_with = wn.morphy(compare_with)
     similarity=None
@@ -42,25 +43,27 @@ def synset_compare(choice, compare_with, lang1='eng', lang2='eng'):
         choice_set = set(synset_get_exact(choice, lang1))
         compare_set = set(synset_get_exact(compare_with, lang2))
         print(f'{choice_set}\n v \n{compare_set}')
-        print( [lem for lem in wn.synsets(choice) if .lemma_names('cmn')])
         found=False
         for word in choice_set:
             for comp in compare_set:
                 if word.pos() == comp.pos():
                     found = True
                     print(f'{word} v {comp} == {word.wup_similarity(comp)}')
+                    print([lem.lemma_names(lang2)[0] for lem in wn.synsets(choice)])
                     similarity=word.wup_similarity(comp)
                     break;
             if found:
                 break;
+        if not found:
+            print(f'No comparison for different parts of speech: {set([s.pos() for s in choice_set])} v {set(sy.pos() for sy in compare_set)}')
     else:
         print(f'No comparison available for {choice} v {compare_with }')
     return similarity
 
-def synset_sentence_match(sentence1, sentence2, lang1='english',lang2='chinese'):
+def synset_sentence_match(sentence1, sentence2, lang1='eng',lang2='eng'):
     prob_set=[]
     sentence1 = nltk.FreqDist([w for w in word_tokenize(sentence1) if not w.lower() in sw.words(lang1)])
-    sentence2= nltk.FreqDist(sentence2)
+    sentence2= nltk.FreqDist([w for w in word_tokenize(sentence2) if not w.lower() in sw.words(lang2)])
     # We are comparing the similarity of two sentences, and assuming they are the same length
     for i in range(len(sentence1)):
         if sentence2[i] and sentence1[i]:
