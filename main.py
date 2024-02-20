@@ -1,5 +1,5 @@
 from LanguageTokenizer.TxtToToken import text_tokenize
-import os, glob, json
+import os, glob, json, unicodedata
 
 # This is the directory where all the txt files should go for tokenization.
 lang_dir = 'DBTextFiles'
@@ -65,18 +65,23 @@ def get_all_tokened(txt_directory, token_directory):
         with open(language_file, mode='w', encoding='utf-8') as output:
             # dump the json dictionary
             json.dump(mapping, output)
+        language_file = os.path.join(token_directory, f'{language_from[0].get(lang_key)}_mapping.txt')
+        with open(language_file, mode='w', encoding='utf-8') as output:
+
             # outputting text version of the dictionary
-            # for mapped in mapping:
-            #     # print(mapped.__str__())
-            #     output.write(f'{mapped.__str__()}\n')
+            for mapped in mapping:
+                # print(mapped.__str__())
+                output.write(f"{mapped.__str__()}\n")
 
 from Wordnet.wordnet_test import synset_program, synset_choose, synset_compare
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    #tokenizer function
+    ### tokenizer stuff
     # get_all_tokened(lang_dir, tokenized_dir)
-    # synset_program()
+
+    ### SynSetter Stuff
+    synset_program()
     choice = str(input("What Word would you like the synonyms and antonyms for?"))
     synset_choose(choice)
     while True:
