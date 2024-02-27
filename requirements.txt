@@ -1,4 +1,6 @@
-flask # for frontend
+# for backend
+fastapi
+uvicorn
 
 #wordnet
 nltk

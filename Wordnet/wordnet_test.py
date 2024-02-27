@@ -1,5 +1,6 @@
 import nltk
 
+nltk.download('perluniprops')
 nltk.download('popular')
 # set abbreviations for the wordnet items
 from nltk.corpus import wordnet as wn, stopwords as sw
@@ -43,23 +44,25 @@ def synset_choose(choice, lang='eng'):
     if synonyms_list: print(f'Synonyms: {synonyms_list}')
     if antonyms_list: print(f'Antonyms: {antonyms_list}')
 
-def synset_compare(choice, compare_with, lang1='eng', lang2='cmn'):
+def synset_compare(choice, compare_with, lang1='eng', lang2='cmn',limit=5):
     choice = wn.morphy(choice)
     compare_with = wn.morphy(compare_with)
-    similarity = None
+    similarity = []
     if choice and compare_with:
         choice_set = set(synset_get_exact(choice, lang1))
         compare_set = set(synset_get_exact(compare_with, lang2))
         found=False
         for word in choice_set:
             for comp in compare_set:
-                if word.pos() == comp.pos():
+                if len(similarity) < limit:
                     found = True
+                    break;
+                if word.pos() == comp.pos():
+                    similarity.append({'word': comp, 'percentage': word.wup_similarity(comp)})
                     print(f'{word} vs {comp}\n'
                           f'\tWu, Palmer == {word.wup_similarity(comp)}\n'
                           f'\tPath Similarity == {word.path_similarity(comp)}\n'
                           f'\tLeacock-Chodorow == {word.lch_similarity(comp)}\n')
-                    break;
             if found:
                 break;
         if not found:
@@ -70,6 +73,8 @@ def synset_compare(choice, compare_with, lang1='eng', lang2='cmn'):
     else:
         print(f'No comparison available for {choice} vs {compare_with}')
     return similarity
+
+
 
 def synset_sentence_match(sentence1, sentence2, lang1='eng', lang2='eng'):
     # print(sw.words('english'))
