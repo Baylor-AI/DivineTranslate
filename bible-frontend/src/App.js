@@ -55,9 +55,6 @@ function App() {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <CompareWord fromText={'fruit'} toText={'produce'} fromLang={'eng'} toLang={'eng'}/>
-                </div>
 
             </div>
         </div>
