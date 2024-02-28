@@ -1,6 +1,3 @@
-from add_path import add_diretory as ad
-ad()
-
 import nltk
 nltk.download('perluniprops')
 nltk.download('popular')
@@ -49,6 +46,7 @@ def synset_choose(choice, lang='eng'):
 def synset_compare(choice, compare_with, lang1='eng', lang2='cmn',limit=5):
     choice = wn.morphy(choice)
     compare_with = wn.morphy(compare_with)
+    print(f'{choice} vs {compare_with}')
     similarity = []
     if choice and compare_with:
         choice_set = set(synset_get_exact(choice, lang1))
@@ -60,7 +58,8 @@ def synset_compare(choice, compare_with, lang1='eng', lang2='cmn',limit=5):
                     found = True
                     break;
                 if word.pos() == comp.pos():
-                    similarity.append({'word': comp, 'percentage': word.wup_similarity(comp)})
+                    similarity.append( comp )
+                    similarity.append( word.wup_similarity(comp) )
                     print(f'{word} vs {comp}\n'
                           f'\tWu, Palmer == {word.wup_similarity(comp)}\n'
                           f'\tPath Similarity == {word.path_similarity(comp)}\n'

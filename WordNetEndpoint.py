@@ -23,10 +23,10 @@ def comparison_endpoint(
 ):
     result = synset_compare(initial, compare, lang1, lang2)
     result = result[:limit]
-    result = [{'word': 'apple', 'percentage': 0.5}, {'word': 'banana', 'percentage': 0.65},
-              {'word': 'pear', 'percentage': 0.4}, {'word': 'bat', 'percentage': 0.14}]
+    # result = [{'word': 'apple', 'percentage': 0.5}, {'word': 'banana', 'percentage': 0.65},
+    #           {'word': 'pear', 'percentage': 0.4}, {'word': 'bat', 'percentage': 0.14}]
 
     print(result)
 
-    return result
-    # return {'apple', 0.5, 'banana', 0.65, 'pear', 0.4, 'bat', 0.14}
+    # return result
+    return {'apple', 0.5, 'banana', 0.65, 'pear', 0.4, 'bat', 0.14}

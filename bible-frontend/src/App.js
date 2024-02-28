@@ -63,13 +63,6 @@ function App() {
                     </div>
                     <WordSelector data={wordSelectorData} />
                 </div>
-                <CompareWord
-                    fromText={'fruit'}
-                    toText={'produce'}
-                    fromLang={'eng'}
-                    toLang={'eng'}
-                    value={5}
-                />
             </div>
         </div>
     );
