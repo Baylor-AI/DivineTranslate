@@ -1,6 +1,6 @@
 from LanguageTokenizer.TxtToToken import text_tokenize
 import os, glob, json, unicodedata
-
+from add_path import add_diretory as ad
 # This is the directory where all the txt files should go for tokenization.
 lang_dir = 'DBTextFiles'
 tokenized_dir = 'TokenizedDB'
@@ -120,3 +120,7 @@ if __name__ == '__main__':
             lang2 = str(input("What is that sentence's language?"))
             synset_sentence_match(choice.strip(), compare.strip(),
                                   lang1.strip(), lang2.strip())
+
+    #loading PYTHONPATH
+    # ad('bible-backend-fastapi')
+    # ad('Wordnet')

@@ -1,5 +1,7 @@
-import nltk
+from add_path import add_diretory as ad
+ad()
 
+import nltk
 nltk.download('perluniprops')
 nltk.download('popular')
 # set abbreviations for the wordnet items
