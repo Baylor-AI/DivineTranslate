@@ -55,7 +55,13 @@ function App() {
                         </div>
                     </div>
                 </div>
-
+                <CompareWord
+                    fromText={'fruit'}
+                    toText={'produce'}
+                    fromLang={'eng'}
+                    toLang={'eng'}
+                    value={5}
+                />
             </div>
         </div>
     );
