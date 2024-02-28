@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import translateText from './GoogleTranslate';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import wordSelector from "./WordSelector";
+import WordSelector from "./WordSelector";
 
 function App() {
   const [inputText, setInputText] = useState('');
@@ -53,6 +55,7 @@ function App() {
                             <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" value={translatedText}></textarea>
                         </div>
                     </div>
+                    <WordSelector sentence={translatedText}/>
                 </div>
             </div>
         </div>
