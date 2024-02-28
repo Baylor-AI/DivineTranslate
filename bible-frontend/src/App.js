@@ -19,6 +19,11 @@ function App() {
     }
   };
 
+  const wordSelectorData = {
+    inputText: inputText,
+    translatedText: translatedText,
+  };
+
    return (
         <div className="App">
             <h1 className="text-success">  SIC'EM NLP </h1>
@@ -56,7 +61,7 @@ function App() {
                             <textarea className="form-control" id="exampleFormControlTextarea1" rows="5" value={translatedText}></textarea>
                         </div>
                     </div>
-                    <WordSelector sentence={translatedText}/>
+                    <WordSelector data={wordSelectorData} />
                 </div>
 
             </div>
