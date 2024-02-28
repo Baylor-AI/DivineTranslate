@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import translateText from './GoogleTranslate';
+import CompareWord from './WordnetFrontendpoint';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import wordSelector from "./WordSelector";
@@ -17,9 +18,9 @@ function App() {
         console.log(text);
     }
   };
+
    return (
         <div className="App">
-
             <h1 className="text-success">  SIC'EM NLP </h1>
             <div class="container">
                 <div className="row">
@@ -57,6 +58,7 @@ function App() {
                     </div>
                     <WordSelector sentence={translatedText}/>
                 </div>
+
             </div>
         </div>
     );

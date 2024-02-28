@@ -1,8 +1,13 @@
-flask # for frontend
+# for backend
+fastapi
+uvicorn
+
+#wordnet
+nltk
 
 # for model training and database stuff
 datasets
-accelerate -U
+accelerate
 torch
 transformers[torch]
 sacrebleu
