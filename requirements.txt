@@ -2,8 +2,11 @@
 fastapi
 uvicorn
 
-#wordnet
+# wordnet
 nltk
+
+# Chinese Tokenizer
+jieba
 
 # for model training and database stuff
 datasets

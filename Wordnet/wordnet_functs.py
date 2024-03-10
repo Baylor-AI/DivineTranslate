@@ -1,5 +1,3 @@
-from add_path import add_diretory as ad
-ad()
 
 import nltk
 nltk.download('perluniprops')
@@ -7,7 +5,6 @@ nltk.download('popular')
 # set abbreviations for the wordnet items
 from nltk.corpus import wordnet as wn, stopwords as sw
 from nltk.tokenize import word_tokenize
-from nltk.tokenize.nist import NISTTokenizer as nt
 
 nltk.download('stopwords')
 
@@ -91,26 +88,43 @@ def synset_sentence_match(sentence1, sentence2, lang1='eng', lang2='eng'):
     # We are comparing the similarity of two sentences, and assuming they are the same length
     checked = []
     for word1 in sentence1:
-        prev = ''
-        syns = ''
+        prev = None
         if synset_get_exact(word1):
             syns1 = synset_get_exact(word1)[0]
             if word1 not in checked:
                 prev_sim = 0.0
+                syns2 = None
                 for word2 in sentence2:
-                    syns2 = ''
                     if synset_get_exact(word2):
                         syns2 = synset_get_exact(word2)[0]
                         if (syns2 not in checked and
-                                check_lemmas(wn.lemmas(word1, lang=lang1), wn.lemmas(word2, lang=lang2)) and
+                                # check_lemmas(wn.lemmas(word1, lang=lang1), wn.lemmas(word2, lang=lang2)) and
+                                match_lemma(word1, word2, lang1, lang2) and
                                 prev_sim < syns1.wup_similarity(syns2)):
                             prev_sim = syns1.wup_similarity(syns2)
                             prev = word2
                 if prev:
-                    checked.append(map(word1.split('.')[0],
-                                       syns1.wup_similarity(synset_get_exact(prev, lang2)[0])))
-    for mapped in checked:
-        print(f'values: {mapped}')
+                    print(f'{word1} map to {lang2}: \n-- comparing {prev} -> {match_lemma(word1, prev, lang1, lang2)}')
+                    # checked.append(map(word1,
+                    #                    syns1.wup_similarity(synset_get_exact(prev, lang2)[0])))
+                    checked.append({
+                        'word' : word1,
+                        'percentage' : syns1.wup_similarity(match_lemma(word1, prev, lang1, lang2))
+                    })
+
+    if len(checked) > 0:
+        for mapped in checked:
+            print(f'values: {mapped}')
+        word_sim = sum(item['percentage'] for item in checked) / len(checked)
+        sentence_sim = len(checked) / (len(sentence1) + len(sentence2) / 2)
+        print(f'Total Sentence Len (approx): {(len(sentence1) + len(sentence2) / 2)} \n'
+              f'{sent}')
+        print(f'Sentence similarity: \n'
+              f'--- Word Similarities: {word_sim}\n'
+              f'--- Words Translated: {sentence_sim}\n'
+              f'------ Approximate Similarity: {(word_sim + sentence_sim) / 2}')
+    else:
+        print(f'No matching synsets found.')
 
 # gets only synsets that contain the exact word
 def synset_get_exact(to_synset, lang='eng'):
@@ -137,12 +151,44 @@ def check_lemmas(list1, list2):
     '''
     if list1 and list2:
         for word1 in list1:
-            w1 = word1.name().split('.')[0] + '.'
+            # print(f'{word1.synset()}')
             for word2 in list2:
-                if w1 in word2.name():
+                if word1.synset() == word2.synset():
                     return True
     return False
 
+def match_lemma(word1, word2, lang1, lang2):
+    '''
+    Gets the common element in two lists of lemmas
+    :param word1:
+    :param lang1:
+    :param word2:
+    :param lang2:
+    :return:
+    '''
+    lems1 = wn.lemmas(wn.morphy(word1), lang=lang1)
+    lems2 = wn.lemmas(wn.morphy(word2), lang=lang2)
+    match = None
+    sim = 0.0
+    for lem1 in lems1:
+        if lem1.synset():
+            for lem2 in lems2:
+                if lem2.synset():
+                    if lem1.synset() == lem2.synset() and wn.wup_similarity(lem1.synset(), lem2.synset()) > sim:
+                        # print(f'{lem1.synset()} vs {lem2.synset()}')
+                        match = lem1.synset()
+                        sim = wn.wup_similarity(lem1.synset(), lem2.synset())
+                        print(f'{lem1.synset()} vs {lem2.synset()} ====> {sim}')
+    return match
 
 def possible_languages():
     return wn.langs()
+
+def remove_stopwords(text, lang = 'english'):
+    stop_words = None
+    stop_words = set(sw.words(lang))
+    token_words = word_tokenize(text)
+
+    filtered_text = [word for word in token_words if word.lower() not in stop_words]
+
+    return

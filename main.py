@@ -1,6 +1,5 @@
 from LanguageTokenizer.TxtToToken import text_tokenize
 import os, glob, json, unicodedata
-from add_path import add_diretory as ad
 # This is the directory where all the txt files should go for tokenization.
 lang_dir = 'DBTextFiles'
 tokenized_dir = 'TokenizedDB'
@@ -85,7 +84,7 @@ def get_all_tokened(txt_directory, token_directory, limit=None, offset=0):
                 output.write(f"{temp}\n")
 
 
-from Wordnet.wordnet_test import synset_program, synset_choose, synset_compare, synset_sentence_match, \
+from Wordnet.wordnet_functs import synset_program, synset_choose, synset_compare, synset_sentence_match, \
     possible_languages
 
 # from regex_utilities import remove_punct
@@ -120,6 +119,8 @@ if __name__ == '__main__':
             lang2 = str(input("What is that sentence's language?"))
             synset_sentence_match(choice.strip(), compare.strip(),
                                   lang1.strip(), lang2.strip())
+
+    ### Lemma Checking
 
     #loading PYTHONPATH
     # ad('bible-backend-fastapi')
