@@ -32,7 +32,6 @@ def synset_program(lang='cmn'):
 
 def synset_choose(choice, lang='eng'):
     synonyms_list = []
-    antonyms_list = []
     antonyms_list = [a.antonyms() for a in wn.lemmas(choice) if a.antonyms()]
     for syn in wn.synsets(str(choice)):
         for l in syn.lemmas():
@@ -181,26 +180,38 @@ def match_lemma_list(word1, word2, lang1, lang2, limit = 5):
     :param lang2:
     :return:
     '''
-    lems1 = wn.lemmas(wn.morphy(word1), lang=lang1)
-    lems2 = wn.lemmas(wn.morphy(word2), lang=lang2)
     match = []
     sim = 0.0
-    for lem1 in lems1:
-        if lem1.synset():
-            for lem2 in lems2:
-                if lem2.synset():
-                    if lem1.synset() == lem2.synset() and wn.wup_similarity(lem1.synset(), lem2.synset()) > sim:
-                        # print(f'{lem1.synset()} vs {lem2.synset()}')
-                        sim = wn.wup_similarity(lem1.synset(), lem2.synset())
-                        print(f'{lem1.synset()} vs {lem2.synset()} ====> {sim}')
-                        match.append({'word': lem1.name(), 'percentage': sim})
-    return match[:limit]
+    if wn.morphy(word1) and wn.morphy(word2):
+        print(f'{wn.morphy(word1)} vs {wn.morphy(word2)}')
+        # lems1 = wn.lemmas(wn.morphy(word1), lang=lang1)
+        # lems2 = wn.lemmas(wn.morphy(word2), lang=lang2)
+        lems1 = wn.lemmas(word1, lang=lang1)
+        lems2 = wn.lemmas(word2, lang=lang2)
+        for lem1 in lems1:
+            if lem1.synset():
+                for lem2 in lems2:
+                    if lem2.synset():
+                        if lem1.synset() == lem2.synset() and wn.wup_similarity(lem1.synset(), lem2.synset()) > sim:
+                            # print(f'{lem1.synset()} vs {lem2.synset()}')
+                            sim = wn.wup_similarity(lem1.synset(), lem2.synset())
+                            print(f'{lem1.synset()} vs {lem2.synset()} ====> {sim}')
+                            match.append((lem1.synset(), sim))
+
+    results = []
+    for pair in match:
+        for item in pair[0].lemmas():
+            results.append({'word': item.name(), 'percentage': pair[1] * wn.wup_similarity(pair[0], item.synset()) * 100})
+
+    sorted_results = sorted(results, key=lambda x:x['percentage'], reverse=True)
+
+    return sorted_results[:limit]
+    # return match[:limit]
 
 def possible_languages():
     return wn.langs()
 
 def remove_stopwords_tokens(text, lang = 'english'):
-    stop_words = None
     stop_words = set(sw.words(lang))
 
     filtered_text = [word for word in text if word.lower() not in stop_words]
