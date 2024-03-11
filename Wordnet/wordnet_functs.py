@@ -180,8 +180,8 @@ def match_lemma_list(word1, word2, lang1, lang2, limit = 5):
     '''
     match = []
     sim = 0.0
-    if wn.morphy(word1) and wn.morphy(word2):
-        print(f'{wn.morphy(word1)} vs {wn.morphy(word2)}')
+    if word1 and word2:
+        # print(f'{wn.morphy(word1)} vs {wn.morphy(word2)}')
         # lems1 = wn.lemmas(wn.morphy(word1), lang=lang1)
         # lems2 = wn.lemmas(wn.morphy(word2), lang=lang2)
         lems1 = wn.lemmas(word1, lang=lang1)

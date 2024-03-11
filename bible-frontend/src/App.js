@@ -19,9 +19,16 @@ function App() {
     }
   };
 
+  const languageCodeMap = {
+    es: 'spa', // Spanish
+    en: 'eng', // English
+    fr: 'fra', // French
+  };
+
   const wordSelectorData = {
     inputText: inputText,
     translatedText: translatedText,
+    targetLang: languageCodeMap[targetLanguage],
   };
 
    return (

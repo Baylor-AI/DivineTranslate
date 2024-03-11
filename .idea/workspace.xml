@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="Integrated google translate for demo purposes">
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="connect frontend to api">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_28_2024_2_53_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_28_2024_2_53_PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WordNetEndpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/WordNetEndpoint.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wordnet/wordnet_functs.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wordnet/wordnet_functs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bible-backend-fastapi/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bible-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bible-frontend/src/WordSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/WordSelector.js" afterDir="false" />
     </list>
@@ -86,6 +91,7 @@
       <updated>1706688231147</updated>
       <workItem from="1706735693678" duration="347000" />
       <workItem from="1706736155210" duration="6318000" />
+      <workItem from="1710186383162" duration="3922000" />
     </task>
     <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
       <created>1706738701065</created>
@@ -108,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706742308799</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="connect frontend to api">
+      <created>1709160163404</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709160163404</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,14 +142,15 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Designed front end to mirror wireframe" />
     <MESSAGE value="Integrated google translate for demo purposes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrated google translate for demo purposes" />
+    <MESSAGE value="connect frontend to api" />
+    <option name="LAST_COMMIT_MESSAGE" value="connect frontend to api" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>8</line>
+          <line>5</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
