@@ -129,8 +129,6 @@ def synset_sentence_match(sentence1, sentence2, lang1='eng', lang2='eng'):
           f'--- Sentence Length Similarity: {sentence_sim}\n'
           f'------ Approximate Similarity: {(word_sim + sentence_sim) / 2}')
 
-
-
 # gets only synsets that contain the exact word
 def synset_get_exact(to_synset, lang='eng'):
     '''

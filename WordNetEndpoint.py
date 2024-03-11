@@ -11,7 +11,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 @app.get("/word_similarity/")
 def comparison_endpoint(
         initial: str = '',
