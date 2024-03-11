@@ -88,19 +88,21 @@ def synset_sentence_match(sentence1, sentence2, lang1='eng', lang2='eng'):
     for word1 in sentence1:
         prev = None
         if synset_get_exact(word1):
-            syns1 = synset_get_exact(word1)[0]
+            syns1 = synset_get_exact(word1)
+            syns2 = []
             if word1 not in checked:
                 prev_sim = 0.0
-                syns2 = None
                 for word2 in sentence2:
                     if synset_get_exact(word2):
-                        syns2 = synset_get_exact(word2)[0]
-                        if (syns2 not in checked and
-                                # check_lemmas(wn.lemmas(word1, lang=lang1), wn.lemmas(word2, lang=lang2)) and
-                                match_lemma(word1, word2, lang1, lang2) and
-                                prev_sim < syns1.wup_similarity(syns2)):
-                            prev_sim = syns1.wup_similarity(syns2)
-                            prev = word2
+                        syns2.append(synset_get_exact(word2))
+                for syns in syns2:
+                    for syn in syns:
+                        if (syn not in checked and
+                            # check_lemmas(wn.lemmas(word1, lang=lang1), wn.lemmas(word2, lang=lang2)) and
+                            match_lemma(word1, word2, lang1, lang2) and
+                            prev_sim < syns1.wup_similarity(syns2)):
+                                prev_sim = syns1.wup_similarity(syns2)
+                                prev = word2
                 if prev:
                     print(f'{word1} map to {lang2}: \n-- comparing {prev} -> {match_lemma(word1, prev, lang1, lang2)}')
                     # checked.append(map(word1,
@@ -154,14 +156,18 @@ def match_lemma(word1, word2, lang1, lang2):
     :param lang2:
     :return:
     '''
-    lems1 = wn.lemmas(wn.morphy(word1), lang=lang1)
-    lems2 = wn.lemmas(wn.morphy(word2), lang=lang2)
+    # lems1 = wn.lemmas(wn.morphy(word1), lang=lang1)
+    # lems2 = wn.lemmas(wn.morphy(word2), lang=lang2)
+    lems1 = wn.lemmas(word1, lang=lang1)
+    lems2 = wn.lemmas(word2, lang=lang2)
+    print(f'{lems1} v {lems2}')
     match = None
     sim = 0.0
     for lem1 in lems1:
         if lem1.synset():
             for lem2 in lems2:
                 if lem2.synset():
+                    print(f'{lem1.synset()} vs {lem2.synset()} ====> {sim}')
                     if lem1.synset() == lem2.synset() and wn.wup_similarity(lem1.synset(), lem2.synset()) > sim:
                         # print(f'{lem1.synset()} vs {lem2.synset()}')
                         match = lem1.synset()
@@ -181,25 +187,39 @@ def match_lemma_list(word1, word2, lang1, lang2, limit = 5):
     match = []
     sim = 0.0
     if word1 and word2:
-        # print(f'{wn.morphy(word1)} vs {wn.morphy(word2)}')
-        # lems1 = wn.lemmas(wn.morphy(word1), lang=lang1)
-        # lems2 = wn.lemmas(wn.morphy(word2), lang=lang2)
-        lems1 = wn.lemmas(word1, lang=lang1)
-        lems2 = wn.lemmas(word2, lang=lang2)
+        print(f'{word1} vs {word2}')
+        lems1 = wn.lemmas(remove_punct(word1), lang=lang1)
+        lems2 = wn.lemmas(remove_punct(word2), lang=lang2)
         for lem1 in lems1:
             if lem1.synset():
                 for lem2 in lems2:
                     if lem2.synset():
-                        if lem1.synset() == lem2.synset() and wn.wup_similarity(lem1.synset(), lem2.synset()) > sim:
-                            # print(f'{lem1.synset()} vs {lem2.synset()}')
+                        print(f'{lem1.synset()} vs {lem2.synset()} ====> {sim}')
+                        if wn.wup_similarity(lem1.synset(), lem2.synset()):
+                            # print(f'{lem1} vs {lem2}')
                             sim = wn.wup_similarity(lem1.synset(), lem2.synset())
-                            print(f'{lem1.synset()} vs {lem2.synset()} ====> {sim}')
-                            match.append((lem1.synset(), sim))
+                            # print(f'{lem1.synset()} vs {lem2.synset()} ====> {sim}')
+                            match.append((lem1.synset(), lem2.synset(), sim))
 
     results = []
     for pair in match:
         for item in pair[0].lemmas():
-            results.append({'word': item.name(), 'percentage': pair[1] * wn.wup_similarity(pair[0], item.synset()) * 100})
+            if pair[1].name() != item.synset().name():
+                # print(f'{item.synset()} vs {pair[1]}')
+                # results.add(tuple({'word': f'{item.synset().name()} match {pair[1].name()}',
+                #                    'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100}.items()
+                #                   ))
+                if {
+                    'word': f'{item.synset().name()} match {pair[1].name()}',
+                    'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100
+                } not in results and {
+                    'word': f'{pair[1].name()} match {item.synset().name()}',
+                    'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100
+                } not in results :
+                    results.append({
+                        'word': f'{item.synset().name()} match {pair[1].name()}',
+                        'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100
+                    })
 
     sorted_results = sorted(results, key=lambda x:x['percentage'], reverse=True)
 
@@ -219,5 +239,11 @@ def remove_stopwords_tokens(text, lang = 'english'):
 def remove_punct_tokens(text):
     punctuations = string.punctuation
     no_puncts = [word for word in text if word not in punctuations]
+
+    return no_puncts
+
+def remove_punct(text):
+    punctuations = string.punctuation
+    no_puncts = ''.join(char.lower() for char in text if char not in punctuations)
 
     return no_puncts
