@@ -4,14 +4,17 @@ import os, glob, json, unicodedata
 lang_dir = 'DBTextFiles'
 tokenized_dir = 'TokenizedDB'
 
-"""
-gets all translation files from the specified txt_directory and puts them into their tokenized format in the 
-token_directory
-"""
-
-
 ## TODO: make db version of this
 def get_all_tokened(txt_directory, token_directory, limit=None, offset=0):
+    '''
+    gets all translation files from the specified txt_directory and puts them into their tokenized format in the
+    token_directory
+    :param txt_directory:
+    :param token_directory:
+    :param limit:
+    :param offset:
+    :return:
+    '''
     tokens = []
     txt_directory_size = len(lang_dir) + 1
     # creates the directory if it doesn't exist
@@ -100,8 +103,8 @@ if __name__ == '__main__':
     type = 1;
     while type == 1 or type == 2:
         while True:
-            type = int(input("what would you like to compare?\n\t1.words\n\t2.sentences\n\t0.exit"))
-            if type in [0,1,2]:
+            type = input("what would you like to compare?\n\t1.words\n\t2.sentences\n\t0.exit")
+            if type and int(type) in [0,1,2]:
                 break;
 
         if type == 1:
