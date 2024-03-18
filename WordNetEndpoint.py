@@ -25,12 +25,12 @@ def comparison_endpoint(
     for word in match:
         result_word.append(word['word'])
         result_perc.append(word['percentage'])
-    print(result_word)
+    #print(result_word)
     for word in result_word:
         result_perc.append(word)
 
-    print(result_perc)
-    print({'apple', 0.5, 'banana', 0.65, 'pear', 0.4, 'bat', 0.14})
+    #print(result_perc)
+    #print({'apple', 0.5, 'banana', 0.65, 'pear', 0.4, 'bat', 0.14})
     if not result_perc:
         result_word = {0.0, initial}
     return result_perc
