@@ -1,9 +1,0 @@
-build:
-  image: node:14.15.3-buster-slim
-  stage: build
-  script:
-    - yarn install
-    - yarn build
-  artifacts:
-    paths:
-      - build/
