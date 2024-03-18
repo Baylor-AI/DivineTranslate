@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="fix pages issue">
-      <change afterPath="$PROJECT_DIR$/ModelAPI/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ModelAPI/generating_translation.py" afterDir="false" />
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="trigger pipeline">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WordNetEndpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/WordNetEndpoint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bible-frontend/.gitlab-ci.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +141,21 @@
       <option name="project" value="LOCAL" />
       <updated>1710794807235</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fix pages failure and add translation.py">
+      <created>1710795213156</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1710795213156</updated>
+    </task>
+    <task id="LOCAL-00008" summary="trigger pipeline">
+      <created>1710795361601</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1710795361601</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +179,9 @@
     <MESSAGE value="connect frontend to api" />
     <MESSAGE value="add gh-pages" />
     <MESSAGE value="fix pages issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix pages issue" />
+    <MESSAGE value="fix pages failure and add translation.py" />
+    <MESSAGE value="trigger pipeline" />
+    <option name="LAST_COMMIT_MESSAGE" value="trigger pipeline" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
