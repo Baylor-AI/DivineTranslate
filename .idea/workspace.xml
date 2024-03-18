@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="trigger pipeline">
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="try pages again">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WordNetEndpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/WordNetEndpoint.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1710795361601</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="try pages again">
+      <created>1710798466760</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1710798466760</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,7 +187,8 @@
     <MESSAGE value="fix pages issue" />
     <MESSAGE value="fix pages failure and add translation.py" />
     <MESSAGE value="trigger pipeline" />
-    <option name="LAST_COMMIT_MESSAGE" value="trigger pipeline" />
+    <MESSAGE value="try pages again" />
+    <option name="LAST_COMMIT_MESSAGE" value="try pages again" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
