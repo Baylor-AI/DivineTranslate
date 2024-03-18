@@ -47,3 +47,20 @@ deploy-job:      # This job runs in the deploy stage.
   script:
     - echo "Deploying application..."
     - echo "Application successfully deployed."
+
+image: node:14.17.0  # Use Node.js image
+
+before_script:
+  - cd ./bible-frontend
+
+pages:
+  stage: deploy
+  script:
+    - npm install        # Install dependencies
+    - npm start     # Build the React app
+    - mv start public    # Move build output to public directory (required by GitLab Pages)
+  artifacts:
+    paths:
+      - public         # Specify the directory to deploy
+  only:
+    - master            # Deploy only when changes are pushed to the master branch
