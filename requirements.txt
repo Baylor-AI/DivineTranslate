@@ -2,11 +2,16 @@
 fastapi
 uvicorn
 
-# wordnet
+# wordnet word-by-word comparison
 nltk
 
+# gensim sentence similarity
+numpy
+scipy
+gensim
+
 # Chinese Tokenizer
-jieba
+# jieba
 
 # for model training and database stuff
 datasets
