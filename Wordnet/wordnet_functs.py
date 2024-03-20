@@ -247,3 +247,8 @@ def remove_punct(text):
     no_puncts = ''.join(char.lower() for char in text if char not in punctuations)
 
     return no_puncts
+
+def to_lang(text, lang):
+    lang_words = []
+
+    return lang_words

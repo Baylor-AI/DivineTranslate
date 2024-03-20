@@ -129,7 +129,7 @@ def get_all_tokened(txt_directory, token_directory, OneFile=False, limit=None, o
                     # print(f'{language_from[0].get(lang_key)} -> {language_to[0].get(lang_key)} === {language_to == language_from}')
                     # Maps source language to their translation
                     per_language = limit / num_tokens if limit and limit / num_tokens > 0 else len(language_from) if len(language_from) <= len(language_to) else len(language_to)
-                    # print(int(per_language))
+                    print(int(per_language))
                     temp_off = offset
                     for i in range(int(per_language)):
                         if i + temp_off < len(language_from) and i + temp_off < len(language_to):

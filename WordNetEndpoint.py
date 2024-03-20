@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from Wordnet.wordnet_functs import wn, match_lemma_list
+from Wordnet.wordnet_functs import match_lemma_list
 
 app = FastAPI()
 
@@ -24,7 +24,7 @@ def comparison_endpoint(
     match = match_lemma_list(initial, compare, lang1,lang2, limit)
     for word in match:
         result_word.append(word['word'])
-        result_perc.append(word['percentage'])
+        result_perc.append(round(word['percentage'], 2))
     #print(result_word)
     for word in result_word:
         result_perc.append(word)
