@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="try pages again">
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="add python endpoint code">
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bible-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +163,42 @@
       <option name="project" value="LOCAL" />
       <updated>1710798466760</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="try pages but better commands">
+      <created>1710799402762</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1710799402762</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add homepage config">
+      <created>1710800089271</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1710800089271</updated>
+    </task>
+    <task id="LOCAL-00012" summary="gh-pages implementation">
+      <created>1710963319436</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1710963319436</updated>
+    </task>
+    <task id="LOCAL-00013" summary="gh-pages again">
+      <created>1710964534616</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1710964534616</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add python endpoint code">
+      <created>1710966446207</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1710966446207</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,7 +225,12 @@
     <MESSAGE value="fix pages failure and add translation.py" />
     <MESSAGE value="trigger pipeline" />
     <MESSAGE value="try pages again" />
-    <option name="LAST_COMMIT_MESSAGE" value="try pages again" />
+    <MESSAGE value="try pages but better commands" />
+    <MESSAGE value="add homepage config" />
+    <MESSAGE value="gh-pages implementation" />
+    <MESSAGE value="gh-pages again" />
+    <MESSAGE value="add python endpoint code" />
+    <option name="LAST_COMMIT_MESSAGE" value="add python endpoint code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
