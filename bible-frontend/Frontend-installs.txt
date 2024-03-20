@@ -1,2 +1,3 @@
 # don't forget to do this!!!
-npm install boostrap
+npm install boostrap --save
+npm install react-scripts --save

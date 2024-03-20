@@ -35,3 +35,28 @@ def comparison_endpoint(
         result_word = {0.0, initial}
     return result_perc
     # return {'apple', 0.5, 'banana', 0.65, 'pear', 0.4, 'bat', 0.14}
+
+@app.get("/sentence_similarity/")
+def comparison_endpoint(
+        initial: str = '',
+        compare: str = '',
+        lang1: str = 'spa',
+        lang2: str = 'eng',
+        limit: int = 5
+):
+    result_word = []
+    result_perc = []
+    match = match_lemma_list(initial, compare, lang1,lang2, limit)
+    for word in match:
+        result_word.append(word['word'])
+        result_perc.append(round(word['percentage'], 2))
+    #print(result_word)
+    for word in result_word:
+        result_perc.append(word)
+
+    print(result_perc)
+    #print({'apple', 0.5, 'banana', 0.65, 'pear', 0.4, 'bat', 0.14})
+    if not result_perc:
+        result_word = {0.0, initial}
+    # return result_perc
+    return {'apple', 0.5, 'banana', 0.65, 'pear', 0.4, 'bat', 0.14}

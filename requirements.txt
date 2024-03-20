@@ -6,6 +6,8 @@ uvicorn
 nltk
 
 # gensim sentence similarity
+numpy
+scipy
 gensim
 
 # Chinese Tokenizer
