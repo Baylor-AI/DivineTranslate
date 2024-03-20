@@ -2,9 +2,10 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from transformers import AutoTokenizer, T5ForConditionalGeneration
 
-
+app = FastAPI()
 # README - HOW TO RUN
-# pip install fastapi uvicorn
+# go into venv like for WordNetAPI
+# cd ModelAPI
 # uvicorn main:app --reload
 # send POST requests to http://localhost:8000/translate/
 # {
@@ -14,16 +15,14 @@ from transformers import AutoTokenizer, T5ForConditionalGeneration
 # }
 
 
-
-app = FastAPI()
-
 padding = "max_length"
 truncation = True
 max_length = 512
 
 # Load pre-trained model
-trained_model = T5ForConditionalGeneration.from_pretrained('./')
-trained_model.to('cuda')
+trained_model = T5ForConditionalGeneration.from_pretrained('./')  # Assuming model files are in the same directory as main.py
+# Remove .to('cuda') call
+# trained_model.to('cuda')
 
 class TranslationRequest(BaseModel):
     text: str
@@ -41,9 +40,14 @@ async def translate_text(request: TranslationRequest):
     tokenizer = AutoTokenizer.from_pretrained('google/byt5-small')
 
     encoded_input = tokenizer(prefixed_text, padding=padding, truncation=truncation, max_length=max_length,
-                              return_tensors="pt").to('cuda')
+                              return_tensors="pt")  # Removed .to('cuda')
 
-    output_tokens = trained_model.generate(**encoded_input, max_length=max_length).to('cuda')
+    output_tokens = trained_model.generate(**encoded_input, max_length=max_length)  # Removed .to('cuda')
     translated_text = tokenizer.decode(output_tokens[0], skip_special_tokens=True)
 
     return {"translated_text": translated_text}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
