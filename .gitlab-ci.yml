@@ -16,7 +16,24 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
-image: node:latest
+image: node
+
+pages:
+  stage: deploy
+  cache:
+    paths:
+      - bible-frontend/node_modules/
+  script:
+    - cd bible-frontend
+    - npm install
+    - npm run build
+    - mv build public  # Move the build folder to the public directory
+  artifacts:
+    paths:
+      - bible-frontend/public  # Specify the path to the public directory
+  only:
+    - master
+
 
 stages:          # List of stages for jobs, and their order of execution
   - build
@@ -52,19 +69,3 @@ deploy-job:      # This job runs in the deploy stage.
 
 
 
-variables:
-  GIT_SUBMODULE_STRATEGY: recursive
-
-deploy:
-  stage: deploy
-  script:
-    - cd bible-frontend
-    - npm install
-    - npm run build
-    - echo "Deploying to GitLab Pages..."
-    - mv build ../public  # Move the built files to the 'public' directory
-  artifacts:
-    paths:
-      - public
-  only:
-    - master
