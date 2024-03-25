@@ -14,6 +14,8 @@ from transformers import AutoTokenizer, T5ForConditionalGeneration
 #   "target_lang_code": "cmn"
 # }
 
+#https://gitlab.com/rivas-bible/rivas-bible.gitlab.io
+
 app = FastAPI()
 
 app.add_middleware(

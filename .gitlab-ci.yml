@@ -20,9 +20,6 @@ image: node
 
 pages:
   stage: deploy
-  cache:
-    paths:
-      - bible-frontend/node_modules/
   script:
     - cd bible-frontend
     - npm install

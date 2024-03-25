@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="fixed broken model page with last git pull">
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="everything should be working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WordNetEndpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/WordNetEndpoint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bible-frontend/src/WordSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/WordSelector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bible-frontend/src/WordnetFrontendpoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/WordnetFrontendpoint.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModelAPI/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ModelAPI/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +100,7 @@
       <workItem from="1706735693678" duration="347000" />
       <workItem from="1706736155210" duration="6318000" />
       <workItem from="1710186383162" duration="3922000" />
-      <workItem from="1711394659618" duration="7773000" />
+      <workItem from="1711394659618" duration="8633000" />
     </task>
     <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
       <created>1706738701065</created>
@@ -237,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1711398942065</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="everything should be working">
+      <created>1711402940234</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1711402940234</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,7 +278,8 @@
     <MESSAGE value="migrate ports to make room for model and add front end support" />
     <MESSAGE value="typo" />
     <MESSAGE value="fixed broken model page with last git pull" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed broken model page with last git pull" />
+    <MESSAGE value="everything should be working" />
+    <option name="LAST_COMMIT_MESSAGE" value="everything should be working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
