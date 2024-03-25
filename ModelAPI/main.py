@@ -26,6 +26,9 @@ app.add_middleware(
 
 app = FastAPI()
 
+
+app = FastAPI()
+
 padding = "max_length"
 truncation = True
 max_length = 512
