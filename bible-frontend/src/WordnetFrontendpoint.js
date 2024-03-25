@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/';
+const API_URL = 'http://localhost:8001/';
 
 export default async function CompareWord ({fromText = 'fruit', toText = 'produce', fromLang = 'eng', toLang = 'eng', value = 5}) {
     const [result, setResult] = useState([]);

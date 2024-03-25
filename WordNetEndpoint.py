@@ -4,7 +4,7 @@ from Wordnet.wordnet_functs import match_lemma_list
 
 app = FastAPI()
 
-#how to run uvicorn WordNetEndpoint:app --host 0.0.0.0 --port 8080
+#how to run uvicorn WordNetEndpoint:app --host 0.0.0.0 --port 8001
 
 
 app.add_middleware(
