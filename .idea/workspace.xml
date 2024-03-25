@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="migrate ports to make room for model and add front end support" />
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="typo">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ModelAPI/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ModelAPI/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,7 +100,7 @@
       <workItem from="1706735693678" duration="347000" />
       <workItem from="1706736155210" duration="6318000" />
       <workItem from="1710186383162" duration="3922000" />
-      <workItem from="1711394659618" duration="3342000" />
+      <workItem from="1711394659618" duration="4127000" />
     </task>
     <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
       <created>1706738701065</created>
@@ -211,7 +214,21 @@
       <option name="project" value="LOCAL" />
       <updated>1711397930987</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="migrate ports to make room for model and add front end support">
+      <created>1711398254977</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1711398254977</updated>
+    </task>
+    <task id="LOCAL-00018" summary="typo">
+      <created>1711398305367</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1711398305367</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,7 +262,8 @@
     <MESSAGE value="add python endpoint code" />
     <MESSAGE value="trying deployment again" />
     <MESSAGE value="migrate ports to make room for model and add front end support" />
-    <option name="LAST_COMMIT_MESSAGE" value="migrate ports to make room for model and add front end support" />
+    <MESSAGE value="typo" />
+    <option name="LAST_COMMIT_MESSAGE" value="typo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
