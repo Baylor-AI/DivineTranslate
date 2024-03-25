@@ -14,6 +14,14 @@ from transformers import AutoTokenizer, T5ForConditionalGeneration
 #   "target_lang_code": "cmn"
 # }
 
+
+
+
+
+
+
+app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Adjust as needed
@@ -21,13 +29,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-
-
-app = FastAPI()
-
-
-app = FastAPI()
 
 padding = "max_length"
 truncation = True
