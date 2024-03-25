@@ -1,1 +1,0 @@
-from nltk.corpus import stopwords as sw
