@@ -18,18 +18,34 @@
 
 image: node
 
+cache:
+  paths:
+    - ./bible-frontend/node_modules/
+
+before_script:
+  - cd ./bible-frontend  # enter the React app directory
+  - rm -rf build     # remove the existing build
+  - CI=false npm install
+
 pages:
   stage: deploy
+  environment: Production
   script:
-    - cd bible-frontend
-    - npm install
-    - npm run build
-    - mv build public  # Move the build folder to the public directory
+    - CI=false npm run build     # build the React app, set CI=false because CI=true treats all warnings as errors
+    - cp build/index.html build/404.html     # reroute to index
+    - ls
+    - cd ..
+    - cd ..      # return to project root directory
+    - mkdir public       # make public directory in root for deployment due to artifact path only allowing /public
+    - ls
+    - mv ./bible-frontend/build/* public       # move build contents to new /public directory
+    - export
   artifacts:
     paths:
-      - bible-frontend/public  # Specify the path to the public directory
+      - public       # only allow paths in project root directory for some reason
   only:
-    - master
+    refs:
+      - master
 
 
 stages:          # List of stages for jobs, and their order of execution
