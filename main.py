@@ -1,5 +1,5 @@
 from LanguageTokenizer.TxtToToken import text_tokenize
-import os, glob, json, unicodedata
+import os, glob, json
 
 # This is the directory where all the txt files should go for tokenization.
 lang_dir = 'DBTextFiles'
@@ -18,7 +18,7 @@ def get_all_tokened(txt_directory, token_directory, OneFile=False, limit=None, o
     :return:
     '''
     tokens = []
-    txt_directory_size = len(lang_dir) + 1
+    txt_directory_size = len(txt_directory) + 1
     # creates the directory if it doesn't exist
     if not os.path.exists(os.path.join(os.getcwd(), txt_directory)):
         os.makedirs(txt_directory)
@@ -189,7 +189,7 @@ from Wordnet.wordnet_functs import synset_program, synset_choose, synset_compare
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     ### tokenizer stuff
-    get_all_tokened(txt_directory=lang_dir, token_directory=tokenized_dir, OneFile=False, limit=0, offset=0)
+    # get_all_tokened(txt_directory=lang_dir, token_directory=tokenized_dir, OneFile=False, limit=0, offset=0)
 
     # print(match_lemma_list('prueba', 'test', 'spa', 'eng'))
     # ### SynSetter Stuff
@@ -225,3 +225,6 @@ if __name__ == '__main__':
     # loading PYTHONPATH
     # ad('bible-backend-fastapi')
     # ad('Wordnet')
+
+    ### Gensim
+    from Gensim import

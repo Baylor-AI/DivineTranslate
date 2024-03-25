@@ -3,8 +3,8 @@ import translateText from './GoogleTranslate';
 import CompareWord from './WordnetFrontendpoint';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import wordSelector from "./WordSelector";
 import WordSelector from "./WordSelector";
+import translateTextM from "./ModelTranslate";
 
 function App() {
   const [inputText, setInputText] = useState('');
@@ -13,9 +13,15 @@ function App() {
 
   const handleTranslate = async () => {
     if (inputText) {
-      const text = await translateText(inputText, targetLanguage);
-        setTranslatedText(text);
-        console.log(text);
+        if (targetLanguage === "cmn"){
+            const text = await translateTextM(inputText, "eng", targetLanguage);
+            setTranslatedText(text);
+            console.log(text);
+        } else {
+            const text = await translateText(inputText, targetLanguage);
+            setTranslatedText(text);
+            console.log(text);
+        }
     }
   };
 
@@ -48,6 +54,7 @@ function App() {
                             <option value="es">Spanish</option>
                             <option value="fr">French</option>
                             <option value="en">English</option>
+                            <option value="cmn">Mandarin Chinese</option>
                         </select>
                             <a
                             className="btn btn-primary"

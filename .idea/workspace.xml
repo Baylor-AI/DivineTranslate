@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="add python endpoint code">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bible-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="migrate ports to make room for model and add front end support" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +14,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -54,6 +51,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lauren_adams3\PycharmProjects\rivas-bible\ModelAPI" />
       <recent name="C:\Users\lauren_adams3\PycharmProjects\rivas-bible\bible-frontend" />
     </key>
   </component>
@@ -99,6 +97,7 @@
       <workItem from="1706735693678" duration="347000" />
       <workItem from="1706736155210" duration="6318000" />
       <workItem from="1710186383162" duration="3922000" />
+      <workItem from="1711394659618" duration="3342000" />
     </task>
     <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
       <created>1706738701065</created>
@@ -198,7 +197,21 @@
       <option name="project" value="LOCAL" />
       <updated>1710966446207</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="trying deployment again">
+      <created>1710968326302</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1710968326302</updated>
+    </task>
+    <task id="LOCAL-00016" summary="migrate ports to make room for model and add front end support">
+      <created>1711397930987</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1711397930987</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +243,9 @@
     <MESSAGE value="gh-pages implementation" />
     <MESSAGE value="gh-pages again" />
     <MESSAGE value="add python endpoint code" />
-    <option name="LAST_COMMIT_MESSAGE" value="add python endpoint code" />
+    <MESSAGE value="trying deployment again" />
+    <MESSAGE value="migrate ports to make room for model and add front end support" />
+    <option name="LAST_COMMIT_MESSAGE" value="migrate ports to make room for model and add front end support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

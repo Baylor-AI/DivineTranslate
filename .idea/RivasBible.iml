@@ -8,6 +8,7 @@
       <excludeFolder url="file://$MODULE_DIR$/DBTextFiles" />
       <excludeFolder url="file://$MODULE_DIR$/DocumentationImages" />
       <excludeFolder url="file://$MODULE_DIR$/TokenizedDB" />
+      <excludeFolder url="file://$MODULE_DIR$/virtualenv" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
