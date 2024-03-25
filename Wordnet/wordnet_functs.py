@@ -188,8 +188,10 @@ def match_lemma_list(word1, word2, lang1, lang2, limit = 5):
     sim = 0.0
     if word1 and word2:
         print(f'{word1} vs {word2}')
-        lems1 = wn.lemmas(remove_punct(word1), lang=lang1)
-        lems2 = wn.lemmas(remove_punct(word2), lang=lang2)
+        lems1 = wn.lemmas(remove_punct(word1), lang=lang1) if not wn.morphy(word1) \
+            else wn.lemmas(remove_punct(wn.morphy(word1)))
+        lems2 = wn.lemmas(remove_punct(word2), lang=lang2) if not wn.morphy(word2) \
+            else wn.lemmas(remove_punct(wn.morphy(word2)))
         for lem1 in lems1:
             if lem1.synset():
                 for lem2 in lems2:
@@ -209,15 +211,13 @@ def match_lemma_list(word1, word2, lang1, lang2, limit = 5):
                 # results.add(tuple({'word': f'{item.synset().name()} match {pair[1].name()}',
                 #                    'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100}.items()
                 #                   ))
-                if {
-                    'word': f'{item.synset().name()} match {pair[1].name()}',
-                    'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100
-                } not in results and {
-                    'word': f'{pair[1].name()} match {item.synset().name()}',
-                    'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100
-                } not in results :
+                # print(f'{word2} matches {pair[1].name().split(".")[0]}' if f'{word2} matches {pair[1].name().split(".")[0]}' not in [synonyms['word'] for synonyms in results] else '')
+                if f'{word2} matches {pair[1].name().split(".")[0]}' \
+                        not in [synonyms['word'] for synonyms in results] \
+                        and f'{pair[1].name().split(".")[0]} matches {word2}' \
+                        not in [synonyms['word'] for synonyms in results]:
                     results.append({
-                        'word': f'{item.synset().name()} match {pair[1].name()}',
+                        'word': f'{word2} matches {pair[1].name().split(".")[0]}',
                         'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100
                     })
 

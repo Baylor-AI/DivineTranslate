@@ -1,12 +1,26 @@
+import glob
+import os
 import pprint
-import os, glob, json
-from nltk.corpus import stopwords as sw
+
 from gensim import corpora, models, similarities
+from Wordnet.wordnet_functs import remove_punct
+from nltk.corpus import stopwords as sw
+
 
 def sentence_sim(txt_file):
     document = "In the beginning, God created the Heavens and the Earth."
     text_corpus = get_corpus(txt_directory=txt_file)
-    no_stop = [[word for word in documents.lower().split() if word not in sw] for documents in text_corpus]
+    no_stop = []
+    i = 0
+    for documents in text_corpus:
+        if i > 10:
+            break
+        for word in remove_punct(documents).lower().split(' '):
+            if word not in sw.words():
+                no_stop.append(word)
+                print(f'{word} from {documents}')
+        i+=1
+    # no_stop = [[word for word in remove_punct(documents).lower().split(' ') if word not in sw.words()] for documents in text_corpus]
     from collections import defaultdict
     frequency = defaultdict(int)
     for text in no_stop:
@@ -16,12 +30,13 @@ def sentence_sim(txt_file):
     pprint.pprint(processed_corpus)
     dictionary = corpora.Dictionary(processed_corpus)
 
-    new_vec = dictionary.doc2bow(document.lower().split())
+    new_vec = dictionary.doc2bow(document.lower().split(' '))
     bow_corpus = [dictionary.doc2bow(text) for text in processed_corpus]
     tfidf = models.TfidfModel(bow_corpus)
 
     index = similarities.SparseMatrixSimilarity(tfidf[bow_corpus], num_features=len(dictionary))
     sims = index[tfidf[new_vec]]
+    print(list(enumerate(sims)))
 
 
 def get_corpus(txt_directory):
