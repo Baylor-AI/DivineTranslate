@@ -1,4 +1,4 @@
-from Gensim.gensim_functs import sentence_sim
+from Gensim.gensim_functs import sentence_sim, model_training_sentence_sim
 from LanguageTokenizer.TxtToToken import text_tokenize
 
 import os, glob, json
@@ -294,4 +294,4 @@ if __name__ == '__main__':
     # ad('Wordnet')
 
     ### Gensim
-    sentence_sim(lang_dir)
+    model_training_sentence_sim(lang_dir)
