@@ -3,134 +3,177 @@ from LanguageTokenizer.TxtToToken import text_tokenize
 
 import os, glob, json
 
+###TODO: put the tokenizer functions in a class/module
 # This is the directory where all the txt files should go for tokenization.
 lang_dir = 'DBTextFiles'
 tokenized_dir = 'TokenizedDB'
+lang_code_size = 3
+bible_size = 43905  # number of lines of text in the bible
+
+
+### TODO: make compatible with other file formats?
+def serialize_tokens(token_directory, lang_prefix, data, train_format='.json', readable='.txt'):
+    """
+    serializes the tokens in the specified format and also in a human readable format
+
+    :param token_directory:
+    :param lang_prefix:
+    :param data:
+    :param train_format:
+    :param readable:
+    :return:
+    """
+    print(token_directory)
+    if not os.path.exists(token_directory):
+        os.makedirs(token_directory)
+
+    language_file = os.path.join(token_directory, f'{lang_prefix}_mapping{train_format}')
+    if 'json' in train_format:
+        with open(language_file, mode='w', encoding='utf-8') as output:
+            # dump the json dictionary
+            json.dump(data, output)
+    # elif format == 'other file format':
+    #    do stuff
+
+    language_file = os.path.join(token_directory, f'{lang_prefix}_mapping{readable}')
+    with open(language_file, mode='w', encoding='utf-8') as output:
+        # outputting text version of the dictionary
+        for mapped in data:
+            temp = (mapped.__str__()).replace("\u3000", " ").replace("\xa0", " ")
+            output.write(f"{temp}\n")
 
 
 ## TODO: make db version of this
-def get_all_tokened(txt_directory, token_directory, OneFile=False, limit=None, offset=0):
-    '''
+def get_all_tokened(txt_directory, token_directory, one_way=False, limit=None, offset=0, filetype='.txt'):
+    """
     gets all translation files from the specified txt_directory and puts them into their tokenized format in the
-    token_directory
-    :param txt_directory:
-    :param token_directory:
-    :param limit:
-    :param offset:
+    token_directory. It tokenizes languages in the format:
+
+    { 'lang1':'text1', 'lang2':'text2'}
+
+    where lang 1 is the iso-639-2 language code for text1, and text1 is the text being labeled.
+        lang2 is the iso-639-2 language code for text2, and text2 is the corresponding lang2 translation of text1.
+
+    :param txt_directory: the directory of the text files, where each file is named with their 3 letter iso-639-2
+        language code prepended to the file
+    :param token_directory: the directory that the tokenized files will be stored at
+    :param one_way: denotes whether each translation should only go in one direction
+    :param limit: limit on file size
+    :param offset: how many lines deep into the file to start parsing from
+    :param filetype:
     :return:
-    '''
+    """
+
     tokens = []
-    txt_directory_size = len(txt_directory) + 1
     # creates the directory if it doesn't exist
     if not os.path.exists(os.path.join(os.getcwd(), txt_directory)):
         os.makedirs(txt_directory)
         print(f'Directory Not Found: {txt_directory}')
-        raise Exception(f"Directory Not Found: {txt_directory}");
+        raise Exception(f"Directory Not Found: {txt_directory}")
 
     # grabs all translation files from the directory
-    for filename in glob.glob(os.path.join(txt_directory, '*.txt')):
-        with open(os.path.join(os.getcwd(), filename), mode='r', encoding='utf-8') as file:
-            # tokenizes the contents of each file
-            if not OneFile:
-                print(filename.split('_')[0][txt_directory_size:txt_directory_size+3])
-                content = text_tokenize(file, filename.split('_')[0][txt_directory_size:txt_directory_size+3])
-            else:
-                print(filename[txt_directory_size:txt_directory_size + 3])
-                content = text_tokenize(file, filename[txt_directory_size:txt_directory_size + 3])
-            tokens.append(content)
+    cur_dir = os.path.join(os.getcwd(), txt_directory)
+    for root, dirs, files in os.walk(cur_dir):
+        for filename in [file for file in files if file.endswith(f'{filetype}')]:
+            with open(os.path.join(root, filename), mode='r', encoding='utf-8') as file:
+                # tokenizes the contents of each file
+                if not one_way:
+                    # print(filename.split('_')[0][:lang_code_size])
+                    content = text_tokenize(
+                        file,
+                        filename.split('_')[0][:lang_code_size]
+                    )
+                else:
+                    # print(filename[:lang_code_size])
+                    content = text_tokenize(file, filename[:lang_code_size])
+                tokens.append(content)
+
     if not tokens:
         print(f'Empty Directory: {txt_directory}')
         raise Exception(f'Empty Directory: {txt_directory}')
 
     # checks the number of files tokenized
     num_tokens = len(tokens)
-    if num_tokens < 2:  # Error if not enough files
+    # Error if not enough files
+    if len(tokens) < 2:
         print(f'Not enough files in directory: must have at least 2 different translations!')
         raise Exception(f'Not enough files in directory: must have at least 2 different translations!')
+
+    print(f"Tokenizing: {num_tokens} files...")
     lang_key = 'lang'
     tl_key = 'tl'
     limit_reached = False
 
+    ### TODO: Create a proper limit-per-language algorithm/function
     # langs = set()
     # for lang in tokens:
     #     langs.add(lang[0].get(lang_key))
     # num_tokens = len(langs)
 
-    if not OneFile:
+    if not one_way:
+        # maps each language to their respective translation in another language
+        language_from = tokens[0]
+        mapping = []
+        for language_to in tokens:
+            # checks of the target and source language are different
+            if language_from[0].get(lang_key) == language_to[0].get(lang_key):
+                num_tokens-=1
+            else:
+                print(f'{language_from[0].get(lang_key)} -> {language_to[0].get(lang_key)}')
+                per_language = limit / num_tokens if limit and limit / num_tokens > 0 else len(language_from) if len(
+                    language_from) <= len(language_to) else len(language_to)
+                print(int(per_language))
+                temp_off = offset
+                # Maps source language to their translation
+                for i in range(int(per_language)):
+                    if i + temp_off < len(language_from) and i + temp_off < len(language_to):
+                        line1 = language_from[i + temp_off]
+                        line2 = language_to[i + temp_off]
+                        lang1 = line1.get(lang_key)
+                        lang2 = line2.get(lang_key)
+                        if not lang1 or not lang2:
+                            i -= 1
+                            temp_off += 1
+                            continue
+                        if i + temp_off > len(language_from):
+                            print(f'{i} + {temp_off} == {i + temp_off} > {len(language_from)}')
+                            break
+
+                        value1 = line1.get(tl_key)
+                        value2 = line2.get(tl_key)
+                        dict_next = {
+                            lang1: value1,
+                            lang2: value2
+                        }
+                        mapping.append(
+                            dict_next
+                        )
+                        dict_next = {
+                            lang2: value2,
+                            lang1: value1
+                        }
+                        mapping.append(
+                            dict_next
+                        )
+                        if len(mapping) >= limit:
+                            limit_reached = True
+                            break
+                        # print(f'{mapping[len(mapping) - 1]} from\n\t{lang1} : {value1}\n\t{lang2} : {value2}')
+                    if limit_reached:
+                        break
+        ### TODO: fix file name generation scheme
+        serialize_tokens(token_directory, language_from[0].get(lang_key), mapping)
+
+    else:
         # maps each language to their respective translation in another language
         for language_from in tokens:
             mapping = []
             for language_to in tokens:
-                # TODO: determine if english1 to english2 translations should be in the same file?
-                # TODO: discriminate between different versions of the bible
-                # checks of the target and source language are different
-                if language_to is not language_from:
-                    print(f'{language_from[0].get(lang_key)} -> {language_to[0].get(lang_key)}')
-
-                    # Maps source language to their translation
-                    per_language = limit / num_tokens if limit and limit / num_tokens > 0 else len(language_from) if len(language_from) <= len(language_to) else len(language_to)
-                    print(int(per_language))
-                    temp_off = offset
-                    for i in range(int(per_language)):
-                        if i + temp_off < len(language_from) and i + temp_off < len(language_to):
-                            line1 = language_from[i + temp_off]
-                            line2 = language_to[i + temp_off]
-                            if not line1.get(tl_key) or not line2.get(tl_key):
-                                i -= 1
-                                temp_off += 1
-                                continue
-                            if i + temp_off > len(language_from):
-                                print(f'{i} + {temp_off} == {i + temp_off} > {len(language_from)}')
-                                break
-                            mapping.append(
-                                {
-                                    line1.get(lang_key): line1.get(tl_key),
-                                    line2.get(lang_key): line2.get(tl_key)
-                                }
-                            )
-                            mapping.append(
-                                {
-                                    line2.get(lang_key): line2.get(tl_key),
-                                    line1.get(lang_key): line1.get(tl_key)
-                                }
-                            )
-                            if len(mapping) >= limit:
-                                limit_reached = True
-                                break
-                            # print(f'{mapping[len(mapping) - 1]} from\n\t{lang1} : {value1}\n\t{lang2} : {value2}')
-                if limit_reached:
-                    break
-            if limit_reached:
-                break
-            if not os.path.exists(txt_directory):
-                os.makedirs(txt_directory)
-            # TODO: discriminate between different versions of the bible as well
-            language_file = os.path.join(token_directory, f'{language_from[0].get(lang_key)}_mapping.json')
-            # if not os.path.exists(language_file):
-            with open(language_file, mode='w', encoding='utf-8') as output:
-                # dump the json dictionary
-                json.dump(mapping, output)
-            language_file = os.path.join(token_directory, f'{language_from[0].get(lang_key)}_mapping.txt')
-            # if not os.path.exists(language_file):
-            with open(language_file, mode='w', encoding='utf-8') as output:
-                # outputting text version of the dictionary
-                for mapped in mapping:
-                    # print(mapped.__str__())
-                    temp = (mapped.__str__()).replace("\u3000", " ").replace("\xa0", " ")
-                    output.write(f"{temp}\n")
-    else:
-        mapping = []
-
-        # maps each language to their respective translation in another language
-        for language_from in tokens:
-            for language_to in tokens:
-                # TODO: determine if english1 to english2 translations should be in the same file?
-                # TODO: discriminate between different versions of the bible
                 # checks of the target and source language are different
                 if language_from[0].get(lang_key) is not language_to[0].get(lang_key):
-                    # print(f'{language_from[0].get(lang_key)} -> {language_to[0].get(lang_key)} === {language_to == language_from}')
                     # Maps source language to their translation
-                    per_language = limit / num_tokens if limit and limit / num_tokens > 0 else len(language_from) if len(language_from) <= len(language_to) else len(language_to)
+                    per_language = limit / num_tokens if limit and limit / num_tokens > 0 else len(
+                        language_from) if len(language_from) <= len(language_to) else len(language_to)
                     print(int(per_language))
                     temp_off = offset
                     for i in range(int(per_language)):
@@ -142,7 +185,6 @@ def get_all_tokened(txt_directory, token_directory, OneFile=False, limit=None, o
                             if i + temp_off > len(language_from):
                                 print(f'{i} + {temp_off} == {i + temp_off} > {len(language_from)}')
                                 break
-                            # print(f'{i + temp_off} {line1.get(lang_key)} : {line1.get(tl_key)}\n\t -> \n{i + temp_off} {line2.get(lang_key)} : {line2.get(tl_key)}')
                             lang1 = line1.get(lang_key)
                             value1 = line1.get(tl_key)
                             lang2 = line2.get(lang_key)
@@ -150,56 +192,36 @@ def get_all_tokened(txt_directory, token_directory, OneFile=False, limit=None, o
                             if lang1 == lang2:
                                 break
                             next_val = {
-                                    lang1: value1,
-                                    lang2: value2
-                                }
+                                lang1: value1,
+                                lang2: value2
+                            }
                             mapping.append(
                                 next_val
                             )
-                            next_val = {
-                                lang2: value2,
-                                lang1: value1
-                            }
-                            mapping.append(next_val)
                             if len(mapping) >= limit:
                                 limit_reached = True
                                 break
-                            # print(f'{mapping[len(mapping) - 1]} from\n\t{lang1} : {value1}\n\t{lang2} : {value2}')
                     if limit_reached:
                         break
                 if limit_reached:
                     break
 
-        if not os.path.exists(txt_directory):
-            os.makedirs(txt_directory)
-
-        # TODO: discriminate between different versions of the bible as well
-        language_file = os.path.join(token_directory, f'{language_from[0].get(lang_key)}_mapping.json')
-        with open(language_file, mode='w', encoding='utf-8') as output:
-            # dump the json dictionary
-            json.dump(mapping, output)
-
-        language_file = os.path.join(token_directory, f'{language_from[0].get(lang_key)}_mapping.txt')
-        with open(language_file, mode='w', encoding='utf-8') as output:
-            # print(mapping)
-            # outputting text version of the dictionary
-            for mapped in mapping:
-                # print(mapped.__str__())
-                temp = (mapped.__str__()).replace("\u3000", " ").replace("\xa0", " ")
-                output.write(f"{temp}\n")
+            ### TODO: fix file name generation scheme
+            serialize_tokens(language_from[0].get(lang_key), token_directory, mapping)
 
 
-from Wordnet.wordnet_functs import synset_program, synset_choose, synset_compare, synset_sentence_match, \
-    possible_languages, match_lemma_list, match_lemma
-from Gensim.gensim_functs import sentence_sim
-# from regex_utilities import remove_punct
+### TODO: Run manual and Automatic testing for each function in main
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     ### tokenizer stuff
-    # get_all_tokened(txt_directory=lang_dir, token_directory=tokenized_dir, OneFile=False, OneLang=False, limit=0, offset=0)
+    get_all_tokened(txt_directory=lang_dir, token_directory=tokenized_dir, one_way=False, limit=300000, offset=0)
 
     # print(match_lemma_list('prueba', 'test', 'spa', 'eng'))
+
+    # ### fun lil cli for wordnet stuff
     # ### SynSetter Stuff
+    # from Wordnet.wordnet_functs import synset_program, synset_choose, synset_compare, synset_sentence_match, \
+    #     possible_languages, match_lemma_list, match_lemma
     # print(f"wordnet possible languages: {possible_languages()}")
     # synset_program()
     # print(f"wordnet possible languages: {possible_languages()}")
@@ -227,12 +249,7 @@ if __name__ == '__main__':
     #         synset_sentence_match(choice.strip(), compare.strip(),
     #                               lang1.strip(), lang2.strip())
 
-    ### Lemma Checking
-
-    # loading PYTHONPATH
-    # ad('bible-backend-fastapi')
-    # ad('Wordnet')
-
-    ### Gensim
-    model_training_sentence_sim(lang_dir)
-    sentence_sim('eng-x-bible-kingjames-v1.txt')
+    # ### Gensim
+    # from Gensim.gensim_functs import sentence_sim
+    # model_training_sentence_sim(lang_dir)
+    # sentence_sim('eng-x-bible-kingjames-v1.txt')

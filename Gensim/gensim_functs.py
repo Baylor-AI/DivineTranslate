@@ -10,6 +10,7 @@ from gensim.models.word2vec import Word2Vec
 from Wordnet.wordnet_functs import remove_punct
 from nltk.corpus import stopwords as sw
 
+### TODO: make a class for these functions and variables put stuff into the
 lang_dir = 'DBTextFiles'
 tmp_model = '/tmp/gensim.model'
 
@@ -17,40 +18,6 @@ tmp_model = '/tmp/gensim.model'
 def sentence_sim(txt_file, filelimit=1, linelimit=200):
     tmp_model = '/tmp/Doc2Bow.model'
     test_doc = remove_punct("In the beginning God created the heaven and the earth .")
-    doc2 = remove_punct("En el principio Dios creó los cielos y la tierra.")
-    corpus = api.load('text8')
-    # text_corpus = set(get_corpus(txt_directory=txt_file, filelimit=filelimit, linelimit=linelimit))
-    # model = Word2Vec(corpus)
-    # # processed_text = corpus
-    # # sentences = [s for s in processed_text.sents]
-    # # print(sentences)
-    # # processed_sentences = [sent.lemma_.split() for sent in processed_text.sents]
-    # # model = Word2Vec(
-    # #     sentences=processed_sentences,
-    # #     min_count=10,
-    # #     size=200,
-    # #     window=2,
-    # #     compute_loss=True,
-    # #     sg=1
-    # # )
-    # # model = Doc2Vec(
-    # #     sentences=processed_sentences,
-    # #     min_count=10,
-    # #     size=200,
-    # #     window=2,
-    # #     compute_loss=True,
-    # #     sg=1
-    # # )
-    # print(len(model.wv.vocab))
-    # info = api.info()
-    # # print(json.dumps(info, indent=4))
-    # # print(info.keys())
-    #
-    # print(model.dv.most_similar(test_doc))
-
-    # test_data_dir = os.path.join(gensim.__path__[0], 'test', 'test_data')
-    # lee_train_file = os.path.join(test_data_dir, 'lee_background.cor')
-    # lee_test_file = os.path.join(test_data_dir, 'lee.cor')
 
     import smart_open
     def read_corpus(fname, tokens_only=False):  # grabs all translation files from the directory
@@ -156,7 +123,7 @@ def model_training_sentence_sim(txt_dir):
 def get_corpus(txt_directory, filelimit=1, linelimit=10):
     document = "In the beginning, God created the Heavens and the Earth"
     tokens = []
-    txt_directory_size = len(txt_directory) + 1
+
     # creates the directory if it doesn't exist
     if not os.path.exists(os.path.join(os.getcwd(), txt_directory)):
         os.makedirs(txt_directory)
