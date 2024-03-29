@@ -131,16 +131,15 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, limit=None, o
                         line2 = language_to[i + temp_off]
                         lang1 = line1.get(lang_key)
                         lang2 = line2.get(lang_key)
-                        if not lang1 or not lang2:
+                        value1 = line1.get(tl_key)
+                        value2 = line2.get(tl_key)
+                        if not value2 or not value2:
                             i -= 1
                             temp_off += 1
                             continue
                         if i + temp_off > len(language_from):
                             print(f'{i} + {temp_off} == {i + temp_off} > {len(language_from)}')
                             break
-
-                        value1 = line1.get(tl_key)
-                        value2 = line2.get(tl_key)
                         dict_next = {
                             lang1: value1,
                             lang2: value2
