@@ -8,6 +8,7 @@ nltk
 # gensim sentence similarity
 numpy
 scipy
+cupy
 gensim
 
 # Chinese Tokenizer

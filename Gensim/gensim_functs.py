@@ -1,55 +1,86 @@
 import glob
 import os
 import pprint
-import json
-
+import numpy as np
+import smart_open
+import torch
 import gensim
 from gensim import corpora, models, similarities, downloader as api
-from gensim.models.doc2vec import Doc2Vec
-from gensim.models.word2vec import Word2Vec
+from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from Wordnet.wordnet_functs import remove_punct
 from nltk.corpus import stopwords as sw
 
-### TODO: make a class for these functions and variables put stuff into the
+### TODO: make a class for these functions and make class variables for easier use
 lang_dir = 'DBTextFiles'
-tmp_model = '/tmp/gensim.model'
+tmp_model = 'model\gensim.model'
+word_embeddings = 'model\Word2Vec.model'
+save_file = os.path.join(os.getcwd(), tmp_model)
+save_embeddings = os.path.join(os.getcwd(), word_embeddings)
+
+def train_doc2vec(txt_file, filelimit=1, linelimit=200):
+    # train_corpus = [TaggedDocument(words=doc, tags=[i]) for i, doc in enumerate(read_corpus(txt_file))]
+    train_corpus = list(read_corpus(txt_file))
+    # test_corpus = list(read_corpus(lee_test_file, tokens_only=True))
+    if os.path.exists(save_file):
+        print(f'Save File Found: {save_file}')
+        model = Doc2Vec.load(save_file)
+    else:
+        temp_dir = os.getcwd()
+        for item in tmp_model.split('\\'):
+            if '.model' not in item and not os.path.exists(temp_dir):
+                temp_dir = os.path.join(temp_dir, item)
+                os.makedirs(temp_dir)
+        model = gensim.models.doc2vec.Doc2Vec(vector_size=200, min_count=2, epochs=40)
+        model.build_vocab(train_corpus)
+
+    # train_x = np.array([model.infer_vector(doc.words) for doc in train_corpus])
+    # train_x_torch = torch.tensor(train_x, dtype=torch.float32, device=device)
+    model.train(train_corpus, total_examples=model.corpus_count, epochs=model.epochs)
+    # model.train(train_x_torch)
+    model.save(save_file)
+    return model
+
+
+def read_corpus(fname, tokens_only=False):  # grabs all translation files from the directory
+    # for filename in glob.glob(os.path.join(lang_dir, '*.txt'))[:filelimit]:
+    filename = os.path.join(os.path.join(os.getcwd(), lang_dir), fname)
+    # print(f'{filename} vs {fname}')
+    with smart_open.open(filename, encoding="iso-8859-1") as f:
+        for i, line in enumerate(f):
+            tokens = gensim.utils.simple_preprocess(line)
+            if tokens_only:
+                yield tokens
+            else:
+                # For training data, add tags
+                yield gensim.models.doc2vec.TaggedDocument(tokens, [i])
 
 
 def sentence_sim(txt_file, filelimit=1, linelimit=200):
-    tmp_model = '/tmp/Doc2Bow.model'
-    test_doc = remove_punct("In the beginning God created the heaven and the earth .")
-
-    import smart_open
-    def read_corpus(fname, tokens_only=False):  # grabs all translation files from the directory
-        # for filename in glob.glob(os.path.join(lang_dir, '*.txt'))[:filelimit]:
-        filename = os.path.join(os.path.join(os.getcwd(), lang_dir), fname)
-        with smart_open.open(filename, encoding="iso-8859-1") as f:
-            for i, line in enumerate(f):
-                tokens = gensim.utils.simple_preprocess(line)
-                if tokens_only:
-                    yield tokens
-                else:
-                    # For training data, add tags
-                    yield gensim.models.doc2vec.TaggedDocument(tokens, [i])
-
-    train_corpus = list(read_corpus(txt_file))
-    # test_corpus = list(read_corpus(lee_test_file, tokens_only=True))
-    test_corpus = list(test_doc)#list(read_corpus(test_doc, tokens_only=True))
-    save_file = os.path.join(os.getcwd(), tmp_model)
-    # if not os.path.exists(os.path.join(os.getcwd(), tmp_model)):
+    if os.path.exists(os.path.join(os.getcwd(), tmp_model)):
+        print(f'Save File Found: {save_file}')
+        model = Doc2Vec.load(save_file)
+    else:
+        raise Exception("Model does not exist. Cannot check similarities")
+    # train_corpus = list(read_corpus(txt_file))
+    # if os.path.exists(os.path.join(os.getcwd(), tmp_model)):
     #     print(f'Save File Not Found: {save_file}')
-    model = gensim.models.doc2vec.Doc2Vec(vector_size=50, min_count=2, epochs=40)
-    model.build_vocab(train_corpus)
-    model.train(train_corpus, total_examples=model.corpus_count, epochs=model.epochs)
-    # else:
     #     model = Doc2Vec.load(save_file)
+    # else:
+    #     model = Doc2Vec(vector_size=200, min_count=2, epochs=40, workers=1)
+    #     model.build_vocab(train_corpus)
+    #
+    # model.train(train_corpus, total_examples=model.corpus_count, epochs=model.epochs)
+    # model.save(save_file)
+    # model = train_doc2vec(txt_file)
+
     vector = model.infer_vector(
         ['And', 'God', 'said', 'Let', 'there', 'be', 'light', ':', 'and', 'there', 'was', 'light'])
     # print(f'Inferrence: {vector[:linelimit]}')
     sims = model.dv.most_similar([vector], topn=len(model.dv))
     print(f'Inferred Sim: {sims[0:5]}')
     output = sims[0:5]
-    with open(txt_file, 'r', encoding='utf-8') as file:
+    txt_file_path = os.path.join(os.path.join(os.getcwd(),lang_dir), txt_file)
+    with open(txt_file_path, 'r', encoding='utf-8') as file:
         lines = file.readlines()
         # Print sentences with similarity scores
         for index, similarity_score in output:
@@ -65,26 +96,21 @@ def sentence_sim(txt_file, filelimit=1, linelimit=200):
     # preprocessed = test_doc.split()
     # sims = model.dv.most_similar(preprocessed, topn=len(model.dv))
     # print(f'Test Sim: {sims[:linelimit]}')
-    model.save_word2vec_format(tmp_model)
+    model.save_word2vec_format(word_embeddings)
 
 
+### TODO: complete sentence similarity generator
+def word_sim(txt_file, filelimit=1, linelimit=200):
+    return
+
+
+### TODO: get the model training to work.
 def model_training_sentence_sim(txt_dir):
     document = remove_punct("In the beginning, God created the Heavens and the Earth.").lower()
     text_corpus = set(get_corpus(txt_directory=txt_dir, linelimit=100))
-    # print(text_corpus)
-    # no_stop = []
-    # i = 0
-    # for documents in text_corpus:
-    #     if i > 10:
-    #         break
-    #     for word in remove_punct(documents).lower().split(' '):
-    #         if word not in sw.words():
-    #             no_stop.append(word)
-    #             # print(f'{word} from {documents}')
-    #     i+=1
+
     no_stop = [[word for word in remove_punct(documents).lower().split(' ')
                 if word and word not in sw.words()] for documents in text_corpus]
-    # no_stop = [[word for word in remove_punct(documents).lower().split(' ')] for documents in text_corpus]
     # print(no_stop)
     from collections import defaultdict
     frequency = defaultdict(int)
@@ -100,7 +126,7 @@ def model_training_sentence_sim(txt_dir):
 
     new_vec = dictionary.doc2bow(document.split(' '))
     bow_corpus = [dictionary.doc2bow(text) for text in processed_corpus]
-    # tmp_model = '/tmp/tfidf.model'
+    # tmp_model = 'model/tfidf.model'
     # save_file = os.path.join(os.getcwd(), tmp_model)
     # if not os.path.exists(save_file):
     #     print(f'File Not Found: {tmp_model}')

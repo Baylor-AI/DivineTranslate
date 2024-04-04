@@ -114,6 +114,7 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, limit=None, o
         # maps each language to their respective translation in another language
         language_from = tokens[0]
         mapping = []
+        fsize = 0
         for language_to in tokens:
             # checks of the target and source language are different
             if language_from[0].get(lang_key) == language_to[0].get(lang_key):
@@ -133,7 +134,7 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, limit=None, o
                         lang2 = line2.get(lang_key)
                         value1 = line1.get(tl_key)
                         value2 = line2.get(tl_key)
-                        if not value2 or not value2:
+                        if not value1 or not value2:
                             i -= 1
                             temp_off += 1
                             continue
@@ -154,6 +155,7 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, limit=None, o
                         mapping.append(
                             dict_next
                         )
+                        fsize += 2
                         if len(mapping) >= limit:
                             limit_reached = True
                             break
@@ -161,6 +163,7 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, limit=None, o
                     if limit_reached:
                         break
         ### TODO: fix file name generation scheme
+        print(f'File Size: {fsize}')
         serialize_tokens(token_directory, language_from[0].get(lang_key), mapping)
 
     else:
@@ -213,7 +216,7 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, limit=None, o
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     ### tokenizer stuff
-    get_all_tokened(txt_directory=lang_dir, token_directory=tokenized_dir, one_way=False, limit=300000, offset=0)
+    # get_all_tokened(txt_directory=lang_dir, token_directory=tokenized_dir, one_way=False, limit=300000, offset=0)
 
     # print(match_lemma_list('prueba', 'test', 'spa', 'eng'))
 
@@ -249,6 +252,8 @@ if __name__ == '__main__':
     #                               lang1.strip(), lang2.strip())
 
     # ### Gensim
-    # from Gensim.gensim_functs import sentence_sim
+    from Gensim.gensim_functs import sentence_sim, train_doc2vec
+    train_doc2vec('eng/eng-x-bible-kingjames-v1.txt')
+    sentence_sim('eng/eng-x-bible-kingjames-v1.txt')
     # model_training_sentence_sim(lang_dir)
-    # sentence_sim('eng-x-bible-kingjames-v1.txt')
+
