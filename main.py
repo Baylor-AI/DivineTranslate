@@ -10,7 +10,6 @@ tokenized_dir = 'TokenizedDB'
 lang_code_size = 3
 bible_size = 43905  # number of lines of text in the bible
 
-
 ### TODO: make compatible with other file formats?
 def serialize_tokens(token_directory, lang_prefix, data, train_format='.json', readable='.txt'):
     """
@@ -41,6 +40,33 @@ def serialize_tokens(token_directory, lang_prefix, data, train_format='.json', r
         for mapped in data:
             temp = (mapped.__str__()).replace("\u3000", " ").replace("\xa0", " ")
             output.write(f"{temp}\n")
+
+def train_all_files():
+    tokens = []
+
+    # grabs all translation files from the directory
+    cur_dir = os.path.join(os.getcwd(), txt_directory)
+    for root, dirs, files in os.walk(cur_dir):
+        for filename in [file for file in files if file.endswith(f'{filetype}')]:
+            with open(os.path.join(root, filename), mode='r', encoding='utf-8') as file:
+                # tokenizes the contents of each file
+                if not one_way:
+                    # print(filename.split('_')[0][:lang_code_size])
+                    content = text_tokenize(
+                        file,
+                        filename.split('_')[0][:lang_code_size]
+                    )
+                else:
+                    # print(filename[:lang_code_size])
+                    content = text_tokenize(file, filename[:lang_code_size])
+                tokens.append(content)
+
+    if not tokens:
+        print(f'Empty Directory: {txt_directory}')
+        raise Exception(f'Empty Directory: {txt_directory}')
+
+    # checks the number of files tokenized
+    num_tokens = len(tokens)
 
 
 ## TODO: make db version of this
