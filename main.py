@@ -41,32 +41,15 @@ def serialize_tokens(token_directory, lang_prefix, data, train_format='.json', r
             temp = (mapped.__str__()).replace("\u3000", " ").replace("\xa0", " ")
             output.write(f"{temp}\n")
 
-def train_all_files():
-    tokens = []
 
+def train_all_files(filetype='.txt'):
+    tokens = []
     # grabs all translation files from the directory
-    cur_dir = os.path.join(os.getcwd(), txt_directory)
+    cur_dir = os.path.join(os.getcwd(), lang_dir)
     for root, dirs, files in os.walk(cur_dir):
         for filename in [file for file in files if file.endswith(f'{filetype}')]:
-            with open(os.path.join(root, filename), mode='r', encoding='utf-8') as file:
-                # tokenizes the contents of each file
-                if not one_way:
-                    # print(filename.split('_')[0][:lang_code_size])
-                    content = text_tokenize(
-                        file,
-                        filename.split('_')[0][:lang_code_size]
-                    )
-                else:
-                    # print(filename[:lang_code_size])
-                    content = text_tokenize(file, filename[:lang_code_size])
-                tokens.append(content)
-
-    if not tokens:
-        print(f'Empty Directory: {txt_directory}')
-        raise Exception(f'Empty Directory: {txt_directory}')
-
-    # checks the number of files tokenized
-    num_tokens = len(tokens)
+            if train_doc2vec(os.path.join(root, filename)) is None:
+                exit(1)
 
 
 ## TODO: make db version of this
@@ -279,7 +262,11 @@ if __name__ == '__main__':
 
     # ### Gensim
     from Gensim.gensim_functs import sentence_sim, train_doc2vec
-    train_doc2vec('eng/eng-x-bible-kingjames-v1.txt')
-    sentence_sim('eng/eng-x-bible-kingjames-v1.txt')
+    try:
+        sentence_sim('eng-x-bible-kingjames-v1.txt')
+    except FileNotFoundError as f:
+        print(f)
+    train_all_files()
+    sentence_sim('eng-x-bible-kingjames-v1.txt')
     # model_training_sentence_sim(lang_dir)
 
