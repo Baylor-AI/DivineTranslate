@@ -234,15 +234,15 @@ def match_lemma_list(word1, word2, lang1, lang2, limit=5):
                         not in [synonyms['word'] for synonyms in results]:
                     results.append({
                         'word': f'{word2} matches {pair[1].name().split(".")[0]}',
-                        'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100
+                        'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100,
+                        'empty': False
                     })
     if not results:
-        results.append(
-            {
-                'word': f'Stopwords omitted: {word1}, {word2}',
-                'percentage': 0.0
-            }
-        )
+        results.append({
+            'word': '',
+            'percentage': 0.0,
+            'empty': True
+        })
 
     sorted_results = sorted(results, key=lambda x: x['percentage'], reverse=True)
     return sorted_results[:limit]
