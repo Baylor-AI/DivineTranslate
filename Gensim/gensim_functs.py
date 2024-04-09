@@ -35,8 +35,8 @@ def train_doc2vec(txt_file, filelimit=1, linelimit=200, epochs=500 ):
                 temp_dir = os.path.join(temp_dir, item)
                 os.makedirs(temp_dir)
         model = gensim.models.doc2vec.Doc2Vec(vector_size=300, min_count=2, epochs=epochs)
-        model.build_vocab(train_corpus)
 
+    model.build_vocab(train_corpus)
     # train_x = np.array([model.infer_vector(doc.words) for doc in train_corpus])
     # train_x_torch = torch.tensor(train_x, dtype=torch.float32, device=device)
     print('Training Model...')
@@ -101,15 +101,16 @@ def sentence_sim(txt_file, infer_val = 'And God said , Let there be light : and 
     model.save_word2vec_format(word_embeddings)
 
 
+from gensim.models import KeyedVectors
 ### TODO: complete sentence similarity generator
-def word_sim(txt_file, filelimit=1, linelimit=200):
-    tmp_model = 'model/Word2Vec.model'
-    save_file = os.path.join(os.getcwd(), tmp_model)
-    if os.path.exists(os.path.join(os.getcwd(), tmp_model)):
-        print(f'Save File Found: {save_file}')
-        model = Word2Vec.load(save_file)
+def word_sim(word, linelimit=5):
+    if os.path.exists(os.path.join(os.getcwd(), save_embeddings)):
+        print(f'Save File Found: {save_embeddings}')
+        model = KeyedVectors.load_word2vec_format(save_embeddings)
     else:
         raise FileNotFoundError("Model does not exist. Cannot check similarities")
+
+    print(model.most_similar(word)[:linelimit])
 
     return
 
@@ -136,15 +137,15 @@ def model_training_sentence_sim(txt_dir):
 
     new_vec = dictionary.doc2bow(document.split(' '))
     bow_corpus = [dictionary.doc2bow(text) for text in processed_corpus]
-    # tmp_model = 'model/tfidf.model'
-    # save_file = os.path.join(os.getcwd(), tmp_model)
-    # if not os.path.exists(save_file):
-    #     print(f'File Not Found: {tmp_model}')
-    #     tfidf = models.TfidfModel(bow_corpus)
-    # else:
-    #     tfidf = models.TfidfModel.load(save_file)
-    # pprint.pprint(bow_corpus)
-    # print(tfidf[dictionary.doc2bow(new_vec)])
+    tfidf_model = 'model/tfidf.model'
+    tfidf_file = os.path.join(os.getcwd(), tmp_model)
+    if not os.path.exists(tfidf_file):
+        print(f'File Not Found: {tfidf_model}')
+        tfidf = models.TfidfModel(bow_corpus)
+    else:
+        tfidf = models.TfidfModel.load(tfidf_file)
+    pprint.pprint(bow_corpus)
+    print(tfidf[dictionary.doc2bow(new_vec)])
     tfidf = models.TfidfModel(bow_corpus)
 
     index = similarities.SparseMatrixSimilarity(tfidf[bow_corpus], num_features=len(dictionary))

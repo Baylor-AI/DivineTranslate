@@ -1,4 +1,6 @@
 import string
+import unicodedata
+
 import nltk
 
 nltk.download('perluniprops')
@@ -169,10 +171,8 @@ def match_lemma(word1, word2, lang1, lang2):
     :param lang2:
     :return:
     '''
-    lems1 = wn.lemmas(wn.morphy(word1), lang=lang1)
-    lems2 = wn.lemmas(wn.morphy(word2), lang=lang2)
-    # lems1 = wn.lemmas(word1, lang=lang1)
-    # lems2 = wn.lemmas(word2, lang=lang2)
+    lems1 = wn.lemmas(wn.morphy(remove_punct(word1).lower()), lang=lang1)
+    lems2 = wn.lemmas(wn.morphy(remove_punct(word1).lower()), lang=lang2)
     # print(f'{lems1} v {lems2}')
     match = None
     sim = 0.0
@@ -199,13 +199,15 @@ def match_lemma_list(word1, word2, lang1, lang2, limit=5):
     :return:
     '''
     match = []
-    sim = 0.0
     if word1 and word2:
         # print(f'{word1} vs {word2}')
-        lems1 = wn.lemmas(remove_punct(word1), lang=lang1) if not wn.morphy(word1) \
-            else wn.lemmas(remove_punct(wn.morphy(word1)))
-        lems2 = wn.lemmas(remove_punct(word2), lang=lang2) if not wn.morphy(word2) \
-            else wn.lemmas(remove_punct(wn.morphy(word2)))
+        word1 = remove_punct(word1).lower()
+        word2 = remove_punct(word2).lower()
+        lems1 = wn.lemmas(word1, lang=lang1) if not wn.morphy(word1) \
+            else wn.lemmas(wn.morphy(word1))
+        lems2 = wn.lemmas(word2, lang=lang2) if not wn.morphy(word2) \
+            else wn.lemmas(wn.morphy(word2))
+
         for lem1 in lems1:
             if lem1.synset():
                 for lem2 in lems2:
@@ -234,9 +236,16 @@ def match_lemma_list(word1, word2, lang1, lang2, limit=5):
                         'word': f'{word2} matches {pair[1].name().split(".")[0]}',
                         'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100
                     })
+    if not results:
+        results.append(
+            {
+                'word': f'Stopwords omitted: {word1}, {word2}',
+                'percentage': 0.0
+            }
+        )
+
     sorted_results = sorted(results, key=lambda x: x['percentage'], reverse=True)
     return sorted_results[:limit]
-    # return match[:limit]
 
 
 def possible_languages():
@@ -253,14 +262,15 @@ def remove_stopwords_tokens(text, lang='english'):
 
 def remove_punct_tokens(text):
     punctuations = string.punctuation
-    no_puncts = [word for word in text if word not in punctuations]
+    no_puncts = [remove_punct(word) for word in text if word not in punctuations]
 
     return no_puncts
 
 
 def remove_punct(text):
-    punctuations = string.punctuation
-    no_puncts = ''.join(char.lower() for char in text if char not in punctuations)
+    # punctuations = re.compile(r'[\p{P}\p{S}]')
+    no_puncts = ''.join(char.lower() for char in text if not unicodedata.category(char).startswith('P'))
+    # no_puncts = punctuations.sub('', text)
 
     return no_puncts
 

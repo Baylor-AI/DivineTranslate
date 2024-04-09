@@ -4,6 +4,7 @@ uvicorn
 
 # wordnet word-by-word comparison
 nltk
+unicodedata
 
 # gensim sentence similarity
 numpy

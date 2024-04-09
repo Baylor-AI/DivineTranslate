@@ -261,12 +261,14 @@ if __name__ == '__main__':
     #                               lang1.strip(), lang2.strip())
 
     # ### Gensim
-    from Gensim.gensim_functs import sentence_sim, train_doc2vec
+    from Gensim.gensim_functs import sentence_sim, train_doc2vec, word_sim
     try:
         sentence_sim('eng-x-bible-kingjames-v1.txt')
+        word_sim("And")
     except FileNotFoundError as f:
         print(f)
-    train_all_files()
-    sentence_sim('eng-x-bible-kingjames-v1.txt')
+        train_all_files()
+        sentence_sim('eng-x-bible-kingjames-v1.txt')
+
     # model_training_sentence_sim(lang_dir)
 
