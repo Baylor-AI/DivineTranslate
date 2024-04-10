@@ -1,4 +1,4 @@
-import io, logging
+import io
 
 def text_tokenize_db(txt, language='', version='', book='', chapter='', verse=''):
     file = io.open("TokenFile", mode="rw", encoding="utf-8")
