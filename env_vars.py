@@ -10,3 +10,5 @@ tl_key = 'tl' # the key for versions of a verse in the bible in the given langua
 
 tmp_model = 'model\Doc2Vec.model' # the expected trained sentence comparison model location
 word_embeddings = 'model\Word2Vec.model' # the expected trained word comparison model location
+
+f_enc = 'utf-8' # the encoding to be used for file stuff

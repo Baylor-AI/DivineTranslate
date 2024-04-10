@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from Wordnet.wordnet_functs import match_lemma_list
+from Wordnet.wordnet_functs import match_lemma_list, synset_sentence_match
+from Gensim.gensim_functs import sentence_sim
 
 app = FastAPI()
 
@@ -49,7 +50,7 @@ def comparison_endpoint(
 ):
     result_word = []
     result_perc = []
-    match = match_lemma_list(initial, compare, lang1,lang2, limit)
+    match = synset_sentence_match(initial, compare, lang1,lang2, limit)
     for word in match:
         result_word.append(word['word'])
         result_perc.append(round(word['percentage'], 2))
