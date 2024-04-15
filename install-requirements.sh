@@ -17,6 +17,7 @@ then
     echo "[CHECK] Python version found: $python_version"
     python -m venv rivas-venv
     source rivas-venv/Scripts/activate
+    bash
 else
     echo "[ERROR] No valid Python version found. Install or update to Python 3 before running this script again."
 fi
@@ -27,7 +28,9 @@ echo "[DONE] Created and activated rivas-venv..."
 if ! command -v npm &> /dev/null
 then
     echo "[ERROR] npm could not be found, please install it first."
-    exit 1
+    echo "[INSTALL] installing npm..."
+    npm install
+    # exit 1
 fi
 
 # Install requirements
@@ -37,6 +40,17 @@ npm install bootstrap --save
 
 echo ""
 echo "[COMPLETED] Setup completed successfully..."
+echo "[COMPLETED] rivas-venv has been created and requirements have been installed."
+echo ""
+echo ""
+echo "To start the virtual environment:"
+echo ""
+echo "Mac OS:"
+echo "source rivas-venv/bin/activate"
+echo ""
+echo "Windows:"
+echo "source rivas-venv/Scripts/activate"
+echo ""
 
 # run backend to test
 # source rivas-venv/bin/activate
