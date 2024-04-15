@@ -12,3 +12,11 @@ tmp_model = 'model\Doc2Vec.model' # the expected trained sentence comparison mod
 word_embeddings = 'model\Word2Vec.model' # the expected trained word comparison model location
 
 f_enc = 'utf-8' # the encoding to be used for file stuff
+
+# TODO: FIX THIS MAPPING TO CONTAIN THE WHOLE SET OF LANGUAGES
+lang_map = {
+    'eng': 'english',
+    'cmn': 'chinese',
+    'spa': 'spanish',
+    'fra': 'french'
+}

@@ -16,7 +16,8 @@ from nltk.corpus import stopwords as sw
 save_file = os.path.join(os.getcwd(), env.tmp_model)
 save_embeddings = os.path.join(os.getcwd(), env.word_embeddings)
 
-def train_doc2vec(txt_file, filelimit=1, linelimit=200, epochs=500 ):
+
+def train_doc2vec(txt_file, vector_size=100, min_count=5, epochs=5):
     # train_corpus = [TaggedDocument(words=doc, tags=[i]) for i, doc in enumerate(read_corpus(txt_file))]
     train_corpus = list(read_corpus(txt_file))
     # test_corpus = list(read_corpus(lee_test_file, tokens_only=True))
@@ -31,24 +32,25 @@ def train_doc2vec(txt_file, filelimit=1, linelimit=200, epochs=500 ):
         print('Creating save file location...')
         temp_dir = os.getcwd()
         for item in env.tmp_model.split('\\'):
+            nextdir = env.tmp_model.split('\\')
+            print(f"making directory: {nextdir} -> {item}")
             if '.model' not in item and not os.path.exists(os.path.join(temp_dir, item)):
                 temp_dir = os.path.join(temp_dir, item)
                 os.makedirs(temp_dir)
-        model = gensim.models.doc2vec.Doc2Vec(vector_size=300, min_count=2, epochs=epochs)
+            print(f'directory made: {temp_dir}')
+        model = Doc2Vec(vector_size=vector_size, min_count=min_count, epochs=epochs)
+        model.build_vocab(train_corpus)
 
-    model.build_vocab(train_corpus)
-    # train_x = np.array([model.infer_vector(doc.words) for doc in train_corpus])
-    # train_x_torch = torch.tensor(train_x, dtype=torch.float32, device=device)
-    print('Training Model...')
+    print('Training Doc2Vec Model...')
     model.train(train_corpus, total_examples=model.corpus_count, epochs=model.epochs)
     print('Training complete!')
-    # model.train(train_x_torch)
-    print('Saving file...')
+    print('Saving Doc2Vec Model...')
     model.save(save_file)
     print('Saving complete!')
     return model
 
-def train_word2vec(txt_file, filelimit=1, linelimit=200, epochs=500 ):
+
+def train_word2vec(txt_file, vector_size=100, min_count=5, epochs=5):
     train_corpus = list(read_corpus(txt_file, tokens_only=True))
     if os.path.exists(save_embeddings):
         print(f'Save File Found: {save_embeddings}')
@@ -64,88 +66,111 @@ def train_word2vec(txt_file, filelimit=1, linelimit=200, epochs=500 ):
             if '.model' not in item and not os.path.exists(os.path.join(temp_dir, item)):
                 temp_dir = os.path.join(temp_dir, item)
                 os.makedirs(temp_dir)
-        model = Word2Vec(vector_size=300, min_count=1, epochs=epochs)
+        model = Word2Vec(vector_size=vector_size, min_count=min_count, epochs=epochs)
+        model.build_vocab(train_corpus)
 
-    model.build_vocab(train_corpus)
-    # train_x = np.array([model.infer_vector(doc.words) for doc in train_corpus])
-    # train_x_torch = torch.tensor(train_x, dtype=torch.float32, device=device)
-    print('Training Model...')
+    print('Training Word2Vec Model...')
     model.train(train_corpus, total_examples=model.corpus_count, epochs=model.epochs)
     print('Training complete!')
-    # model.train(train_x_torch)
-    print('Saving file...')
+    print('Saving Word2Vec file...')
     model.save(save_embeddings)
     print('Saving complete!')
+    print(model.wv.key_to_index)
     return model
 
 
 def read_corpus(fname, tokens_only=False):  # grabs all translation files from the directory
     # for filename in glob.glob(os.path.join(env.lang_dir, '*.txt'))[:filelimit]:
     filename = os.path.join(os.path.join(os.getcwd(), env.lang_dir), fname)
-    lang_tag = fname[:env.lang_code_size]
+    lang_tag = fname.split('\\')[-1][:env.lang_code_size]
+    print(lang_tag)
     # print(f'{filename} vs {fname}')
-    with smart_open.open(filename, encoding="iso-8859-1") as f:
+    with smart_open.open(filename, encoding=env.f_enc) as f:
         for i, line in enumerate(f):
             if line.strip():
                 tokens = gensim.utils.simple_preprocess(line)
                 if tokens_only:
                     for token in tokens:
                         yield str(lang_tag + '_' + token)
+                        # yield token
                 else:
                     # For training data, add tags
-                    yield gensim.models.doc2vec.TaggedDocument(tokens, [lang_tag + str(i)])
+                    # print(tokens, [i])
+                    # print(([str(lang_tag + '_' + token) for token in tokens], [str(i), str(lang_tag)]))
+                    # yield gensim.models.doc2vec.TaggedDocument(tokens,  [i, str(lang_tag)])
+                    tags = [str(lang_tag), line]
+                    yield gensim.models.doc2vec.TaggedDocument(
+                        # tokens, [line.strip()].append(word for word in tokens)
+                        tokens, tags
+                    )  # [str(lang_tag + '_' + token) for token in tokens], [str(i), str(lang_tag)])
 
 
-def sentence_sim(txt_file, infer_val = 'And God said , Let there be light : and there was light .', filelimit=1, linelimit=5):
+def sentence_sim(txt_file, infer_val='And God said , Let there be light : and there was light .', filelimit=1,
+                 linelimit=5):
     if os.path.exists(os.path.join(os.getcwd(), env.tmp_model)):
         print(f'Save File Found: {save_file}')
         model = Doc2Vec.load(save_file)
     else:
         raise FileNotFoundError("Model does not exist. Cannot check similarities")
 
-    # vector = model.infer_vector(
-    #     ['And', 'God', 'said', 'Let', 'there', 'be', 'light', 'and', 'there', 'was', 'light'])
     vector = model.infer_vector(
-        remove_punct_tokens(tok.word_tokenize("Y dijo Dios: Sea la luz: y fue la luz."))
-    )
+        ['And', 'God', 'said', 'Let', 'there', 'be', 'light', 'and', 'there', 'was', 'light'])
+    # vector = model.infer_vector(
+    #     remove_punct_tokens(tok.word_tokenize("Y dijo Dios: Sea la luz: y fue la luz."))
+    # )
     sims = model.dv.most_similar([vector], topn=len(model.dv))
+    ents = [entity for entity in model.dv.index_to_key]
+    print( ents )
 
-    print(f'Inferred Sim: {sims[0:linelimit]}')
-    printed = 0
-    txt_file_path = os.path.join(os.path.join(os.getcwd(),env.lang_dir), txt_file)
-    with open(txt_file_path, 'r', encoding='utf-8') as file:
-        lines = file.readlines()
-        # Print sentences with similarity scores
-        for index, similarity_score in sims:
-            # Ensure index is within the range of lines
-            if 0 <= index < len(lines) and lines[index].strip():
-                line = lines[index].strip()  # Remove trailing newline character
-                print(f"Line {index + 1}: {line}")
-                print(f"Similarity Score: {similarity_score}")
-                printed += 1
-            # else:
-            #     print(f"Index {index} is out of range.")
-            if printed > linelimit:
-                break
+    print(f'Inferred Sim: {sims}')
+    # printed = 0
+    # for line in sims:
+    #     print(line)
+    #     if line:
+    #         printed += 1
+    #     if printed >= linelimit:
+    #         break
 
-    model.save_word2vec_format(env.word_embeddings)
+    # txt_file_path = os.path.join(os.path.join(os.getcwd(), env.lang_dir), txt_file)
+    # with open(txt_file_path, 'r', encoding=env.f_enc) as file:
+    #     lines = file.readlines()
+    #     # Print sentences with similarity scores
+    #     for index, similarity_score in sims:
+    #         index = int(index)
+    #         # Ensure index is within the range of lines
+    #         # print(index, similarity_score)
+    #         if 0 <= index < len(lines) and lines[index].strip():
+    #             line = lines[index].strip()  # Remove trailing newline character
+    #             print(f"Similarity Score: {round(similarity_score * 100, 2)} -> "
+    #                   f"Line {index + 1}: {line} -> ")
+    #             printed += 1
+    #         # else:
+    #         #     print(f"Index {index} is out of range.")
+    #         if printed > linelimit:
+    #             break
 
 
-from gensim.models import KeyedVectors
 ### TODO: complete sentence similarity generator
 def word_sim(word, linelimit=5):
     if os.path.exists(os.path.join(os.getcwd(), save_embeddings)):
         print(f'Save File Found: {save_embeddings}')
         model = Word2Vec.load(save_embeddings)
+        model = Doc2Vec.load(save_file)
     else:
         raise FileNotFoundError("Model does not exist. Cannot check similarities")
-    if model.most_similar(word):
-        print(model.most_similar(word)[:linelimit])
+    print(word)
+    word = str(word).encode(encoding=env.f_enc)
+    print(word)
+    sim = model.wv.key_to_index
+    # sim = model.wv.similar_by_word(word, topn=linelimit)
+    print(sim)
+    if model.wv.similar_by_word(word):
+        print(model.wv.similar_by_word(word)[:linelimit])
     else:
         print("Word Does Not Exist")
-        print(model.key_to_index)
+        print(model.wv.key_to_index)
 
-    return
+    return model
 
 
 ### TODO: get the model training to work.
@@ -198,11 +223,11 @@ def get_corpus(txt_directory, filelimit=1, linelimit=10):
     if not os.path.exists(os.path.join(os.getcwd(), txt_directory)):
         os.makedirs(txt_directory)
         print(f'Directory Not Found: {txt_directory}')
-        raise Exception(f"Directory Not Found: {txt_directory}");
+        raise Exception(f"Directory Not Found: {txt_directory}")
 
     # grabs all translation files from the directory
     for filename in glob.glob(os.path.join(txt_directory, '*.txt'))[:filelimit]:
-        with open(os.path.join(os.getcwd(), filename), mode='r', encoding='utf-8') as file:
+        with open(os.path.join(os.getcwd(), filename), mode='r', encoding=env.f_enc) as file:
             for line in file.readlines()[:linelimit]:
                 tokens.append(line.strip())
     if not tokens:

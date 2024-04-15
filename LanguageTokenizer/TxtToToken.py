@@ -17,7 +17,6 @@ def text_tokenize_db(txt, language='', version='', book='', chapter='', verse=''
 
 def text_tokenize(file, language1, book='', chapter='', verse=''):
     # file = io.open(file + "TokenFile", mode="rw", encoding="utf-8")
-
     ## TODO: grab the verse from the database/file as a token and output it in the form {"lang":"language1", "tl":"string"}
     translations = []
     for line in file.readlines():

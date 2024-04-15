@@ -103,6 +103,7 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, one_file=True
     #     langs.add(lang[0].get(env.lang_key))
     # num_tokens = len(langs)
 
+    ### TODO: Fix the 4-times repeated code
     if one_way and one_file:
         # maps each language to their respective translation in another language
         language_from = tokens[0]
@@ -141,13 +142,6 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, one_file=True
                         mapping.append(
                             next_val
                         )
-                        next_val = {
-                            lang2: value2,
-                            lang1: value1
-                        }
-                        mapping.append(
-                            next_val
-                        )
                         fsize += 2
                         if len(mapping) >= limit:
                             limit_reached = True
@@ -173,23 +167,25 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, one_file=True
                 # checks of the target and source language are different
                 if language_from[0].get(env.lang_key) is not language_to[0].get(env.lang_key):
                     # Maps source language to their translation
-                    per_language = limit / num_tokens if limit and limit / num_tokens > 0 else len(
-                        language_from) if len(language_from) <= len(language_to) else len(language_to)
-                    # print(int(per_language))
+                    per_language = limit / num_tokens if limit and limit / num_tokens > 0 \
+                        else len(language_from) if len(language_from) <= len(language_to) \
+                        else len(language_to)
+                    print(int(per_language))
                     temp_off = offset
                     for i in range(int(per_language)):
                         if i + temp_off < len(language_from) and i + temp_off < len(language_to):
                             line1 = language_from[i + temp_off]
                             line2 = language_to[i + temp_off]
-                            if not line1.get(env.tl_key) or not line2.get(env.tl_key):
-                                continue
-                            if i + temp_off > len(language_from):
-                                print(f'{i} + {temp_off} == {i + temp_off} > {len(language_from)}')
-                                break
                             lang1 = line1.get(env.lang_key)
                             value1 = line1.get(env.tl_key)
                             lang2 = line2.get(env.lang_key)
                             value2 = line2.get(env.tl_key)
+                            if not lang1 or not lang2:
+                                continue
+                            if i + temp_off > len(language_from):
+                                print(f'{i} + {temp_off} == {i + temp_off} > {len(language_from)}')
+                                break
+
                             if lang1 == lang2:
                                 break
                             next_val = {
@@ -199,13 +195,13 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, one_file=True
                             mapping.append(
                                 next_val
                             )
-                            next_val = {
-                                lang2: value2,
-                                lang1: value1
-                            }
-                            mapping.append(
-                                next_val
-                            )
+                            # next_val = {
+                            #     lang2: value2,
+                            #     lang1: value1
+                            # }
+                            # mapping.append(
+                            #     next_val
+                            # )
                             fsize += 2
                             if len(mapping) >= limit:
                                 limit_reached = True
@@ -218,16 +214,17 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, one_file=True
         print(f'File Size: {fsize}')
         serialize_tokens(
             token_directory,
-            f'{[lang for lang in [language[0].get(env.lang_key) for language in tokens]]}',
+            f'{"".join(str(lang+"_") for lang in set(language[0].get(env.lang_key) for language in tokens))}',
             mapping
         )
     elif one_way and not one_file:
-        if one_way and one_file:
             # maps each language to their respective translation in another language
+            langs = set(lang[0].get(env.lang_key) for lang in tokens)
+            num_tokens = len(langs)
             language_from = tokens[0]
-            mapping = []
             fsize = 0
             for language_to in tokens:
+                mapping = []
                 # checks of the target and source language are different
                 if language_from[0].get(env.lang_key) == language_to[0].get(env.lang_key):
                     num_tokens -= 1
@@ -261,13 +258,6 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, one_file=True
                             mapping.append(
                                 next_val
                             )
-                            next_val = {
-                                lang2: value2,
-                                lang1: value1
-                            }
-                            mapping.append(
-                                next_val
-                            )
                             fsize += 2
                             if len(mapping) >= limit:
                                 limit_reached = True
@@ -279,16 +269,20 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, one_file=True
                 serialize_tokens(
                     token_directory,
                     f'{language_from[0].get(env.lang_key)}_'
-                    f'{[lang for lang in [language[0].get(env.lang_key) for language in tokens]]}'
+                    f'{"".join(lang for lang in set(language[0].get(env.lang_key) for language in tokens))}'
                     , mapping
                 )
     elif not one_way and not one_file:
         # maps each language to their respective translation in another language
+        finish_set = set()
         for language_from in tokens:
             mapping = []
+            limit_reached = False
+            fsize = 0
             for language_to in tokens:
                 # checks of the target and source language are different
-                if language_from[0].get(env.lang_key) is not language_to[0].get(env.lang_key):
+                if language_from[0].get(env.lang_key) != language_to[0].get(env.lang_key)\
+                        and language_from[0].get(env.lang_key) and language_to[0].get(env.lang_key):
                     # Maps source language to their translation
                     per_language = limit / num_tokens if limit and limit / num_tokens > 0 else len(
                         language_from) if len(language_from) <= len(language_to) else len(language_to)
@@ -298,7 +292,11 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, one_file=True
                         if i + temp_off < len(language_from) and i + temp_off < len(language_to):
                             line1 = language_from[i + temp_off]
                             line2 = language_to[i + temp_off]
+                            if line1.get(env.tl_key) == 'eng':
+                                print(f'{i} vs {temp_off}')
                             if not line1.get(env.tl_key) or not line2.get(env.tl_key):
+                                i -= 1
+                                temp_off += 1
                                 continue
                             if i + temp_off > len(language_from):
                                 print(f'{i} + {temp_off} == {i + temp_off} > {len(language_from)}')
@@ -316,6 +314,7 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, one_file=True
                             mapping.append(
                                 next_val
                             )
+                            fsize += 2
                             if len(mapping) >= limit:
                                 limit_reached = True
                                 break
@@ -323,11 +322,15 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, one_file=True
                         break
                 if limit_reached:
                     break
-            if not one_file:
+            finish_set.add(language_from[0].get(env.lang_key) + "_")
+            print(finish_set)
+            print(f'{language_from[0].get(env.lang_key) not in finish_set} {fsize} for {language_from[0].get(env.lang_key)} ')
+            print(f'{language_from[0].get(env.lang_key)} vs {finish_set}')
+            if language_from[0].get(env.lang_key) not in finish_set:
                 serialize_tokens(
                     token_directory,
                     f'{language_from[0].get(env.lang_key)}_'
-                    f'{[lang for lang in [language[0].get(env.lang_key) for language in tokens]]}',
+                    f'{"".join(str(lang+"_") for lang in set(language[0].get(env.lang_key) for language in tokens if language[0].get(env.lang_key) != language_from[0].get(env.lang_key)))}',
                     mapping
                 )
 
@@ -336,8 +339,8 @@ def get_all_tokened(txt_directory, token_directory, one_way=False, one_file=True
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     ## tokenizer stuff
-    get_all_tokened(txt_directory=env.lang_dir, token_directory=env.tokenized_dir, one_way=False, one_file=True,
-                    limit=2700000, offset=0)
+    # get_all_tokened(txt_directory=env.lang_dir, token_directory=env.tokenized_dir, one_way=True, one_file=True,
+    #                 limit=30000, offset=0)
 
     # print(match_lemma_list('prueba', 'test', 'spa', 'eng'))
 
@@ -373,12 +376,12 @@ if __name__ == '__main__':
     #                               lang1.strip(), lang2.strip())
 
     # ### Gensim
-    # from Gensim.gensim_functs import sentence_sim, word_sim
-    # try:
-    #     sentence_sim('eng-x-bible-kingjames-v1.txt')
-    #     word_sim("said")
-    # except FileNotFoundError as f:
-    #     sentence_sim('eng-x-bible-kingjames-v1.txt')
-    #     word_sim("said")
+    from Gensim.gensim_functs import sentence_sim, word_sim
+    try:
+        sentence_sim(f'eng\\eng-x-bible-kingjames-v1.txt')
+        word_sim("said")
+    except FileNotFoundError as f:
+        sentence_sim('eng-x-bible-kingjames-v1.txt')
+        word_sim("said")
 
     # model_training_sentence_sim(lang_dir)
