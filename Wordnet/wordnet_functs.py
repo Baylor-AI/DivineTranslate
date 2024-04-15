@@ -13,7 +13,10 @@ nltk.download('stopwords')
 
 # TODO: FIX THIS MAPPING TO CONTAIN THE WHOLE SET OF LANGUAGES
 language_mapping = [
-    {'english': 'eng'}
+    {
+        'eng' : 'english',
+        'cmn' : 'chinese'
+    }
 ]
 
 
@@ -224,9 +227,6 @@ def match_lemma_list(word1, word2, lang1, lang2, limit=5):
         for item in pair[0].lemmas():
             if pair[1].name() != item.synset().name():
                 # print(f'{item.synset()} vs {pair[1]}')
-                # results.add(tuple({'word': f'{item.synset().name()} match {pair[1].name()}',
-                #                    'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100}.items()
-                #                   ))
                 # print(f'{word2} matches {pair[1].name().split(".")[0]}' if f'{word2} matches {pair[1].name().split(".")[0]}' not in [synonyms['word'] for synonyms in results] else '')
                 if f'{word2} matches {pair[1].name().split(".")[0]}' \
                         not in [synonyms['word'] for synonyms in results] \
@@ -237,12 +237,6 @@ def match_lemma_list(word1, word2, lang1, lang2, limit=5):
                         'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100,
                         'empty': False
                     })
-    if not results:
-        results.append({
-            'word': '',
-            'percentage': 0.0,
-            'empty': True
-        })
 
     sorted_results = sorted(results, key=lambda x: x['percentage'], reverse=True)
     return sorted_results[:limit]
