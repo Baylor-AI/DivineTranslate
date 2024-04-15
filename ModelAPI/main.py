@@ -40,9 +40,13 @@ async def translate_text(request: TranslationRequest):
 
     tokenizer = AutoTokenizer.from_pretrained('google/byt5-small')
     trained_model = T5ForConditionalGeneration.from_pretrained('./')
+    print(request.source_lang_code)
+    print(request.target_lang_code)
 
     prefix = f"translate {request.source_lang_code} to {request.target_lang_code}: "
     prefixed_text = prefix + request.text
+    print(prefixed_text)
+
 
     # Tokenize the input text
     encoded_input = tokenizer(prefixed_text, padding=padding, truncation=truncation, max_length=max_length,

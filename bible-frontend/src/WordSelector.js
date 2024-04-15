@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-
+import  { useEffect } from 'react';
+import React, { useState } from 'react';
 const API_URL = 'http://localhost:8001/';
-
 const WordSelector = ({ data }) => {
   const [selectedWord, setSelectedWord] = useState('');
   const [relatedWords, setRelatedWords] = useState([]);
@@ -9,14 +8,9 @@ const WordSelector = ({ data }) => {
   useEffect(() => {
     if (selectedWord) {
       // Find the corresponding word in data.inputText based on the index
-      const compareWord = data.inputText.split(' ')[data.translatedText.split(' ').indexOf(selectedWord)];
+      const index = data.translatedText.split(' ').indexOf(selectedWord);
+      setRelatedWords(data.wordnetResults[index]);
 
-      const apiUrl = `http://localhost:8001/word_similarity/?initial=${compareWord}&compare=${selectedWord}&lang1=eng&lang2=${data.targetLang}&limit=5`;
-
-      fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => setRelatedWords(data))
-        .catch(error => console.error('Error fetching related words:', error));
     }
   }, [selectedWord, data.inputText, data.translatedText]);
 
@@ -25,13 +19,15 @@ const WordSelector = ({ data }) => {
   };
 
   return (
+   <div>
+  <p></p>
+  {data.translatedText && (
     <div>
-      <p>Sentence: {data.inputText}</p>
-      <p>Translated Text: {data.translatedText}</p>
-
-      {data.translatedText && (
+      {selectedWord && (
+        <p>Selected Word: {selectedWord}</p>
+      )}
+      {relatedWords && relatedWords.length > 0 && (
         <div>
-          <p>Selected Word: {selectedWord}</p>
           <p>Related Words:</p>
           {relatedWords.map((item, index) => (
             <div key={index}>
@@ -44,12 +40,22 @@ const WordSelector = ({ data }) => {
           ))}
         </div>
       )}
+    </div>
+  )}
+
+
 
       {data.translatedText &&
         data.translatedText.split(' ').map((word, index) => (
-          <button key={index} onClick={() => handleWordSelect(word)}>
-            {word}
-          </button>
+          <React.Fragment key={index}>
+            {data.wordnetResults[index] && data.wordnetResults[index][1] !== '' ? (
+              <button onClick={() => handleWordSelect(word)}>
+                {word}
+              </button>
+            ) : (
+              <span> {word} </span>
+            )}
+          </React.Fragment>
         ))}
     </div>
   );
