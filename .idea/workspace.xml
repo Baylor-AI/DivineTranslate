@@ -4,52 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="even more updated frontend">
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open-7.0.4.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open-7.0.4.dist-info/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open-7.0.4.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open-7.0.4.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open-7.0.4.dist-info/REQUESTED" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open-7.0.4.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open-7.0.4.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/azure.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/bytebuffer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/compression.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/concurrency.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/doctools.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/ftp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/gcs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/hdfs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/http.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/local_file.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/s3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/smart_open_lib.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/ssh.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/transport.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/version.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/smart_open/webhdfs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt-1.16.0.dist-info/INSTALLER" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt-1.16.0.dist-info/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt-1.16.0.dist-info/METADATA" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt-1.16.0.dist-info/RECORD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt-1.16.0.dist-info/WHEEL" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt-1.16.0.dist-info/top_level.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt/__wrapt__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt/_wrappers.cp312-win_amd64.pyd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt/arguments.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt/decorators.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt/importer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt/patches.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt/weakrefs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/virtualenv/Lib/site-packages/wrapt/wrappers.py" afterDir="false" />
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="10 lang support">
+      <change afterPath="$PROJECT_DIR$/ModelAPI/added_tokens.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModelAPI/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModelAPI/generation_config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModelAPI/model.safetensors" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModelAPI/optimizer.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModelAPI/rng_state.pth" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModelAPI/scheduler.pt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModelAPI/special_tokens_map.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModelAPI/tokenizer_config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModelAPI/trainer_state.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModelAPI/training_args.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WordNetEndpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/WordNetEndpoint.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bible-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +149,7 @@
       <workItem from="1706736155210" duration="6318000" />
       <workItem from="1710186383162" duration="3922000" />
       <workItem from="1711394659618" duration="32339000" />
-      <workItem from="1713816817015" duration="3059000" />
+      <workItem from="1713816817015" duration="4126000" />
     </task>
     <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
       <created>1706738701065</created>
@@ -358,7 +326,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713219587982</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="10 lang support">
+      <created>1713820358675</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1713820358675</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,7 +375,8 @@
     <MESSAGE value="add input language button" />
     <MESSAGE value="add to git" />
     <MESSAGE value="even more updated frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="even more updated frontend" />
+    <MESSAGE value="10 lang support" />
+    <option name="LAST_COMMIT_MESSAGE" value="10 lang support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
