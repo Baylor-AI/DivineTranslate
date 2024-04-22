@@ -69,19 +69,20 @@ function App() {
   }
 };
 
-  const languageOptions = {
-    spa: 'Spanish',
+    const languageOptions = {
     eng: 'English',
     fra: 'French',
+    deu: 'German',
+    hai: 'Haida',
+    jpn: 'Japanese',
     cmn: 'Mandarin Chinese',
-  };
+    mar: 'Marathi',
+    nse: 'Nsenga',
+    rus: 'Russian',
+    spa: 'Spanish'
+};
 
-  const languageCodeMap = {
-    es: 'spa',
-    en: 'eng',
-    fr: 'fra',
-    'Mandarin Chinese': 'cmn',
-  };
+
 
   const stripPunctuation = (str) => {
   return str.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
@@ -133,7 +134,6 @@ function App() {
     value={inputLanguage}
     onChange={(e) => setInputLanguage(e.target.value)}
   >
-   <option value=""></option>
     {Object.entries(languageOptions).map(([code, language]) => (
       <option key={code} value={code}>
         {language}
@@ -148,7 +148,6 @@ function App() {
                 value={targetLanguage}
                 onChange={handleTargetChange}
               >
-                 <option value=""></option>
                 {Object.entries(languageOptions).map(([code, language]) => (
                   <option key={code} value={code}>
                     {language}
