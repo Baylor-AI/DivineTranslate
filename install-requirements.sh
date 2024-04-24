@@ -8,6 +8,8 @@ read response
 if [[ $response == "y" ]] || [[ $response == "Y" ]]; then
     echo "[START] Creating virtual environment rivas-venv..."
     echo "[WINDOWS] Confirmed on Windows OS"
+    # echo "Open a Powershell terminal and run ./WIN_installreqs.ps1"
+    # exit 1
     ./WIN_install_reqs.sh
 elif [[ $response == "n" ]] || [[ $response == "N" ]]; then
     echo "[START] Creating virtual environment rivas-venv..."
