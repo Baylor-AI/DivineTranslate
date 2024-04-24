@@ -376,12 +376,17 @@ if __name__ == '__main__':
     #                               lang1.strip(), lang2.strip())
 
     # ### Gensim
-    from Gensim.gensim_functs import sentence_sim, word_sim
-    try:
-        sentence_sim(f'eng\\eng-x-bible-kingjames-v1.txt')
-        word_sim("said")
-    except FileNotFoundError as f:
-        sentence_sim('eng-x-bible-kingjames-v1.txt')
-        word_sim("said")
+    from Gensim.gensim_functs import train_model
+    train_model()
+    # try:
+    #     # sentence_sim(f'cmn-x-bible-sf_ncv-zefania-v1.txt', infer_val="神说 ： “要有光 ！ ”就有了光。")
+    #     sentence_sim(f'eng-x-bible-kingjames-v1.txt', infer_val="And God said , Let there be light : and there was light .")
+    #     word_sim("said")
+    #     # word_sim("神说")
+    # except FileNotFoundError as f:
+    #     # sentence_sim(f'cmn-x-bible-sf_ncv-zefania-v1.txt', infer_val="神说 ： “要有光 ！ ”就有了光。")
+    #     sentence_sim(f'eng-x-bible-kingjames-v1.txt', infer_val="And God said , Let there be light : and there was light .")
+    #     # word_sim("神说")
+    #     word_sim("said")
 
     # model_training_sentence_sim(lang_dir)
