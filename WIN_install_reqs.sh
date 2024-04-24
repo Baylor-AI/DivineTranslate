@@ -38,6 +38,7 @@ echo "Enabling long paths..."
 pwsh Start-Process powershell -Verb runAs New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
 echo "[SUCCESS] Long paths enabled"
 
+
 # if [ $path_length -ge $max_path_length ]; then
     
 #     echo "[WARNING] The current path length is $path_length characters."
