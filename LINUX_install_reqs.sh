@@ -29,15 +29,20 @@ fi
 
 # Install requirements
 pip install -r requirements.txt
-npm install react-scripts --save
-npm install bootstrap --save
+# npm install react-scripts --save
+# npm install bootstrap --save
 
 echo ""
 echo "[COMPLETED] Setup completed successfully..."
 echo "[COMPLETED] rivas-venv has been created and requirements have been installed."
 echo "To start the virtual environment:"
 echo ""
-echo "Mac OS:"
+echo "Start the virtual environment in this terminal:"
 echo "source rivas-venv/bin/activate"
 echo ""
-
+echo "Then open a new terminal, navigate to the bible-frontend directory and run the commands below:"
+echo "npm install react-scripts --save"
+echo "npm install bootstrap --save"
+echo ""
+echo "After the install, you can start the frontend in this new terminal with:"
+echo "npm start"

@@ -11,10 +11,10 @@ then
     exit 1
 elif python_version=$(python --version 2>&1) && [[ $python_version == *"Python 3"* ]]
 then
-    echo "[INSTALL] Installing react-scripts and boostrap..."
-    powershell -ExecutionPolicy Bypass -File "./WIN_installreqs.ps1"
-    echo "[COMPLETE] Installed react-scripts and boostrap."
-    echo ""
+    # echo "[INSTALL] Installing react-scripts and boostrap..."
+    # powershell -ExecutionPolicy Bypass -File "./WIN_installreqs.ps1"
+    # echo "[COMPLETE] Installed react-scripts and boostrap."
+    # echo ""
     echo "[CHECK] Python version found: $python_version"
     python -m venv rivas-venv
     source rivas-venv/Scripts/activate
@@ -24,12 +24,12 @@ fi
 
 echo "[DONE] Created and activated rivas-venv..."
 
-# Check for npm
-if ! command -v npm &> /dev/null
-then
-    echo "[ERROR] npm could not be found, please install it first."
-    exit 1
-fi
+# # Check for npm
+# if ! command -v npm &> /dev/null
+# then
+#     echo "[ERROR] npm could not be found, please install it first."
+#     exit 1
+# fi
 
 # Install requirements
 echo "[INSTALL] Installing requirements.txt..."
@@ -40,11 +40,9 @@ echo ""
 echo "[COMPLETED] Setup completed successfully..."
 echo "[COMPLETED] rivas-venv has been created and requirements have been installed."
 echo ""
-echo "To start the virtual environment:"
+echo "Start the virtual environment in this terminal:"
 echo "source rivas-venv/Scripts/activate"
 echo ""
-
-# echo "Next Steps"
-# echo "Open a new terminal with Powershell and run the commands below:"
-# echo "npm install react-scripts --save"
-# echo "npm install bootstrap --save"
+echo "Then open a new terminal with Powershell and run the commands below:"
+echo "npm install react-scripts --save"
+echo "npm install bootstrap --save"
