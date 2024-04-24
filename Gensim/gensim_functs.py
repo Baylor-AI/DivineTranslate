@@ -62,7 +62,7 @@ def train_model(fname = ''):
         else:
             # Otherwise, tokenize by words using Gensim's simple_preprocess
             return simple_preprocess(sentence)
-        ## possible per-byte implementation
+        ## TODO: possible per-byte implementation
         # for byte in sentence.encode(env.f_enc):
         #     if byte >= 128:
         #         # If the sentence contains Chinese characters, tokenize by characters
@@ -99,7 +99,7 @@ def train_model(fname = ''):
             return None
 
     # Example usage
-    input_sentence = "め"
+    input_sentence = "はじめに神は天と地とを創造された。"
     most_similar = most_similar_sentence(input_sentence, combined_sentences)
     print("Input Sentence:", input_sentence)
     print("Most Similar Sentence:", most_similar)
