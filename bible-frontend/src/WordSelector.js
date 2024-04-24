@@ -48,7 +48,7 @@ const WordSelector = ({ data }) => {
       {data.translatedText &&
         data.translatedText.split(' ').map((word, index) => (
           <React.Fragment key={index}>
-            {data.wordnetResults[index] && data.wordnetResults[index][1] !== '' ? (
+            {data.wordnetResults[index] && data.wordnetResults[index][1] > 3 ? (
               <button onClick={() => handleWordSelect(word)}>
                 {word}
               </button>
