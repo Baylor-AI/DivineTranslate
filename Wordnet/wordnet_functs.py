@@ -228,12 +228,12 @@ def match_lemma_list(word1, word2, lang1, lang2, limit=5):
             if pair[1].name() != item.synset().name():
                 # print(f'{item.synset()} vs {pair[1]}')
                 # print(f'{word2} matches {pair[1].name().split(".")[0]}' if f'{word2} matches {pair[1].name().split(".")[0]}' not in [synonyms['word'] for synonyms in results] else '')
-                if f'{word2} matches {pair[1].name().split(".")[0]}' \
+                if f'{pair[1].name().split(".")[0]}' \
                         not in [synonyms['word'] for synonyms in results] \
-                        and f'{pair[1].name().split(".")[0]} matches {word2}' \
+                        and f'{word2}' \
                         not in [synonyms['word'] for synonyms in results]:
                     results.append({
-                        'word': f'{word2} matches {pair[1].name().split(".")[0]}',
+                        'word': f'{pair[1].name().split(".")[0]}',
                         'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100,
                         'empty': False
                     })

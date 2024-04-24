@@ -102,98 +102,107 @@ function App() {
     };
 
     return (
-        <div className="App">
-            <h1 className="text-success">SIC'EM NLP</h1>
-            <div className="container">
-                <div className="row">
-                    <div className="col s12 m6">
-                        <div className="form-group">
-                            <textarea
-                                className="form-control"
-                                id="exampleFormControlTextarea1"
-                                rows="5"
-                                value={inputText}
-                                onChange={handleInputChange}
-                            ></textarea>
-                        </div>
-                        <p>Input language:</p>
-                        <div className="input-group">
-                            <select
-                                className="form-select"
-                                aria-label="Default select example"
-                                value={inputLanguage}
-                                onChange={(e) => setInputLanguage(e.target.value)}
-                            >
-                                {Object.entries(languageOptions).map(([code, language]) => (
-                                    <option key={code} value={code}>
-                                        {language}
-                                    </option>
-                                ))}
-                            </select>
+  <div className="App">
+    <h1 className="text-success">SIC'EM NLP</h1>
+    <div className="container">
+      <div className="row">
+        <div className="col s12 m6">
 
-                            <select
-                                className="form-select"
-                                aria-label="Default select example"
-                                value={targetLanguage}
-                                onChange={handleTargetChange}
-                            >
-                                {languageOptionsFiltered.map(([code, language]) => (
-                                    <option key={code} value={code}>
-                                        {language}
-                                    </option>
-                                ))}
-                            </select>
-                            <button
-                                className="btn btn-primary"
-                                onClick={handleTranslate}
-                            >
-                                Translate
-                            </button>
-                        </div>
-                        <p></p>
-                        <h4>Translation Tools:</h4>
-                        <button
-                            type="button"
-                            className="btn btn-primary"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                            onClick={toggleWordSelector}
-                            disabled={targetLanguage !== 'eng'}
-                        >
-                            WordNet
-                        </button>
-                        <p>If any of the words selected by the model are unsatisfactory, wordnet generates similar words and the degrees of similarity to original word. This is limited to English translations. </p>
-                    </div>
-                    <div className="col s12 m6">
-                        <div className="form-group">
-                            <textarea
-                                className="form-control"
-                                id="exampleFormControlTextarea1"
-                                rows="5"
-                                value={translatedText}
-                            ></textarea>
-                        </div>
-                    </div>
-                </div>
+          <div className="form-group">
+            <textarea
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              rows="5"
+              value={inputText}
+              onChange={handleInputChange}
+            ></textarea>
+          </div>
+          <div className="input-group">
+            <div>
+              <label htmlFor="inputLanguage">Input Language:</label>
+              <select
+                id="inputLanguage"
+                className="form-select"
+                aria-label="Default select example"
+                value={inputLanguage}
+                onChange={(e) => setInputLanguage(e.target.value)}
+              >
+                {Object.entries(languageOptions).map(([code, language]) => (
+                  <option key={code} value={code}>
+                    {language}
+                  </option>
+                ))}
+              </select>
             </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">WordNet</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <WordSelector data={wordSelectorData}></WordSelector>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" onClick={handleClose} data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
+            <div>
+              <label htmlFor="targetLanguage">Output Language:</label>
+              <select
+                id="targetLanguage"
+                className="form-select"
+                aria-label="Default select example"
+                value={targetLanguage}
+                onChange={handleTargetChange}
+              >
+                {languageOptionsFiltered.map(([code, language]) => (
+                  <option key={code} value={code}>
+                    {language}
+                  </option>
+                ))}
+              </select>
             </div>
+
+            <button
+              className="btn btn-primary"
+              onClick={handleTranslate}
+            >
+              Translate
+            </button>
+          </div>
+          <p></p>
+          <h4>Translation Tools:</h4>
+          <button
+            type="button"
+            className="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            onClick={toggleWordSelector}
+            disabled={targetLanguage !== 'eng'}
+          >
+            WordNet
+          </button>
+          <p>If any of the words selected by the model are unsatisfactory, wordnet generates similar words and the degrees of similarity to original word. This is limited to English translations. </p>
         </div>
-    );
+        <div className="col s12 m6">
+          <div className="form-group">
+            <textarea
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              rows="5"
+              value={translatedText}
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">WordNet</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <WordSelector data={wordSelectorData}></WordSelector>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onClick={handleClose} data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 }
 
 export default App;
