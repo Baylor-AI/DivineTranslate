@@ -4,23 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="adjusted to respond to fend feedback">
-      <change afterPath="$PROJECT_DIR$/ModelAPI/added_tokens.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ModelAPI/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ModelAPI/generation_config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ModelAPI/model.safetensors" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ModelAPI/optimizer.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ModelAPI/rng_state.pth" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ModelAPI/scheduler.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ModelAPI/special_tokens_map.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ModelAPI/tokenizer_config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ModelAPI/trainer_state.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ModelAPI/training_args.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="added connect to deployed backend">
       <change beforePath="$PROJECT_DIR$/WordNetEndpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/WordNetEndpoint.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Wordnet/wordnet_functs.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wordnet/wordnet_functs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bible-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bible-frontend/src/ModelTranslate.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/ModelTranslate.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +23,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -152,7 +139,7 @@
       <workItem from="1706736155210" duration="6318000" />
       <workItem from="1710186383162" duration="3922000" />
       <workItem from="1711394659618" duration="32339000" />
-      <workItem from="1713816817015" duration="10252000" />
+      <workItem from="1713816817015" duration="10662000" />
     </task>
     <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
       <created>1706738701065</created>
@@ -343,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713822333084</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="added connect to deployed backend">
+      <created>1713994558318</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1713994558318</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,7 +356,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Designed front end to mirror wireframe" />
     <MESSAGE value="Integrated google translate for demo purposes" />
     <MESSAGE value="connect frontend to api" />
     <MESSAGE value="add gh-pages" />
@@ -387,7 +380,8 @@
     <MESSAGE value="even more updated frontend" />
     <MESSAGE value="10 lang support" />
     <MESSAGE value="adjusted to respond to fend feedback" />
-    <option name="LAST_COMMIT_MESSAGE" value="adjusted to respond to fend feedback" />
+    <MESSAGE value="added connect to deployed backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="added connect to deployed backend" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
