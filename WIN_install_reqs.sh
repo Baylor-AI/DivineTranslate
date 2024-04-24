@@ -33,10 +33,10 @@ current_path=$(pwd)
 path_length=${#current_path}
 max_path_length=260
 
-echo "Enabling long paths..."
+# echo "Enabling long paths..."
 #pwsh
-pwsh Start-Process powershell -Verb runAs New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
-echo "[SUCCESS] Long paths enabled"
+# pwsh Start-Process powershell -Verb runAs New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
+# echo "[SUCCESS] Long paths enabled"
 
 
 # if [ $path_length -ge $max_path_length ]; then
@@ -59,13 +59,17 @@ echo "[INSTALL] Installing requirements.txt..."
 pip install -r requirements.txt
 echo "[COMPLETE] Installed requirements.txt"
 
-echo "[INSTALL] Installing react-scripts..."
-npm install react-scripts --save
-echo "[COMPLETE] Installed react-scripts"
+echo "[INSTALL] Installing react-scripts and boostrap..."
+powershell ./WIN_installreqs.ps1
+echo "[COMPLETE] Installed react-scripts and boostrap."
 
-echo "[INSTALL] Installing boostrap..."
-npm install bootstrap --save
-echo "[COMPLETE] Installed boostrap"
+# echo "[INSTALL] Installing react-scripts..."
+# npm install react-scripts --save
+# echo "[COMPLETE] Installed react-scripts"
+
+# echo "[INSTALL] Installing boostrap..."
+# npm install bootstrap --save
+# echo "[COMPLETE] Installed boostrap"
 
 echo ""
 echo "[COMPLETED] Setup completed successfully..."
