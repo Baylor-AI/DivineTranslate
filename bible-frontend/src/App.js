@@ -39,8 +39,8 @@ function App() {
 
     const fillHasResults = async () => {
         if (translatedText) {
-            const inputWords = inputText.split(' ');
-            const translatedWords = translatedText.split(' ');
+            const inputWords = stripPunctuation(inputText).split(' ');
+            const translatedWords = stripPunctuation(translatedText).split(' ');
 
             const wordPairs = translatedWords.map((word, index) => ({
                 initial: word,
@@ -49,6 +49,7 @@ function App() {
                 lang2: targetLanguage,
                 limit: 5
             }));
+            console.log(wordPairs.toString());
             const apiCalls = wordPairs.map(pair =>
                 fetch(`http://localhost:8001/word_similarity/?initial=${pair.compare}&compare=${pair.initial}&lang1=${pair.lang1}&lang2=${pair.lang2}&limit=${pair.limit}`)
                     .then(response => response.json())
@@ -115,6 +116,7 @@ function App() {
                                 onChange={handleInputChange}
                             ></textarea>
                         </div>
+                        <p>Input language:</p>
                         <div className="input-group">
                             <select
                                 className="form-select"

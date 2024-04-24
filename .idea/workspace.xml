@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="10 lang support">
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="adjusted to respond to fend feedback">
       <change afterPath="$PROJECT_DIR$/ModelAPI/added_tokens.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ModelAPI/config.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ModelAPI/generation_config.json" afterDir="false" />
@@ -17,7 +17,10 @@
       <change afterPath="$PROJECT_DIR$/ModelAPI/trainer_state.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ModelAPI/training_args.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WordNetEndpoint.py" beforeDir="false" afterPath="$PROJECT_DIR$/WordNetEndpoint.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wordnet/wordnet_functs.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wordnet/wordnet_functs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bible-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bible-frontend/src/ModelTranslate.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/ModelTranslate.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +152,7 @@
       <workItem from="1706736155210" duration="6318000" />
       <workItem from="1710186383162" duration="3922000" />
       <workItem from="1711394659618" duration="32339000" />
-      <workItem from="1713816817015" duration="4126000" />
+      <workItem from="1713816817015" duration="10252000" />
     </task>
     <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
       <created>1706738701065</created>
@@ -333,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713820358675</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="adjusted to respond to fend feedback">
+      <created>1713822333084</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1713822333084</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,7 +386,8 @@
     <MESSAGE value="add to git" />
     <MESSAGE value="even more updated frontend" />
     <MESSAGE value="10 lang support" />
-    <option name="LAST_COMMIT_MESSAGE" value="10 lang support" />
+    <MESSAGE value="adjusted to respond to fend feedback" />
+    <option name="LAST_COMMIT_MESSAGE" value="adjusted to respond to fend feedback" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
