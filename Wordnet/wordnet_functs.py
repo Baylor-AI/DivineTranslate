@@ -1,15 +1,24 @@
 import string
 import unicodedata
-import env_vars as env
 
 import nltk
-nltk.download('omw')
+
 nltk.download('perluniprops')
 nltk.download('popular')
-nltk.download('stopwords')
 # set abbreviations for the wordnet items
 from nltk.corpus import wordnet as wn, stopwords as sw
 from nltk.tokenize import word_tokenize
+
+nltk.download('stopwords')
+
+# TODO: FIX THIS MAPPING TO CONTAIN THE WHOLE SET OF LANGUAGES
+language_mapping = [
+    {
+        'eng' : 'english',
+        'cmn' : 'chinese'
+    }
+]
+
 
 def synset_program(lang='cmn'):
     syns = wn.synsets("program")
@@ -79,20 +88,13 @@ def synset_sentence_match(sentence1, sentence2, lang1='eng', lang2='eng'):
     # nistt = nt()
     # print(nistt.international_tokenize(sentence1))
     # print(nistt.international_tokenize(sentence2))
-
-    ### Input Processing
     sentence1 = remove_stopwords_tokens(
-        remove_punct_tokens(list(([w for w in word_tokenize(sentence1)]))),
-        lang=env.lang_map.get(lang1)
-    )
+        remove_punct_tokens(list(([w for w in word_tokenize(sentence1)]))))  # if not w.lower() in sw.words(lang1)]))
     sentence2 = remove_stopwords_tokens(
-        remove_punct_tokens(list(([w for w in word_tokenize(sentence2)]))),
-        lang=env.lang_map.get(lang2)
-    )
+        remove_punct_tokens(list(([w for w in word_tokenize(sentence2)]))))  # if not w.lower() in sw.words(lang2)]))
     # print(f"tokenized s1: {sentence1}\n lemmas: {[wn.lemmas(w, lang=lang1) for w in sentence1]}")
     # print(f"tokenized s2: {sentence2}\n lemmas: {[wn.lemmas(w, lang=lang2) for w in sentence2]}")
-
-    ### We are comparing the similarity of two sentences, word for word and assuming they are the same length
+    # We are comparing the similarity of two sentences, and assuming they are the same length
     checked = []
     for word1 in sentence1:
         prev = None
@@ -200,20 +202,17 @@ def match_lemma_list(word1, word2, lang1, lang2, limit=5):
     :return:
     '''
     match = []
-    if remove_stopwords_tokens(text=word1, lang=env.lang_map.get(lang1)) \
-            and remove_stopwords_tokens(text=word2, lang=env.lang_map.get(lang2)):
+    if word1 and word2:
         # print(f'{word1} vs {word2}')
         word1 = remove_punct(word1).lower()
         word2 = remove_punct(word2).lower()
-        lems1 = wn.lemmas(word1, lang=lang1) if not wn.morphy(word1) and wn.morphy(word1) != 'None'\
+        lems1 = wn.lemmas(word1, lang=lang1) if not wn.morphy(word1) \
             else wn.lemmas(wn.morphy(word1))
-        lems2 = wn.lemmas(word2, lang=lang2) if not wn.morphy(word2) and wn.morphy(word2) != 'None' \
+        lems2 = wn.lemmas(word2, lang=lang2) if not wn.morphy(word2) \
             else wn.lemmas(wn.morphy(word2))
-        print(f'{wn.synsets(word1)[0].lemma_names(lang2)} vs {lems2}')
 
-        ### get the list of matching word "hits"
         for lem1 in lems1:
-            if lem1.synset() and [word in lem1.synset() for word in lem1.synset()]:
+            if lem1.synset():
                 for lem2 in lems2:
                     if lem2.synset():
                         # print(f'{lem1.synset()} vs {lem2.synset()} ====> {sim}')
@@ -223,22 +222,20 @@ def match_lemma_list(word1, word2, lang1, lang2, limit=5):
                             # print(f'{lem1.synset()} vs {lem2.synset()} ====> {sim}')
                             match.append((lem1.synset(), lem2.synset(), sim))
 
-    ### create the dictionary to send to the backend endpoint
     results = []
     for pair in match:
         for item in pair[0].lemmas():
             if pair[1].name() != item.synset().name():
                 # print(f'{item.synset()} vs {pair[1]}')
-                # print(f'{word2} matches {pair[1].name().split(".")[0]}'
-                #       if f'{word2} matches {pair[1].name().split(".")[0]}'
-                #          not in [synonyms['word'] for synonyms in results] else '')
+                # print(f'{word2} matches {pair[1].name().split(".")[0]}' if f'{word2} matches {pair[1].name().split(".")[0]}' not in [synonyms['word'] for synonyms in results] else '')
                 if f'{pair[1].name().split(".")[0]}' \
                         not in [synonyms['word'] for synonyms in results] \
-                        and f'{pair[1].name().split(".")[0]}' \
+                        and f'{word2}' \
                         not in [synonyms['word'] for synonyms in results]:
                     results.append({
                         'word': f'{pair[1].name().split(".")[0]}',
-                        'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100
+                        'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100,
+                        'empty': False
                     })
 
     sorted_results = sorted(results, key=lambda x: x['percentage'], reverse=True)
@@ -250,14 +247,17 @@ def possible_languages():
 
 
 def remove_stopwords_tokens(text, lang='english'):
-    stop_words = sw.words(lang)
+    stop_words = set(sw.words(lang))
+
     filtered_text = [word for word in text if word.lower() not in stop_words]
+
     return filtered_text
 
 
 def remove_punct_tokens(text):
     punctuations = string.punctuation
     no_puncts = [remove_punct(word) for word in text if word not in punctuations]
+
     return no_puncts
 
 

@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="add to git">
-      <change afterPath="$PROJECT_DIR$/bible-frontend/src/styles.css" afterDir="false" />
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="i don't know how but the backend works now">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ModelAPI/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ModelAPI/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wordnet/wordnet_functs.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wordnet/wordnet_functs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bible-frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bible-frontend/src/WordSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/bible-frontend/src/WordSelector.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +24,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -64,6 +63,7 @@
       <recent name="C:\Users\lauren_adams3\PycharmProjects\rivas-bible\ModelAPI" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lauren_adams3\PycharmProjects\rivas-bible\ModelAPI\4lang-best-model" />
       <recent name="C:\Users\lauren_adams3\PycharmProjects\rivas-bible\ModelAPI" />
       <recent name="C:\Users\lauren_adams3\PycharmProjects\rivas-bible\ModelAPI\4lang-cmn-eng" />
       <recent name="C:\Users\lauren_adams3\PycharmProjects\rivas-bible\ModelAPI\cmn-eng-model" />
@@ -139,7 +139,8 @@
       <workItem from="1706735693678" duration="347000" />
       <workItem from="1706736155210" duration="6318000" />
       <workItem from="1710186383162" duration="3922000" />
-      <workItem from="1711394659618" duration="31789000" />
+      <workItem from="1711394659618" duration="32339000" />
+      <workItem from="1713816817015" duration="12289000" />
     </task>
     <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
       <created>1706738701065</created>
@@ -309,7 +310,49 @@
       <option name="project" value="LOCAL" />
       <updated>1712174699826</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="even more updated frontend">
+      <created>1713219587982</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1713219587982</updated>
+    </task>
+    <task id="LOCAL-00026" summary="10 lang support">
+      <created>1713820358675</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1713820358675</updated>
+    </task>
+    <task id="LOCAL-00027" summary="adjusted to respond to fend feedback">
+      <created>1713822333084</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1713822333084</updated>
+    </task>
+    <task id="LOCAL-00028" summary="added connect to deployed backend">
+      <created>1713994558318</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1713994558318</updated>
+    </task>
+    <task id="LOCAL-00029" summary="added connect to deployed backend">
+      <created>1713994776536</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1713994776536</updated>
+    </task>
+    <task id="LOCAL-00030" summary="i don't know how but the backend works now">
+      <created>1713995486332</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1713995486332</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -328,8 +371,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Designed front end to mirror wireframe" />
-    <MESSAGE value="Integrated google translate for demo purposes" />
     <MESSAGE value="connect frontend to api" />
     <MESSAGE value="add gh-pages" />
     <MESSAGE value="fix pages issue" />
@@ -350,14 +391,19 @@
     <MESSAGE value="working on deploy again pt.2" />
     <MESSAGE value="add input language button" />
     <MESSAGE value="add to git" />
-    <option name="LAST_COMMIT_MESSAGE" value="add to git" />
+    <MESSAGE value="even more updated frontend" />
+    <MESSAGE value="10 lang support" />
+    <MESSAGE value="adjusted to respond to fend feedback" />
+    <MESSAGE value="added connect to deployed backend" />
+    <MESSAGE value="i don't know how but the backend works now" />
+    <option name="LAST_COMMIT_MESSAGE" value="i don't know how but the backend works now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>6</line>
+          <line>7</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
