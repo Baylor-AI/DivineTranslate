@@ -1,7 +1,7 @@
 {
   "name": "bible-frontend",
   "version": "5.0.0",
-  "homepage": "https://lauren-adams.github.io/bibleTranslate",
+  "homepage": "https://lauren-adams.github.io/DivineTranslate/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
