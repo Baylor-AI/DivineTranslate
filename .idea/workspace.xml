@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="Fix wordnet word stripping and add labels">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="82d23a8a-3dc1-4810-a466-f964618edb0a" name="Changes" comment="final push before github transfer" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -138,7 +136,7 @@
       <workItem from="1706736155210" duration="6318000" />
       <workItem from="1710186383162" duration="3922000" />
       <workItem from="1711394659618" duration="32339000" />
-      <workItem from="1713816817015" duration="13495000" />
+      <workItem from="1713816817015" duration="14110000" />
     </task>
     <task id="LOCAL-00001" summary="Designed front end to mirror wireframe">
       <created>1706738701065</created>
@@ -357,7 +355,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713996357818</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="final push before github transfer">
+      <created>1714157691644</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1714157691644</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,7 +381,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="add gh-pages" />
     <MESSAGE value="fix pages issue" />
     <MESSAGE value="fix pages failure and add translation.py" />
     <MESSAGE value="trigger pipeline" />
@@ -401,14 +405,15 @@
     <MESSAGE value="added connect to deployed backend" />
     <MESSAGE value="i don't know how but the backend works now" />
     <MESSAGE value="Fix wordnet word stripping and add labels" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix wordnet word stripping and add labels" />
+    <MESSAGE value="final push before github transfer" />
+    <option name="LAST_COMMIT_MESSAGE" value="final push before github transfer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>7</line>
+          <line>5</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
