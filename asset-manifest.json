@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bibleTranslate/static/css/main.ff02f4b5.css",
-    "main.js": "/bibleTranslate/static/js/main.763c9760.js",
-    "static/js/787.f40b35ec.chunk.js": "/bibleTranslate/static/js/787.f40b35ec.chunk.js",
-    "index.html": "/bibleTranslate/index.html",
-    "main.ff02f4b5.css.map": "/bibleTranslate/static/css/main.ff02f4b5.css.map",
-    "main.763c9760.js.map": "/bibleTranslate/static/js/main.763c9760.js.map",
-    "787.f40b35ec.chunk.js.map": "/bibleTranslate/static/js/787.f40b35ec.chunk.js.map"
+    "main.css": "/DivineTranslate/static/css/main.ff02f4b5.css",
+    "main.js": "/DivineTranslate/static/js/main.ce161d0e.js",
+    "static/js/787.f40b35ec.chunk.js": "/DivineTranslate/static/js/787.f40b35ec.chunk.js",
+    "index.html": "/DivineTranslate/index.html",
+    "main.ff02f4b5.css.map": "/DivineTranslate/static/css/main.ff02f4b5.css.map",
+    "main.ce161d0e.js.map": "/DivineTranslate/static/js/main.ce161d0e.js.map",
+    "787.f40b35ec.chunk.js.map": "/DivineTranslate/static/js/787.f40b35ec.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ff02f4b5.css",
-    "static/js/main.763c9760.js"
+    "static/js/main.ce161d0e.js"
   ]
 }
