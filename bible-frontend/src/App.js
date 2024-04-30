@@ -7,7 +7,8 @@ import WordSelector from "./WordSelector";
 import translateTextM from "./ModelTranslate";
 import  { useEffect } from 'react';
 
-const API_URL = 'http://localhost:8001';
+//const API_URL = 'http://localhost:8001';
+const API_URL = 'https://b63bfdks-8001.usw3.devtunnels.ms/word_similarity';
 
 function App() {
     const [inputText, setInputText] = useState('');
@@ -25,44 +26,47 @@ function App() {
     };
 
     const handleTranslate = async () => {
+        console.log(inputLanguage + " " + targetLanguage);
         wordSelectorData.wordnetResults = [];
+        if (inputText !== ''){
+        console.log("HANDELING TRANSALTE");
         setTranslatedText("");
-        if (inputText && inputLanguage !== targetLanguage) {
+
             const text = await translateTextM(stripPunctuation(inputText), inputLanguage, targetLanguage);
             setTranslatedText(text);
             console.log(text);
-        } else {
-            // Input and target languages are the same, or input text is empty.
-            // Handle this case as needed.
         }
     };
 
-    const fillHasResults = async () => {
-        if (translatedText) {
-            const inputWords = stripPunctuation(inputText).split(' ');
-            const translatedWords = stripPunctuation(translatedText).split(' ');
 
-            const wordPairs = translatedWords.map((word, index) => ({
-                initial: word,
-                compare: inputWords[index] || '',
-                lang1: inputLanguage,
-                lang2: targetLanguage,
-                limit: 5
-            }));
-            console.log(wordPairs.toString());
-            const apiCalls = wordPairs.map(pair =>
-                fetch(`http://localhost:8001/word_similarity/?initial=${pair.compare}&compare=${pair.initial}&lang1=${pair.lang1}&lang2=${pair.lang2}&limit=${pair.limit}`)
-                    .then(response => response.json())
-            );
+     const fillHasResults = async () => {
+                if (translatedText) {
+                    const inputWords = stripPunctuation(inputText).split(' ');
+                    const translatedWords = stripPunctuation(translatedText).split(' ');
 
-            Promise.all(apiCalls)
-                .then(results => {
-                    setWordNetResults(results);
-                    console.log('WordNet results:', results);
-                })
-                .catch(error => console.error('Error fetching WordNet results:', error));
-        }
-    };
+                    const wordPairs = translatedWords.map((word, index) => ({
+                        initial: word,
+                        compare: inputWords[index] || '',
+                        lang1: inputLanguage,
+                        lang2: targetLanguage,
+                        limit: 5
+                    }));
+                    console.log(wordPairs.toString());
+                    const apiCalls = wordPairs.map(pair =>
+                        fetch(`https://b63bfdks-8001.usw3.devtunnels.ms/word_similarity/?initial=${pair.compare}&compare=${pair.initial}&lang1=${pair.lang1}&lang2=${pair.lang2}&limit=${pair.limit}`)
+                            .then(response => response.json())
+                    );
+
+                    Promise.all(apiCalls)
+                        .then(results => {
+                            setWordNetResults(results);
+                            console.log('WordNet results:', results);
+                        })
+                        .catch(error => console.error('Error fetching WordNet results:', error));
+                }
+            };
+
+
 
      const languageOptions = {
     eng: 'English',
@@ -78,19 +82,41 @@ function App() {
 };
 
     const languageOptionsFiltered = Object.entries(languageOptions)
-        .filter(([code]) => code !== inputLanguage); // Filtering out the selected input language
+        .filter(([code]) => code !== inputLanguage); //filtering out the selected input language
 
     const stripPunctuation = (str) => {
         return str.replace(/[^\w\s]|_/g, "").replace(/\s+/g, " ");
     };
 
     const handleInputChange = (e) => {
-        setInputText(e.target.value);
+            setInputText(e.target.value);
+        };
+
+    const handleInputLangChange = (e) => {
+        const newInputLanguage = e.target.value;
+         console.log(e.target.value);
+        setInputLanguage(newInputLanguage);
+
+        if (newInputLanguage === targetLanguage) {
+        if (newInputLanguage == 'eng'){
+            setTargetLanguage('fra');
+                        console.log("NEW TARGET is: " + targetLanguage);
+                        } else {
+            setTargetLanguage('eng');
+            }
+        }
     };
 
+
+
+
+
     const handleTargetChange = (e) => {
+        console.log(e.target.value);
         setTargetLanguage(e.target.value);
+
     };
+
 
     const handleClose = (e) => {
 
@@ -109,6 +135,7 @@ function App() {
         <div className="col s12 m6">
 
           <div className="form-group">
+          <h5>Input text</h5>
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
@@ -125,7 +152,7 @@ function App() {
                 className="form-select"
                 aria-label="Default select example"
                 value={inputLanguage}
-                onChange={(e) => setInputLanguage(e.target.value)}
+                onChange={handleInputLangChange}
               >
                 {Object.entries(languageOptions).map(([code, language]) => (
                   <option key={code} value={code}>
@@ -166,13 +193,14 @@ function App() {
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             onClick={toggleWordSelector}
-            disabled={targetLanguage !== 'eng'}
+            disabled={(inputLanguage !== 'spa' && inputLanguage !== 'fra') || targetLanguage !== 'eng'}
           >
             WordNet
           </button>
-          <p>If any of the words selected by the model are unsatisfactory, wordnet generates similar words and the degrees of similarity to original word. This is limited to English translations. </p>
+          <p>If any of the words selected by the model are unsatisfactory, wordnet generates similar words and the degrees of similarity to original word. This is limited translations where English is the output language. </p>
         </div>
         <div className="col s12 m6">
+        <h5>Translated Text</h5>
           <div className="form-group">
             <textarea
               className="form-control"

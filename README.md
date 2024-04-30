@@ -1,8 +1,4 @@
 # Rivas Bible
-- # TODO:
-  - Add Dev documentation for account token generation for cloning the repository
-  - Add additional Dev documentation for the frontend dependencies and python backend requirements
-  - Add additional Dev documentation for python backend setup
 ## Dev Docs
 - ## Getting started
 
@@ -90,7 +86,7 @@ npm start
 
 2. **Select Your Preferred Language** and click the "Translate" button.  
 
-  ![Screenshot](/DocumentationImages/FrontendInputChooseTranslation.png)
+  ![Screenshot](/DocumentationImages/FrontendInputChooseTranslation_1.jpg) ![Screenshot](/DocumentationImages/FrontendInputChooseTranslation_2.jpg)
 
 3. **Check the Translation**  
 
@@ -118,3 +114,8 @@ npm start
 # Contributions
 
 # License
+
+- # TODO:
+  - Add Dev documentation for account token generation for cloning the repository
+  - Add additional Dev documentation for the frontend dependencies and python backend requirements
+  - Add additional Dev documentation for python backend setup
