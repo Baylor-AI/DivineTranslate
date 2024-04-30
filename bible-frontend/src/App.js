@@ -135,6 +135,7 @@ function App() {
         <div className="col s12 m6">
 
           <div className="form-group">
+          <h5>Input text</h5>
             <textarea
               className="form-control"
               id="exampleFormControlTextarea1"
@@ -199,6 +200,7 @@ function App() {
           <p>If any of the words selected by the model are unsatisfactory, wordnet generates similar words and the degrees of similarity to original word. This is limited translations where English is the output language. </p>
         </div>
         <div className="col s12 m6">
+        <h5>Translated Text</h5>
           <div className="form-group">
             <textarea
               className="form-control"
