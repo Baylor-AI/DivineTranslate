@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/DivineTranslate/static/css/main.ff02f4b5.css",
-    "main.js": "/DivineTranslate/static/js/main.390995a3.js",
+    "main.js": "/DivineTranslate/static/js/main.80cc1546.js",
     "static/js/787.f40b35ec.chunk.js": "/DivineTranslate/static/js/787.f40b35ec.chunk.js",
     "index.html": "/DivineTranslate/index.html",
     "main.ff02f4b5.css.map": "/DivineTranslate/static/css/main.ff02f4b5.css.map",
-    "main.390995a3.js.map": "/DivineTranslate/static/js/main.390995a3.js.map",
+    "main.80cc1546.js.map": "/DivineTranslate/static/js/main.80cc1546.js.map",
     "787.f40b35ec.chunk.js.map": "/DivineTranslate/static/js/787.f40b35ec.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ff02f4b5.css",
-    "static/js/main.390995a3.js"
+    "static/js/main.80cc1546.js"
   ]
 }
