@@ -1,8 +1,4 @@
 # Rivas Bible
-- # TODO:
-  - Add Dev documentation for account token generation for cloning the repository
-  - Add additional Dev documentation for the frontend dependencies and python backend requirements
-  - Add additional Dev documentation for python backend setup
 ## Dev Docs
 - ## Getting started
 
@@ -118,3 +114,8 @@ npm start
 # Contributions
 
 # License
+
+- # TODO:
+  - Add Dev documentation for account token generation for cloning the repository
+  - Add additional Dev documentation for the frontend dependencies and python backend requirements
+  - Add additional Dev documentation for python backend setup
