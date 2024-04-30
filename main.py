@@ -1,7 +1,7 @@
 from LanguageTokenizer.TxtToToken import text_tokenize
-
 import os, json
 import env_vars as env
+import time
 
 ### TODO: Run manual and Automatic testing for each function in main
 # Press the green button in the gutter to run the script.
@@ -59,38 +59,40 @@ if __name__ == '__main__':
         'sentences with Wordnet',
         'single sentence with bible verses'
     ]
+    # wait for download logs to end
     while type.isdigit() and int(type) != 0:
         while True:
-            type = input(f"what would you like to compare?" +
-                         ''.join(f'\n\t{item}. {type_values[index]}'
-                                 for index, item in enumerate(sorted(allowed_types, reverse = False))
-                     )
+            type = input(
+                f"\nwhat would you like to compare?" +
+                ''.join(f'\n\t{item}. {type_values[index]}'
+                        for index, item in enumerate(sorted(allowed_types, reverse = False))) +
+                f"\nEnter an option: \n"
                     )
             if type.strip() and type in allowed_types:
                 break
 
         if type == '1':
-            choice = str(input("What Word would you like the synonyms and antonyms for?"))
+            choice = str(input("What Word would you like the synonyms and antonyms for?\n"))
             synset_choose(choice)
-            compare=input("What word would you like to commpare your word/sentence with?")
+            compare=input("What word would you like to commpare your word/sentence with?\n")
             if compare == "stop":
                 break
             synset_compare(choice.strip(), compare.strip())
 
         elif type == '2':
-            choice = str(input("What is the first sentence you would like to compare?"))
+            choice = str(input("What is the first sentence you would like to compare?\n"))
             lang1 = str(input("What is that sentence's language?"))
-            compare=str(input("What is the second sentence you would like to compare?"))
+            compare= str(input("What is the second sentence you would like to compare?\n"))
             lang2 = str(input("What is that sentence's language?"))
             synset_sentence_match(choice.strip(), compare.strip(),
                                   lang1.strip(), lang2.strip())
 
         elif type == '3':
-            choice = str(input("What is the sentence you would like to compare?"))
-            lang1 = str(input("What is that sentence's language?"))
-            arb_lim = input("How many examples would you like?")
+            choice = str(input("What is the sentence you would like to compare?\n"))
+            lang1 = str(input("What is that sentence's language?\n"))
+            arb_lim = input("How many examples would you like?\n")
             while not arb_lim.isdigit():
-                arb_lim = input("How many examples would you like?")
+                arb_lim = input("How many examples would you like?\n")
 
             gensim_sentence_sim(
                 input_sentence=choice,

@@ -45,6 +45,7 @@ def deserialize_list(target_file):
 def train_word2vec(train_corpus, update_vocab=False, vector_size=100, window=5, min_count=1, epochs=10, workers=4, ):
     save_embeddings = os.path.join(os.getcwd(), env.model_dir, env.word_embeddings)
     if os.path.exists(save_embeddings):
+        ### TODO: put these types of debug messages into an actual logger
         print(f'Save File Found: {save_embeddings}')
         try:
             model = Word2Vec.load(save_embeddings)
@@ -80,7 +81,7 @@ def train_word2vec(train_corpus, update_vocab=False, vector_size=100, window=5, 
     return model
 
 
-def train_model_per_directory(txt_dir, update_vocab=False):
+def train_model_per_directory(txt_dir, epochs=10, update_vocab=False):
     for root, dirs, files in os.walk(txt_dir):
         if files:
             lang_code = files[0][:env.lang_code_size]
@@ -99,12 +100,10 @@ def train_model_per_directory(txt_dir, update_vocab=False):
                           if len(line.strip()) > 0]
                          ]
                 if len(lines) > 0:
-                    train_word2vec(train_corpus=lines, update_vocab=update_vocab, epochs=10)
-            train_list.append(lines)
+                    train_word2vec(train_corpus=lines, update_vocab=update_vocab, epochs=epochs)
             # env.word_embeddings = swp_model_name
             env.model_dir = swp_modl_dir
 
-    return train_list
 
 
 def get_trained_sents(lang = 'eng'):
@@ -112,9 +111,10 @@ def get_trained_sents(lang = 'eng'):
         for dirname in dirs:
             if dirname.startswith(lang):
                 train_file = os.path.join(root, dirname, env.train_sents)
-                print(f'Looking for: {train_file}')
+                ### TODO: put these types of debug messages into an actual logger
+                # print(f'Looking for: {train_file}')
                 if os.path.exists(train_file):
-                    print(f'Trained File Found: {train_file}')
+                    # print(f'Trained File Found: {train_file}')
                     return read_file_lines(train_file)
     return []
 
@@ -124,9 +124,11 @@ def use_lang_model(lang = 'eng'):
         for dirname in dirs:
             if dirname.startswith(lang):
                 save_embeddings = os.path.join(root, dirname, env.word_embeddings)
-                print(f'Looking for: {save_embeddings}')
+                ### TODO: put these types of debug messages into an actual logger
+                # print(f'Looking for: {save_embeddings}')
                 if os.path.exists(save_embeddings):
-                    print(f'Save File Found: {save_embeddings}')
+
+                    # print(f'Save File Found: {save_embeddings}')
                     return Word2Vec.load(save_embeddings)
     print(f'No Model Found at: {env.model_dir}')
     return None
@@ -181,7 +183,7 @@ def gensim_sentence_sim(input_sentence, chosen_lang, limit = 1):
                     most_similar_index = np.argmax(similarities)
                     print(f'Found match #{(i + 1)}: {(sentences[most_similar_index], similarities[most_similar_index])}')
                     most_similar_items.add(
-                        (temp_sents.pop(most_similar_index), round(similarities.pop(most_similar_index), 2))
+                        (temp_sents.pop(most_similar_index), round(similarities.pop(most_similar_index), 3))
                     )
                     sentence_vectors.pop(most_similar_index)
 
