@@ -52,12 +52,10 @@ function App() {
                         limit: 5
                     }));
                     console.log(wordPairs.toString());
-                     const apiCalls = wordPairs.map(pair =>
-                          fetch(`https://b63bfdks-8001.usw3.devtunnels.ms/word_similarity/?initial=${pair.compare}&compare=${pair.initial}&lang1=${pair.lang1}&lang2=${pair.lang2}&limit=${pair.limit}`, {
-                            mode: 'no-cors'
-                          })
+                    const apiCalls = wordPairs.map(pair =>
+                        fetch(`https://b63bfdks-8001.usw3.devtunnels.ms/word_similarity/word_similarity/?initial=${pair.compare}&compare=${pair.initial}&lang1=${pair.lang1}&lang2=${pair.lang2}&limit=${pair.limit}`)
                             .then(response => response.json())
-                        );
+                    );
 
                     Promise.all(apiCalls)
                         .then(results => {
