@@ -86,7 +86,7 @@ npm start
 
 2. **Select Your Preferred Language** and click the "Translate" button.  
 
-  ![Screenshot](/DocumentationImages/FrontendInputChooseTranslation.png)
+  ![Screenshot](/DocumentationImages/FrontendInputChooseTranslation_1.png) ![Screenshot](/DocumentationImages/FrontendInputChooseTranslation_2.png)
 
 3. **Check the Translation**  
 
