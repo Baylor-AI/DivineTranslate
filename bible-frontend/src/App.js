@@ -40,31 +40,33 @@ function App() {
 
 
      const fillHasResults = async () => {
-            if (translatedText) {
-                const inputWords = stripPunctuation(inputText).split(' ');
-                const translatedWords = stripPunctuation(translatedText).split(' ');
+                if (translatedText) {
+                    const inputWords = stripPunctuation(inputText).split(' ');
+                    const translatedWords = stripPunctuation(translatedText).split(' ');
 
-                const wordPairs = translatedWords.map((word, index) => ({
-                    initial: word,
-                    compare: inputWords[index] || '',
-                    lang1: inputLanguage,
-                    lang2: targetLanguage,
-                    limit: 5
-                }));
-                console.log(wordPairs.toString());
-                const apiCalls = wordPairs.map(pair =>
-                    fetch(`http://localhost:8001/word_similarity/?initial=${pair.compare}&compare=${pair.initial}&lang1=${pair.lang1}&lang2=${pair.lang2}&limit=${pair.limit}`)
-                        .then(response => response.json())
-                );
+                    const wordPairs = translatedWords.map((word, index) => ({
+                        initial: word,
+                        compare: inputWords[index] || '',
+                        lang1: inputLanguage,
+                        lang2: targetLanguage,
+                        limit: 5
+                    }));
+                    console.log(wordPairs.toString());
+                     const apiCalls = wordPairs.map(pair =>
+                          fetch(`https://b63bfdks-8001.usw3.devtunnels.ms/word_similarity/?initial=${pair.compare}&compare=${pair.initial}&lang1=${pair.lang1}&lang2=${pair.lang2}&limit=${pair.limit}`, {
+                            mode: 'no-cors'
+                          })
+                            .then(response => response.json())
+                        );
 
-                Promise.all(apiCalls)
-                    .then(results => {
-                        setWordNetResults(results);
-                        console.log('WordNet results:', results);
-                    })
-                    .catch(error => console.error('Error fetching WordNet results:', error));
-            }
-        };
+                    Promise.all(apiCalls)
+                        .then(results => {
+                            setWordNetResults(results);
+                            console.log('WordNet results:', results);
+                        })
+                        .catch(error => console.error('Error fetching WordNet results:', error));
+                }
+            };
 
 
 
@@ -192,7 +194,7 @@ function App() {
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             onClick={toggleWordSelector}
-            disabled={targetLanguage !== 'eng'}
+            disabled={(inputLanguage !== 'spa' && inputLanguage !== 'fra') || targetLanguage !== 'eng'}
           >
             WordNet
           </button>
