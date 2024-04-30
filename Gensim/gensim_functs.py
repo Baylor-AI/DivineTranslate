@@ -15,8 +15,8 @@ import numpy as np
 
 ### TODO: make a class for these functions and make class variables for easier use
 
-save_file = os.path.join(os.getcwd(), env.tmp_model)
-save_embeddings = os.path.join(os.getcwd(), env.word_embeddings)
+save_file = os.path.join(os.getcwd(), env.model_dir, env.tmp_model)
+save_embeddings = os.path.join(os.getcwd(), env.model_dir, env.word_embeddings)
 
 
 #NOTE: Only works on 1 sentence at a time

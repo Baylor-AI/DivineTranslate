@@ -1,8 +1,10 @@
 import string
 import unicodedata
+import env_vars as env
 
 import nltk
-
+nltk.download('omw')
+nltk.download('wordnet')
 nltk.download('perluniprops')
 nltk.download('popular')
 # set abbreviations for the wordnet items
@@ -88,13 +90,20 @@ def synset_sentence_match(sentence1, sentence2, lang1='eng', lang2='eng'):
     # nistt = nt()
     # print(nistt.international_tokenize(sentence1))
     # print(nistt.international_tokenize(sentence2))
+
+    ### Input Processing
     sentence1 = remove_stopwords_tokens(
-        remove_punct_tokens(list(([w for w in word_tokenize(sentence1)]))))  # if not w.lower() in sw.words(lang1)]))
+        remove_punct_tokens(list(([w for w in word_tokenize(sentence1)]))),
+        lang=env.lang_map.get(lang1)
+    )
     sentence2 = remove_stopwords_tokens(
-        remove_punct_tokens(list(([w for w in word_tokenize(sentence2)]))))  # if not w.lower() in sw.words(lang2)]))
+        remove_punct_tokens(list(([w for w in word_tokenize(sentence2)]))),
+        lang=env.lang_map.get(lang2)
+    )
     # print(f"tokenized s1: {sentence1}\n lemmas: {[wn.lemmas(w, lang=lang1) for w in sentence1]}")
     # print(f"tokenized s2: {sentence2}\n lemmas: {[wn.lemmas(w, lang=lang2) for w in sentence2]}")
-    # We are comparing the similarity of two sentences, and assuming they are the same length
+
+    ### We are comparing the similarity of two sentences, word for word and assuming they are the same length
     checked = []
     for word1 in sentence1:
         prev = None
@@ -111,7 +120,6 @@ def synset_sentence_match(sentence1, sentence2, lang1='eng', lang2='eng'):
                             break
                         for syns2 in synsets2:
                             for syn2 in syns2:
-
                                 checks = [checker['word'] for checker in checked]
                                 if (syn1.name().split('.')[0] not in checks and
                                         match_lemma(word1, word2, lang1, lang2) and
@@ -175,7 +183,7 @@ def match_lemma(word1, word2, lang1, lang2):
     :return:
     '''
     lems1 = wn.lemmas(wn.morphy(remove_punct(word1).lower()), lang=lang1)
-    lems2 = wn.lemmas(wn.morphy(remove_punct(word1).lower()), lang=lang2)
+    lems2 = wn.lemmas(wn.morphy(remove_punct(word2).lower()), lang=lang2)
     # print(f'{lems1} v {lems2}')
     match = None
     sim = 0.0
@@ -191,7 +199,7 @@ def match_lemma(word1, word2, lang1, lang2):
                         # print(f'{lem1.synset()} vs {lem2.synset()} ====> {sim}')
     return match
 
-
+### TODO: Fix implementation of listing out the lemmas
 def match_lemma_list(word1, word2, lang1, lang2, limit=5):
     '''
     Gets the common element in two lists of lemmas
@@ -207,10 +215,11 @@ def match_lemma_list(word1, word2, lang1, lang2, limit=5):
         word1 = remove_punct(word1).lower()
         word2 = remove_punct(word2).lower()
         lems1 = wn.lemmas(word1, lang=lang1) if not wn.morphy(word1) \
-            else wn.lemmas(wn.morphy(word1))
+            else wn.lemmas(wn.morphy(word1), lang=lang1)
         lems2 = wn.lemmas(word2, lang=lang2) if not wn.morphy(word2) \
             else wn.lemmas(wn.morphy(word2))
 
+        ### get the list of matching word "hits"
         for lem1 in lems1:
             if lem1.synset():
                 for lem2 in lems2:
@@ -222,6 +231,7 @@ def match_lemma_list(word1, word2, lang1, lang2, limit=5):
                             # print(f'{lem1.synset()} vs {lem2.synset()} ====> {sim}')
                             match.append((lem1.synset(), lem2.synset(), sim))
 
+    ### create the dictionary to send to the backend endpoint
     results = []
     for pair in match:
         for item in pair[0].lemmas():
@@ -235,7 +245,6 @@ def match_lemma_list(word1, word2, lang1, lang2, limit=5):
                     results.append({
                         'word': f'{pair[1].name().split(".")[0]}',
                         'percentage': pair[2] * wn.wup_similarity(pair[0], item.synset()) * 100,
-                        'empty': False
                     })
 
     sorted_results = sorted(results, key=lambda x: x['percentage'], reverse=True)
