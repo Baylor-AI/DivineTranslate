@@ -1,23 +1,23 @@
 # for backend
-fastapi
-uvicorn
+fastapi==0.110.0
+uvicorn==0.27.1
 
 # wordnet word-by-word comparison
-nltk
+nltk==3.8.1
 
 # gensim sentence similarity
-numpy
-scipy
-gensim
-scikit-learn
+numpy==1.24.4
+scipy==1.10.1
+gensim==4.3.2
+scikit-learn==1.3.2
 
 
 # Chinese Tokenizer
 # jieba
 
 # for model training and database stuff
-datasets
-accelerate
-torch
-transformers[torch]
-sacrebleu
+datasets==2.18.0
+accelerate==0.28.0
+torch==2.2.2
+transformers[torch]==4.39.3
+sacrebleu==2.4.1
