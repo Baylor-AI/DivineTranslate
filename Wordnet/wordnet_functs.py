@@ -14,15 +14,15 @@ from nltk.tokenize import word_tokenize
 nltk.download('stopwords')
 
 # TODO: FIX THIS MAPPING TO CONTAIN THE WHOLE SET OF LANGUAGES
-language_mapping = [
-    {
-        'eng' : 'english',
-        'cmn' : 'chinese'
-    }
-]
+language_mapping = env.lang_map
 
 
 def synset_program(lang='cmn'):
+    '''
+    Test of wordnet functionalities. Can be used to help model additional information editorial features for the frontend
+    :param lang:
+    :return:
+    '''
     syns = wn.synsets("program")
     wn.langs()
     print(f'synonyms for word: programming')
@@ -42,6 +42,12 @@ def synset_program(lang='cmn'):
 
 
 def synset_choose(choice, lang='eng'):
+    '''
+    Test program for generatining the synonyms and antonyms of a chosen word
+    :param choice:
+    :param lang:
+    :return: None (TODO: should return the list of synonyms and antonyms for the frontend to display)
+    '''
     synonyms_list = []
     antonyms_list = [a.antonyms() for a in wn.lemmas(choice) if a.antonyms()]
     for syn in wn.synsets(str(choice)):
@@ -54,6 +60,15 @@ def synset_choose(choice, lang='eng'):
 
 
 def synset_compare(choice, compare_with, lang1='eng', lang2='cmn', limit=5):
+    '''
+    compares 2 words using their synsets to find similarities
+    :param choice:
+    :param compare_with:
+    :param lang1:
+    :param lang2:
+    :param limit:
+    :return: the list of wup_similarity synset pairs out of the list of synsets for both words
+    '''
     choice = wn.morphy(choice)
     compare_with = wn.morphy(compare_with)
     similarity = []
@@ -85,6 +100,14 @@ def synset_compare(choice, compare_with, lang1='eng', lang2='cmn', limit=5):
 
 
 def synset_sentence_match(sentence1, sentence2, lang1='eng', lang2='eng'):
+    '''
+    Matches sentences word by word and averages the wup_similarity scores of each
+    :param sentence1:
+    :param sentence2:
+    :param lang1:
+    :param lang2:
+    :return:
+    '''
     # print(sw.words('english'))
     # print(sw.words('chinese'))
     # nistt = nt()
